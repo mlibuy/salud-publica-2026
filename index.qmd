@@ -1,0 +1,17 @@
+---
+title: "Salud Pública Finis Terrae 2026"
+---
+
+## Bienvenidos
+
+Este es un sitio creado especialmente para el desarrollo del curso 2026.
+
+Profesor: Dr. Matías Libuy Ríos
+
+<!--
+Cuando el sitio esté publicado, generar un código QR con la URL final
+(por ejemplo en https://www.qr-code-generator.com), guardarlo como qr.png
+en esta misma carpeta y descomentar la línea siguiente:
+
+![](qr.png){width=70%}
+-->

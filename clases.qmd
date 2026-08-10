@@ -1,0 +1,358 @@
+---
+title: "Clases"
+---
+
+## 📅 Cronograma de la asignatura
+
+------------------------------------------------------------------------
+
+## 🟦 Semana 1 — 06-08-2026
+
+### Fundamentos de la salud pública
+
+**🕒 Presentación del curso (08:30–09:00)**  
+- Programa, metodología y sistema de evaluación
+
+**🕒 Clase 1 (09:00–11:00)**  
+- Conceptos y definiciones de salud pública  
+- Funciones esenciales de la salud pública (FESP, OPS 2020)  
+- Historia natural de la enfermedad
+
+---
+
+### 📂 Clase
+
+<!-- Reemplazar ID_PRESENTACION por el ID real del archivo en Google Drive -->
+<iframe 
+src="https://docs.google.com/presentation/d/ID_PRESENTACION/preview" 
+width="100%" 
+height="650">
+</iframe>
+
+[**Abrir presentación en Google Drive**](https://docs.google.com/presentation/d/ID_PRESENTACION/edit?usp=sharing){.btn .btn-primary}
+
+---
+
+**📚 Bibliografía**  
+- Muñoz F, et al. *Rev Panam Salud Publica* (2000)  
+- OPS. *Las FESP en las Américas: un renovado marco conceptual y operacional* (2020)
+
+------------------------------------------------------------------------
+
+## 🟦 Semana 2 — 13-08-2026
+
+### Prevención y demografía
+
+**🕒 Clase 2 (08:30–09:40)**  
+- Niveles de prevención  
+- Promoción de salud y prevención de enfermedades
+
+**🕒 Clase 3 (09:50–11:00)**  
+- Demografía y salud pública  
+- Transición demográfica y epidemiológica
+
+---
+
+### 📂 Clase
+
+<iframe 
+src="https://docs.google.com/presentation/d/ID_PRESENTACION/preview" 
+width="100%" 
+height="650">
+</iframe>
+
+[**Abrir presentación en Google Drive**](https://docs.google.com/presentation/d/ID_PRESENTACION/edit?usp=sharing){.btn .btn-primary}
+
+------------------------------------------------------------------------
+
+## 🟦 Semana 3 — 20-08-2026
+
+### Determinantes sociales de la salud
+
+**🕒 Clase 4 (08:30–09:30)**  
+- Modelo de determinantes sociales (Solar e Irwin)
+
+**🕒 Clase 5 (09:35–10:15)**  
+- Género como determinante social de la salud
+
+**🕒 Clase 6 (10:20–11:00)**  
+- Migración como determinante social de la salud
+
+---
+
+### 📂 Clase
+
+<iframe 
+src="https://docs.google.com/presentation/d/ID_PRESENTACION/preview" 
+width="100%" 
+height="650">
+</iframe>
+
+[**Abrir presentación en Google Drive**](https://docs.google.com/presentation/d/ID_PRESENTACION/edit?usp=sharing){.btn .btn-primary}
+
+---
+
+**📚 Bibliografía**  
+- Solar O, Irwin A. *A conceptual framework for action on the social determinants of health*. OMS  
+- Irwin A, Scali E. *Action on the Social Determinants of Health*. OMS (2010)
+
+------------------------------------------------------------------------
+
+## 🟨 Semana 4 — 27-08-2026
+
+### Taller 1 (10%)
+
+- Determinantes sociales de la salud en regiones de Chile  
+- Producto: **podcast** (grupal)
+
+---
+
+### 📂 Pauta del taller
+
+<iframe 
+src="https://docs.google.com/document/d/ID_DOCUMENTO/preview" 
+width="100%" 
+height="650">
+</iframe>
+
+[**Abrir pauta en Google Docs**](https://docs.google.com/document/d/ID_DOCUMENTO/edit?usp=sharing){.btn .btn-primary}
+
+------------------------------------------------------------------------
+
+## 🟥 Semana 5 — 03-09-2026
+
+### Solemne 1 (30%)
+
+- Unidad 1 completa  
+- 55 preguntas de selección múltiple, 4 alternativas
+
+------------------------------------------------------------------------
+
+## 🟦 Semana 6 — 10-09-2026
+
+### Seguridad social y sistemas de salud
+
+**🕒 Clase 7 (08:30–09:40)**  
+- Bases conceptuales de la seguridad social  
+- Desarrollo histórico: de Bismarck y Beveridge al caso chileno
+
+**🕒 Clase 8 (09:50–11:00)**  
+- Funciones de los sistemas de atención de salud  
+- Subsistemas en Chile: definición, estructura y funciones
+
+---
+
+### 📂 Clase
+
+<iframe 
+src="https://docs.google.com/presentation/d/ID_PRESENTACION/preview" 
+width="100%" 
+height="650">
+</iframe>
+
+[**Abrir presentación en Google Drive**](https://docs.google.com/presentation/d/ID_PRESENTACION/edit?usp=sharing){.btn .btn-primary}
+
+------------------------------------------------------------------------
+
+## ⬜ Semana 7 — 17-09-2026
+
+### Semana de Fiestas Patrias
+
+- Sin actividades académicas
+
+------------------------------------------------------------------------
+
+## 🟦 Semana 8 — 24-09-2026
+
+### Organización del sistema de salud chileno
+
+**🕒 Clase 9 (08:30–09:40)**  
+- MINSAL, subsecretarías, seremis, servicios de salud  
+- FONASA, ISAPRE, Superintendencia de Salud  
+- Política y objetivos sanitarios
+
+**🕒 Clase 10 (09:50–11:00)**  
+- Concepto de red asistencial  
+- Red asistencial chilena: niveles de complejidad, RISS y APS
+
+---
+
+### 📂 Clase
+
+<iframe 
+src="https://docs.google.com/presentation/d/ID_PRESENTACION/preview" 
+width="100%" 
+height="650">
+</iframe>
+
+[**Abrir presentación en Google Drive**](https://docs.google.com/presentation/d/ID_PRESENTACION/edit?usp=sharing){.btn .btn-primary}
+
+---
+
+**📚 Bibliografía**  
+- Becerril-Montekio V, et al. *Salud Publica Mex* (2011)  
+- Bossert TJ, Leisewitz T. *N Engl J Med* (2016)
+
+------------------------------------------------------------------------
+
+## 🟦 Semana 9 — 01-10-2026
+
+### Beneficios, GES y marco legal
+
+**🕒 Clase 11 (08:30–09:40)**  
+- Beneficios de la seguridad social y rol del médico en su acceso  
+- GES (Ley 19.966) y financiamiento del sector salud
+
+**🕒 Clase 12 (09:50–11:00)**  
+- Derechos y deberes del paciente (Ley 20.584)  
+- Certificado de defunción, notificación obligatoria y licencias médicas (Ley 21.746)
+
+---
+
+### 📂 Clase
+
+<iframe 
+src="https://docs.google.com/presentation/d/ID_PRESENTACION/preview" 
+width="100%" 
+height="650">
+</iframe>
+
+[**Abrir presentación en Google Drive**](https://docs.google.com/presentation/d/ID_PRESENTACION/edit?usp=sharing){.btn .btn-primary}
+
+------------------------------------------------------------------------
+
+## 🟨 Semana 10 — 08-10-2026
+
+### Taller 2 (10%)
+
+- Sistema sanitario chileno: análisis de servicios de salud  
+- Producto: **informe** (grupal)
+
+---
+
+### 📂 Pauta del taller
+
+<iframe 
+src="https://docs.google.com/document/d/ID_DOCUMENTO/preview" 
+width="100%" 
+height="650">
+</iframe>
+
+[**Abrir pauta en Google Docs**](https://docs.google.com/document/d/ID_DOCUMENTO/edit?usp=sharing){.btn .btn-primary}
+
+------------------------------------------------------------------------
+
+## 🟦 Semana 11 — 15-10-2026
+
+### Administración y dirección
+
+**🕒 Clase 13 (08:30–09:40)**  
+- Conceptos de administración y gestión  
+- Administración de establecimientos de salud
+
+**🕒 Clase 14 (09:50–11:00)**  
+- Organización: estructura y función  
+- Dirección: liderazgo, comunicaciones y coordinación
+
+---
+
+### 📂 Clase
+
+<iframe 
+src="https://docs.google.com/presentation/d/ID_PRESENTACION/preview" 
+width="100%" 
+height="650">
+</iframe>
+
+[**Abrir presentación en Google Drive**](https://docs.google.com/presentation/d/ID_PRESENTACION/edit?usp=sharing){.btn .btn-primary}
+
+------------------------------------------------------------------------
+
+## 🟥 Semana 12 — 22-10-2026
+
+### Solemne 2 (20%)
+
+- Unidad 2 completa  
+- 55 preguntas de selección múltiple, 4 alternativas
+
+------------------------------------------------------------------------
+
+## 🟦 Semana 13 — 29-10-2026
+
+### Planificación y evaluación
+
+**🕒 Clase 15 (08:30–09:40)**  
+- Planificación y programación en salud  
+- Formulación de programas
+
+**🕒 Clase 16 (09:50–11:00)**  
+- Evaluación y control: conceptos y tipos  
+- Auditoría y acreditación
+
+---
+
+### 📂 Clase
+
+<iframe 
+src="https://docs.google.com/presentation/d/ID_PRESENTACION/preview" 
+width="100%" 
+height="650">
+</iframe>
+
+[**Abrir presentación en Google Drive**](https://docs.google.com/presentation/d/ID_PRESENTACION/edit?usp=sharing){.btn .btn-primary}
+
+------------------------------------------------------------------------
+
+## 🟨 Semana 14 — 05-11-2026
+
+### Clase 17 + Taller 3 (10%)
+
+**🕒 Clase 17 (08:30–09:30)**  
+- Rol del médico en la generación y uso de la información  
+- Ejercicio profesional: marcos ético, legal y gremial
+
+**🕒 Taller 3 (09:40–11:00)**  
+- Gestión en salud: análisis de datos de servicios clínicos  
+- Producto: **policy brief** (grupal)
+
+---
+
+### 📂 Pauta del taller
+
+<iframe 
+src="https://docs.google.com/document/d/ID_DOCUMENTO/preview" 
+width="100%" 
+height="650">
+</iframe>
+
+[**Abrir pauta en Google Docs**](https://docs.google.com/document/d/ID_DOCUMENTO/edit?usp=sharing){.btn .btn-primary}
+
+------------------------------------------------------------------------
+
+## 🟥 Semana 15 — 12-11-2026
+
+### Solemne 3 (20%)
+
+- Unidad 3 completa  
+- 55 preguntas de selección múltiple, 4 alternativas
+
+------------------------------------------------------------------------
+
+## 🟥 Semana 16 — 19-11-2026
+
+### Recuperativas: Solemnes y Talleres
+
+------------------------------------------------------------------------
+
+## 🟥 Semana 17 — 26-11-2026
+
+### Examen final (eximible)
+
+- Acumulativo, selección múltiple  
+- Se eximen quienes tengan nota de presentación ≥ 5,5
+
+------------------------------------------------------------------------
+
+## 🟥 Semana 18 — 03-12-2026
+
+### Examen de segunda oportunidad

@@ -1,0 +1,30 @@
+---
+title: "Apuntes"
+---
+
+## 📚 Apuntes del curso
+
+---
+
+### 📖 Apunte: Historia natural de la enfermedad y niveles de prevención
+
+<!-- Reemplazar ID_DOCUMENTO por el ID real del Google Doc -->
+<iframe src="https://docs.google.com/document/d/ID_DOCUMENTO/preview"
+width="100%" height="600"></iframe>
+
+[**Abrir apunte en Google Docs**](https://docs.google.com/document/d/ID_DOCUMENTO/edit?usp=sharing){.btn .btn-primary}
+
+---
+
+<!--
+Para agregar un apunte nuevo, copiar este bloque y reemplazar título e ID:
+
+### 📖 Apunte: TÍTULO
+
+<iframe src="https://docs.google.com/document/d/ID_DOCUMENTO/preview"
+width="100%" height="600"></iframe>
+
+[**Abrir apunte en Google Docs**](https://docs.google.com/document/d/ID_DOCUMENTO/edit?usp=sharing){.btn .btn-primary}
+
+---
+-->
