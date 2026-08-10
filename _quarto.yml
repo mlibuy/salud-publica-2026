@@ -1,0 +1,24 @@
+project:
+  type: website
+  output-dir: docs
+
+website:
+  title: "Salud Pública Finis Terrae 2026"
+
+  navbar:
+    left:
+      - text: "Descripción del curso"
+        href: descripcion.qmd
+      - text: "Clases"
+        href: clases.qmd
+      - text: "Apuntes"
+        href: apuntes.qmd
+      - text: "Resúmenes de video en 5+ minutos"
+        href: audio.qmd
+      - text: "Ejercicios por una décima"
+        href: ejercicios.qmd
+
+format:
+  html:
+    theme: cosmo
+    toc: true

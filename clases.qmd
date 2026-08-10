@@ -22,14 +22,13 @@ title: "Clases"
 
 ### 📂 Clase
 
-<!-- Reemplazar ID_PRESENTACION por el ID real del archivo en Google Drive -->
 <iframe 
-src="https://docs.google.com/presentation/d/ID_PRESENTACION/preview" 
+src="https://docs.google.com/presentation/d/19q7bhwsR7XNgIQZgauPnuRCPeLXbzW3pacdaIjzyhQk/preview" 
 width="100%" 
 height="650">
 </iframe>
 
-[**Abrir presentación en Google Drive**](https://docs.google.com/presentation/d/ID_PRESENTACION/edit?usp=sharing){.btn .btn-primary}
+[**Abrir presentación en Google Drive**](https://docs.google.com/presentation/d/19q7bhwsR7XNgIQZgauPnuRCPeLXbzW3pacdaIjzyhQk/edit?usp=sharing){.btn .btn-primary}
 
 ---
 
