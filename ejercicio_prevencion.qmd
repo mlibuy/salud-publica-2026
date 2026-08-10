@@ -1,0 +1,309 @@
+---
+title: "Ejercicio en clase: niveles de prevención"
+toc: false
+page-layout: full
+---
+
+::: {.callout-note}
+## 🕒 Cómo trabajar
+
+En **parejas**, con su compañera o compañero de puesto. Tienen **15 minutos** para las tres secciones. Cada respuesta entrega retroalimentación inmediata: léanla, ahí está el aprendizaje. Al final aparece su resumen — no lo cierren, lo revisamos en conjunto.
+
+**Criterio del curso:** usamos la clasificación original de Leavell y Clark. La *limitación del daño* pertenece a la prevención **secundaria**.
+:::
+
+```{=html}
+<style>
+#appx{max-width:880px;margin:0 auto;font-size:1rem}
+#appx .tabs{display:flex;gap:.4rem;margin:1rem 0 1.2rem;flex-wrap:wrap}
+#appx .tabs button{border:1px solid #ced4da;background:#fff;padding:.45rem .9rem;border-radius:.4rem;cursor:pointer;font-weight:600}
+#appx .tabs button.act{background:#2c3e50;color:#fff;border-color:#2c3e50}
+#appx .tabs button .st{font-weight:400;font-size:.8em;opacity:.8}
+#appx .card-q{border:1px solid #dee2e6;border-radius:.5rem;padding:1rem 1.2rem;margin-bottom:1rem;background:#fff}
+#appx .enun{font-weight:600;margin-bottom:.6rem}
+#appx .opts button{display:block;width:100%;text-align:left;margin:.3rem 0;padding:.5rem .8rem;border:1px solid #ced4da;background:#f8f9fa;border-radius:.35rem;cursor:pointer}
+#appx .opts button:hover:not(:disabled){background:#e9ecef}
+#appx .opts button:disabled{cursor:default;opacity:.85}
+#appx .opts button.ok{background:#d1e7dd;border-color:#198754}
+#appx .opts button.bad{background:#f8d7da;border-color:#dc3545}
+#appx .fb{margin-top:.6rem;padding:.6rem .8rem;border-radius:.35rem;font-size:.93em;display:none}
+#appx .fb.ok{display:block;background:#d1e7dd}
+#appx .fb.bad{display:block;background:#fff3cd}
+#appx .chart-item{font-weight:600;margin-bottom:.4rem}
+#appx svg text{font-family:inherit}
+#appx .zona{cursor:pointer}
+#appx .zona rect{fill:#f8f9fa;stroke:#adb5bd;stroke-width:1}
+#appx .zona:hover rect{fill:#e9ecef}
+#appx .zona.ok rect{fill:#d1e7dd;stroke:#198754;stroke-width:2}
+#appx .zona.bad rect{fill:#f8d7da;stroke:#dc3545;stroke-width:2}
+#appx .zona.dim{pointer-events:none}
+#appx .prog{font-size:.85em;color:#6c757d;margin-bottom:.6rem}
+#appx .resumen{border:2px solid #2c3e50;border-radius:.5rem;padding:1.2rem;background:#fff}
+#appx .resumen h3{margin-top:0}
+#appx .resumen table{width:100%;border-collapse:collapse;margin:.6rem 0}
+#appx .resumen td,#appx .resumen th{border:1px solid #dee2e6;padding:.4rem .6rem;text-align:left}
+#appx .puntaje{font-size:1.6rem;font-weight:700}
+#appx .rev-btn{margin-top:.8rem;border:1px solid #2c3e50;background:#fff;color:#2c3e50;padding:.5rem 1rem;border-radius:.4rem;cursor:pointer;font-weight:600}
+#appx .pend{color:#dc3545;font-size:.9em}
+</style>
+
+<div id="appx">
+  <div class="tabs">
+    <button id="tb1" class="act" onclick="tab(1)">1 · Selección múltiple <span class="st" id="st1"></span></button>
+    <button id="tb2" onclick="tab(2)">2 · Línea de tiempo <span class="st" id="st2"></span></button>
+    <button id="tb3" onclick="tab(3)">3 · Casos clínicos <span class="st" id="st3"></span></button>
+    <button id="tb4" onclick="tab(4)">Resumen</button>
+  </div>
+  <div id="sec1"></div>
+  <div id="sec2" style="display:none">
+    <div class="card-q">
+      <div class="prog" id="prog2"></div>
+      <div class="chart-item" id="itemChart"></div>
+      <p style="font-size:.9em;color:#495057;margin:.2rem 0 .6rem">Hagan clic sobre la franja del nivel de prevención que corresponde a la intervención, considerando el momento de la historia natural en que actúa (eje X: tiempo).</p>
+      <svg id="chart" viewBox="0 0 860 360" style="width:100%;height:auto"></svg>
+      <div class="fb" id="fb2"></div>
+      <button class="rev-btn" id="next2" style="display:none" onclick="nextChart()">Siguiente intervención →</button>
+    </div>
+  </div>
+  <div id="sec3"></div>
+  <div id="sec4" style="display:none"></div>
+</div>
+
+<script>
+/* ============ ESTADO ============ */
+const S = { mcq: {}, chart: {}, casos: {}, chartIdx: 0 };
+
+/* ============ SECCIÓN 1: MCQ ============ */
+const MCQ = [
+ {q:"Un consultorio organiza un operativo de vacunación contra la influenza para mayores de 65 años. ¿Qué nivel de prevención ejerce?",
+  o:["Primordial","Primaria","Secundaria","Terciaria"], r:1,
+  e:"La vacunación actúa en el período prepatogénico: la persona está expuesta al riesgo pero la enfermedad no se ha iniciado. Reducir la incidencia mediante protección específica es la definición de prevención primaria. No es primordial porque no modifica las condiciones que generan la exposición al virus, sino que protege al individuo ya expuesto."},
+ {q:"El PAP realizado cada tres años a mujeres asintomáticas de 25 a 64 años corresponde a:",
+  o:["Prevención primaria","Prevención secundaria","Prevención terciaria","Promoción de salud"], r:1,
+  e:"El tamizaje busca detectar la enfermedad en fase subclínica, antes del horizonte clínico, para tratarla precozmente. Eso es diagnóstico precoz: prevención secundaria. No reduce la incidencia (la lesión ya existe cuando se detecta); reduce la mortalidad y la progresión."},
+ {q:"Según el criterio original de Leavell y Clark —el que usa este curso— la «limitación del daño» pertenece a:",
+  o:["Prevención secundaria","Prevención terciaria","Prevención cuaternaria","Depende de la patología"], r:0,
+  e:"En el esquema original, la prevención secundaria incluye el diagnóstico precoz, el tratamiento oportuno y la limitación del daño. Varios textos latinoamericanos la trasladan a la terciaria; en las solemnes de este curso rige la asignación original. La terciaria queda reservada para la rehabilitación."},
+ {q:"Un médico decide NO solicitar una resonancia en un paciente con lumbago inespecífico de 5 días, sin banderas rojas, y explica por qué no está indicada. Esto es:",
+  o:["Prevención terciaria","Prevención cuaternaria","Mala práctica","Prevención secundaria"], r:1,
+  e:"La prevención cuaternaria (Jamoulle, 1986) protege al paciente del daño causado por el propio sistema de salud: intervenciones innecesarias, sobrediagnóstico, cascadas de exámenes. No previene la enfermedad, previene el daño de la medicina."},
+ {q:"Una ley que prohíbe fumar en espacios cerrados y sube los impuestos al tabaco es el ejemplo clásico de:",
+  o:["Prevención primaria","Prevención primordial","Promoción de salud individual","Prevención secundaria"], r:1,
+  e:"La prevención primordial (Strasser, 1978) evita que los factores de riesgo se instalen en la población. Actúa antes que la primaria: no protege al individuo expuesto, sino que modifica las condiciones sociales que generan la exposición. Su instrumento es la política pública, no el acto clínico."},
+ {q:"En cardiología se llama «prevención secundaria» al manejo con estatinas y antiagregantes después de un infarto. Para la clasificación epidemiológica de este curso, ese manejo corresponde a:",
+  o:["Prevención secundaria, igual que en cardiología","Prevención terciaria","Prevención primaria","Prevención cuaternaria"], r:1,
+  e:"La enfermedad aterosclerótica ya está establecida y se manifestó clínicamente: se actúa sobre enfermedad clínica para evitar recurrencias y progresión. En la clasificación epidemiológica eso es terciaria. La nomenclatura cardiológica usa «secundaria» con otro sentido (evitar un segundo evento); en la solemne rige el criterio epidemiológico."},
+ {q:"La rehabilitación kinésica de un paciente con secuela motora post accidente cerebrovascular es:",
+  o:["Limitación del daño (secundaria)","Prevención terciaria","Prevención cuaternaria","Cuidados paliativos, fuera de la clasificación"], r:1,
+  e:"La rehabilitación busca reinsertar y recuperar funcionalidad cuando la enfermedad ya dejó secuelas. Es el contenido propio de la prevención terciaria en el esquema original. La limitación del daño, en cambio, ocurre durante la enfermedad activa para evitar que la secuela se produzca."},
+ {q:"¿Cuál de las siguientes intervenciones ocurre ANTES en el eje temporal de la historia natural de la enfermedad?",
+  o:["Tamizaje de retinopatía en diabéticos","Regulación del etiquetado de alimentos (Ley de Etiquetado)","Tratamiento oportuno de la TBC activa","Rehabilitación pulmonar"], r:1,
+  e:"La regulación del etiquetado actúa sobre las condiciones poblacionales que generan los factores de riesgo: es primordial, lo más temprano del eje. El tamizaje es secundaria (fase subclínica), el tratamiento oportuno es secundaria (post horizonte clínico) y la rehabilitación es terciaria (secuelas)."}
+];
+
+function renderMCQ(){
+  const c = document.getElementById('sec1');
+  c.innerHTML = MCQ.map((it,i)=>`
+   <div class="card-q">
+     <div class="enun">${i+1}. ${it.q}</div>
+     <div class="opts">${it.o.map((o,j)=>`<button onclick="ansMCQ(${i},${j},this)">${String.fromCharCode(97+j)}) ${o}</button>`).join('')}</div>
+     <div class="fb" id="fbm${i}"></div>
+   </div>`).join('');
+}
+function ansMCQ(i,j,btn){
+  if(S.mcq[i]!==undefined) return;
+  S.mcq[i]=j;
+  const it=MCQ[i], box=btn.parentElement;
+  [...box.children].forEach((b,k)=>{ b.disabled=true; if(k===it.r)b.classList.add('ok'); });
+  const fb=document.getElementById('fbm'+i);
+  if(j===it.r){ fb.className='fb ok'; fb.innerHTML='<b>Correcto.</b> '+it.e; }
+  else { btn.classList.add('bad'); fb.className='fb bad'; fb.innerHTML='<b>No.</b> La correcta es la <b>'+String.fromCharCode(97+it.r)+'</b>. '+it.e; }
+  updateTabs();
+}
+
+/* ============ SECCIÓN 2: LÍNEA DE TIEMPO ============ */
+/* Zonas: y = nivel de prevención, x = momento de la historia natural */
+const ZONAS = [
+ {id:'primordial', label:'Primordial', x:20,  w:190, fila:0, sub:'Condiciones poblacionales, sin FR instalados'},
+ {id:'primaria',   label:'Primaria',   x:215, w:190, fila:1, sub:'Prepatogénico: FR presentes, sin enfermedad'},
+ {id:'secundaria', label:'Secundaria', x:410, w:220, fila:2, sub:'Subclínico y enfermedad temprana'},
+ {id:'terciaria',  label:'Terciaria',  x:635, w:205, fila:3, sub:'Enfermedad avanzada y secuelas'}
+];
+const CHART_ITEMS = [
+ {pat:'Tuberculosis', txt:'Vacunación BCG al nacer', r:'primaria',
+  e:'La BCG protege al recién nacido antes de cualquier contacto con el bacilo: protección específica en el período prepatogénico → primaria.'},
+ {pat:'Cáncer cervicouterino', txt:'PAP cada 3 años en mujeres asintomáticas', r:'secundaria',
+  e:'Detecta lesiones en fase subclínica, antes del horizonte clínico → diagnóstico precoz, secundaria.'},
+ {pat:'Enfermedad cardiovascular', txt:'Ley de Etiquetado de Alimentos (sellos «ALTO EN»)', r:'primordial',
+  e:'Modifica el entorno alimentario de toda la población para que el factor de riesgo (dieta hipercalórica) no se instale → primordial.'},
+ {pat:'Diabetes tipo 2', txt:'Consejería de actividad física a un paciente con prediabetes', r:'primaria',
+  e:'El factor de riesgo está presente (glicemia alterada) pero la enfermedad no: se busca evitar la incidencia de DM2 → primaria.'},
+ {pat:'Tuberculosis', txt:'Tratamiento oportuno con esquema completo de la TBC pulmonar confirmada', r:'secundaria',
+  e:'Tratamiento oportuno y limitación del daño en enfermedad activa: en el esquema original de Leavell y Clark es secundaria. Recuerden el criterio del curso.'},
+ {pat:'Accidente cerebrovascular', txt:'Rehabilitación kinésica y fonoaudiológica de la secuela', r:'terciaria',
+  e:'Actúa sobre la secuela ya instalada para recuperar funcionalidad → terciaria.'},
+ {pat:'VIH', txt:'Test rápido de VIH en población asintomática', r:'secundaria',
+  e:'Tamizaje: detección en fase asintomática para tratar precozmente → secundaria.'},
+ {pat:'Enfermedad cardiovascular', txt:'Estatinas y antiagregantes después de un infarto', r:'terciaria',
+  e:'Enfermedad establecida y clínicamente manifestada; se evita recurrencia y progresión → terciaria en la clasificación epidemiológica, aunque cardiología la llame «prevención secundaria».'}
+];
+function drawChart(){
+  const svg=document.getElementById('chart');
+  const filaH=70, top=40, left=20;
+  let g='';
+  // eje X
+  g+=`<line x1="20" y1="330" x2="840" y2="330" stroke="#495057" stroke-width="1.5"/>`;
+  g+=`<text x="430" y="352" text-anchor="middle" font-size="13" fill="#495057">Tiempo — historia natural de la enfermedad</text>`;
+  g+=`<text x="24" y="326" font-size="11" fill="#6c757d">sin factores de riesgo</text>`;
+  g+=`<text x="836" y="326" font-size="11" fill="#6c757d" text-anchor="end">secuelas</text>`;
+  // horizonte clínico
+  g+=`<line x1="520" y1="30" x2="520" y2="330" stroke="#adb5bd" stroke-dasharray="5,4"/>`;
+  g+=`<text x="520" y="22" text-anchor="middle" font-size="11" fill="#6c757d">horizonte clínico</text>`;
+  ZONAS.forEach(z=>{
+    const y=top+z.fila*filaH;
+    g+=`<g class="zona" id="z_${z.id}" onclick="ansChart('${z.id}')">
+      <rect x="${z.x}" y="${y}" width="${z.w}" height="${filaH-12}" rx="6"/>
+      <text x="${z.x+10}" y="${y+24}" font-size="15" font-weight="700" fill="#212529">${z.label}</text>
+      <text x="${z.x+10}" y="${y+43}" font-size="11" fill="#495057">${z.sub}</text>
+    </g>`;
+  });
+  svg.innerHTML=g;
+}
+function loadChartItem(){
+  const i=S.chartIdx;
+  document.getElementById('prog2').textContent=`Intervención ${i+1} de ${CHART_ITEMS.length}`;
+  document.getElementById('itemChart').innerHTML=`<span style="color:#6c757d">${CHART_ITEMS[i].pat}:</span> ${CHART_ITEMS[i].txt}`;
+  document.getElementById('fb2').className='fb';
+  document.getElementById('next2').style.display='none';
+  drawChart();
+}
+function ansChart(zid){
+  const i=S.chartIdx;
+  if(S.chart[i]!==undefined) return;
+  S.chart[i]=zid;
+  const it=CHART_ITEMS[i], fb=document.getElementById('fb2');
+  document.querySelectorAll('#appx .zona').forEach(z=>z.classList.add('dim'));
+  document.getElementById('z_'+it.r).classList.add('ok');
+  if(zid===it.r){ fb.className='fb ok'; fb.innerHTML='<b>Correcto.</b> '+it.e; }
+  else { document.getElementById('z_'+zid).classList.add('bad'); fb.className='fb bad'; fb.innerHTML='<b>No.</b> '+it.e; }
+  const btn=document.getElementById('next2');
+  btn.style.display = i<CHART_ITEMS.length-1 ? 'inline-block':'none';
+  if(i===CHART_ITEMS.length-1){ fb.innerHTML+='<br><b>Sección completada.</b> Pasen a los casos clínicos.'; }
+  updateTabs();
+}
+function nextChart(){ S.chartIdx++; loadChartItem(); }
+
+/* ============ SECCIÓN 3: CASOS ============ */
+const NIV=['Primordial','Primaria','Secundaria','Terciaria','Cuaternaria'];
+const CASOS = [
+ {t:'Caso 1 · Hombre de 52 años en situación de calle, con tos productiva de 6 semanas',
+  intro:'Consulta en un SAPU. Se confirma TBC pulmonar con baciloscopía. Clasifiquen cada acción:',
+  acc:[
+   {txt:'Baciloscopía a sus contactos del albergue, todos asintomáticos', r:2,
+    e:'Búsqueda activa de casos en fase asintomática: tamizaje de contactos → secundaria.'},
+   {txt:'Inicio inmediato del esquema de tratamiento antituberculoso supervisado', r:2,
+    e:'Tratamiento oportuno de enfermedad activa para curarla y evitar secuelas y transmisión: secundaria en el esquema original (tratamiento oportuno + limitación del daño).'},
+   {txt:'Programa municipal de vivienda transitoria que reduce el hacinamiento en albergues', r:0,
+    e:'Modifica la condición estructural (hacinamiento) que genera la exposición al bacilo en esa población → primordial.'},
+   {txt:'Rehabilitación pulmonar por fibrosis residual al terminar el tratamiento', r:3,
+    e:'La secuela ya está instalada; se busca recuperar capacidad funcional → terciaria.'}
+  ]},
+ {t:'Caso 2 · Programa de salud cardiovascular de un CESFAM',
+  intro:'El equipo revisa las actividades del programa. Clasifiquen cada una:',
+  acc:[
+   {txt:'EMP con medición de presión arterial a población asintomática mayor de 40 años', r:2,
+    e:'Detección de hipertensión no diagnosticada en asintomáticos: tamizaje → secundaria.'},
+   {txt:'Taller de alimentación saludable para vecinos sanos del sector, sin factores de riesgo', r:1,
+    e:'Población expuesta al entorno pero sin FR individuales establecidos… ojo: si se dirige a individuos para evitar que aparezca la enfermedad, es primaria. La discusión primordial/primaria aquí es legítima: el criterio es si la intervención modifica condiciones poblacionales (primordial) o protege individuos (primaria). Un taller a personas concretas → primaria.'},
+   {txt:'Control con estatinas y ácido acetilsalicílico en pacientes que ya tuvieron un infarto', r:3,
+    e:'Enfermedad aterosclerótica establecida y manifestada: evitar recurrencia → terciaria (aunque cardiología la llame prevención secundaria).'},
+   {txt:'Decisión de no solicitar perfil lipídico mensual a un paciente estable, explicando que no aporta', r:4,
+    e:'Protege al paciente de la sobremedicalización → cuaternaria.'}
+  ]},
+ {t:'Caso 3 · Mujer de 38 años, PAP alterado',
+  intro:'En el policlínico de la mujer. Clasifiquen cada acción:',
+  acc:[
+   {txt:'Vacunación contra VPH que recibió a los 12 años en el colegio', r:1,
+    e:'Protección específica antes de la exposición al virus → primaria.'},
+   {txt:'El PAP que detectó la lesión intraepitelial, estando ella asintomática', r:2,
+    e:'Detección en fase subclínica, antes del horizonte clínico → secundaria.'},
+   {txt:'Conización que elimina la lesión y evita la progresión a cáncer invasor', r:2,
+    e:'Tratamiento oportuno de la lesión detectada precozmente, limitando el daño → secundaria en el esquema original.'},
+   {txt:'Cuidados de rehabilitación y manejo del linfedema tras una histerectomía radical con linfadenectomía', r:3,
+    e:'Manejo de la secuela del tratamiento de una enfermedad avanzada → terciaria.'}
+  ]}
+];
+function renderCasos(){
+  const c=document.getElementById('sec3');
+  c.innerHTML = CASOS.map((cs,ci)=>`
+   <div class="card-q">
+    <div class="enun">${cs.t}</div>
+    <p style="font-size:.92em;color:#495057">${cs.intro}</p>
+    ${cs.acc.map((a,ai)=>`
+      <div style="margin:.8rem 0 .2rem;font-weight:600;font-size:.95em">${a.txt}</div>
+      <div class="opts" style="display:flex;flex-wrap:wrap;gap:.3rem">
+        ${NIV.map((n,ni)=>`<button style="width:auto;flex:1 1 120px" onclick="ansCaso(${ci},${ai},${ni},this)">${n}</button>`).join('')}
+      </div>
+      <div class="fb" id="fbc${ci}_${ai}"></div>
+    `).join('')}
+   </div>`).join('');
+}
+function ansCaso(ci,ai,ni,btn){
+  const k=ci+'_'+ai;
+  if(S.casos[k]!==undefined) return;
+  S.casos[k]=ni;
+  const a=CASOS[ci].acc[ai], box=btn.parentElement;
+  [...box.children].forEach((b,j)=>{ b.disabled=true; if(j===a.r)b.classList.add('ok'); });
+  const fb=document.getElementById('fbc'+k);
+  if(ni===a.r){ fb.className='fb ok'; fb.innerHTML='<b>Correcto.</b> '+a.e; }
+  else { btn.classList.add('bad'); fb.className='fb bad'; fb.innerHTML='<b>No.</b> Es <b>'+NIV[a.r]+'</b>. '+a.e; }
+  updateTabs();
+}
+
+/* ============ RESUMEN ============ */
+function totCasos(){ return CASOS.reduce((s,c)=>s+c.acc.length,0); }
+function score(){
+  let m=0; MCQ.forEach((it,i)=>{ if(S.mcq[i]===it.r)m++; });
+  let ch=0; CHART_ITEMS.forEach((it,i)=>{ if(S.chart[i]===it.r)ch++; });
+  let ca=0; CASOS.forEach((c,ci)=>c.acc.forEach((a,ai)=>{ if(S.casos[ci+'_'+ai]===a.r)ca++; }));
+  return {m, ch, ca,
+    mT:MCQ.length, chT:CHART_ITEMS.length, caT:totCasos(),
+    mR:Object.keys(S.mcq).length, chR:Object.keys(S.chart).length, caR:Object.keys(S.casos).length};
+}
+function renderResumen(){
+  const s=score();
+  const tot=s.m+s.ch+s.ca, totT=s.mT+s.chT+s.caT;
+  const falt=[];
+  if(s.mR<s.mT)falt.push(`selección múltiple (${s.mT-s.mR} pendientes)`);
+  if(s.chR<s.chT)falt.push(`línea de tiempo (${s.chT-s.chR} pendientes)`);
+  if(s.caR<s.caT)falt.push(`casos (${s.caT-s.caR} pendientes)`);
+  document.getElementById('sec4').innerHTML=`
+   <div class="resumen">
+    <h3>Resumen de la pareja</h3>
+    ${falt.length?`<p class="pend">Aún quedan respuestas sin contestar: ${falt.join(', ')}.</p>`:''}
+    <p class="puntaje">${tot} / ${totT}</p>
+    <table>
+      <tr><th>Sección</th><th>Correctas</th><th>Respondidas</th></tr>
+      <tr><td>1 · Selección múltiple</td><td>${s.m} / ${s.mT}</td><td>${s.mR} / ${s.mT}</td></tr>
+      <tr><td>2 · Línea de tiempo</td><td>${s.ch} / ${s.chT}</td><td>${s.chR} / ${s.chT}</td></tr>
+      <tr><td>3 · Casos clínicos</td><td>${s.ca} / ${s.caT}</td><td>${s.caR} / ${s.caT}</td></tr>
+    </table>
+    <p style="font-size:.9em;color:#495057">Dejen esta pantalla abierta: la revisión en conjunto parte por la sección con más errores del curso.</p>
+   </div>`;
+}
+function updateTabs(){
+  const s=score();
+  document.getElementById('st1').textContent=`(${s.mR}/${s.mT})`;
+  document.getElementById('st2').textContent=`(${s.chR}/${s.chT})`;
+  document.getElementById('st3').textContent=`(${s.caR}/${s.caT})`;
+}
+function tab(n){
+  for(let i=1;i<=4;i++){
+    document.getElementById('sec'+i).style.display = i===n?'block':'none';
+    document.getElementById('tb'+i)?.classList.toggle('act', i===n);
+  }
+  if(n===4) renderResumen();
+}
+renderMCQ(); renderCasos(); loadChartItem(); updateTabs();
+</script>
+```

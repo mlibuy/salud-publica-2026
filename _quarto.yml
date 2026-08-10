@@ -17,6 +17,8 @@ website:
         href: audio.qmd
       - text: "Ejercicios por una décima"
         href: ejercicios.qmd
+      - text: "Ejercicio en clase"
+        href: ejercicio_prevencion.qmd
 
 format:
   html:

@@ -40,15 +40,18 @@ height="650">
 
 ## 🟦 Semana 2 — 13-08-2026
 
-### Prevención y demografía
+### Demografía y ejercicio de niveles de prevención
 
-**🕒 Clase 2 (08:30–09:40)**  
-- Niveles de prevención  
-- Promoción de salud y prevención de enfermedades
-
-**🕒 Clase 3 (09:50–11:00)**  
+**🕒 Clase 2 (08:30–09:50)**  
 - Demografía y salud pública  
-- Transición demográfica y epidemiológica
+- Fuentes de datos: censo, estadísticas vitales, proyecciones  
+- Transición demográfica y envejecimiento en Chile
+
+**🕒 Ejercicio en parejas (10:00–11:00)**  
+- 15 minutos de trabajo con el compañero de puesto en la aplicación del sitio  
+- Revisión en conjunto de niveles de prevención
+
+[**Abrir el ejercicio de niveles de prevención**](ejercicio_prevencion.qmd){.btn .btn-success}
 
 ---
 
