@@ -7,7 +7,7 @@ page-layout: full
 ::: {.callout-note}
 ## 🕒 Cómo trabajar
 
-En **parejas**, con su compañera o compañero de puesto. Tienen **15 minutos** para las tres secciones. Cada respuesta entrega retroalimentación inmediata: léanla, ahí está el aprendizaje. Al final aparece su resumen — no lo cierren, lo revisamos en conjunto.
+En **parejas**, con su compañera o compañero de puesto. Primero, **15 minutos** para las secciones 1 a 3. Luego viene la sección 4, de **lectura crítica**: requiere haber revisado las tres lecturas breves indicadas ahí (están en el Drive del curso). Cada respuesta entrega retroalimentación inmediata: léanla, ahí está el aprendizaje. Al final aparece su resumen — no lo cierren, lo revisamos en conjunto.
 
 **Criterio del curso:** usamos la clasificación original de Leavell y Clark. La *limitación del daño* pertenece a la prevención **secundaria**.
 :::
@@ -52,7 +52,8 @@ En **parejas**, con su compañera o compañero de puesto. Tienen **15 minutos** 
     <button id="tb1" class="act" onclick="tab(1)">1 · Selección múltiple <span class="st" id="st1"></span></button>
     <button id="tb2" onclick="tab(2)">2 · Línea de tiempo <span class="st" id="st2"></span></button>
     <button id="tb3" onclick="tab(3)">3 · Casos clínicos <span class="st" id="st3"></span></button>
-    <button id="tb4" onclick="tab(4)">Resumen</button>
+    <button id="tb4" onclick="tab(4)">4 · Lectura crítica <span class="st" id="st4"></span></button>
+    <button id="tb5" onclick="tab(5)">Resumen</button>
   </div>
   <div id="sec1"></div>
   <div id="sec2" style="display:none">
@@ -67,11 +68,12 @@ En **parejas**, con su compañera o compañero de puesto. Tienen **15 minutos** 
   </div>
   <div id="sec3"></div>
   <div id="sec4" style="display:none"></div>
+  <div id="sec5" style="display:none"></div>
 </div>
 
 <script>
 /* ============ ESTADO ============ */
-const S = { mcq: {}, chart: {}, casos: {}, chartIdx: 0 };
+const S = { mcq: {}, chart: {}, casos: {}, lect: {}, chartIdx: 0 };
 
 /* ============ SECCIÓN 1: MCQ ============ */
 const MCQ = [
@@ -260,24 +262,95 @@ function ansCaso(ci,ai,ni,btn){
   updateTabs();
 }
 
+
+/* ============ SECCIÓN 4: LECTURA CRÍTICA ============ */
+const LECTURAS_HTML = `
+ <div class="card-q" style="background:#F8F9FA">
+  <div class="enun">📖 Las tres lecturas (disponibles en el Drive del curso)</div>
+  <ol style="font-size:.92em;margin:.4rem 0 .2rem;padding-left:1.2rem">
+   <li>Keyes D, Turfe H, Das JM. <i>Prevention Strategies.</i> StatPearls (actualización 2025).</li>
+   <li>Gillman MW. <i>Primordial Prevention of Cardiovascular Disease.</i> Circulation 2015;131:599–601. doi:10.1161/CIRCULATIONAHA.115.014849</li>
+   <li>Wessel J, Marrero DG. <i>Genetic Testing for Type 2 Diabetes in High-Risk Children: the Case for Primordial Prevention.</i> RIO 2017;3:e20695. doi:10.3897/rio.3.e20695</li>
+  </ol>
+  <p style="font-size:.88em;color:#495057;margin:.4rem 0 0">Las preguntas exigen haber leído. No hay resumen que las reemplace: el objetivo es que discutan el texto con su pareja antes de responder.</p>
+ </div>`;
+
+const LECT = [
+ {q:"[Lectura 1] StatPearls describe la prevención secundaria como la reducción del riesgo de eventos recurrentes en pacientes ya diagnosticados (por ejemplo, rehabilitación cardíaca y cese del tabaco después de un infarto). Frente a la clasificación que usa este curso, la mejor lectura de esa definición es:",
+  o:["Ambas definiciones coinciden: el manejo post infarto es secundaria en cualquier marco",
+     "StatPearls usa la nomenclatura clínico-cardiológica; en la clasificación epidemiológica de Leavell y Clark ese mismo manejo corresponde a terciaria",
+     "StatPearls comete un error conceptual que invalida el resto del texto",
+     "La clasificación de Leavell y Clark quedó obsoleta y debe abandonarse"], r:1,
+  e:"Los dos marcos coexisten y se usan en literaturas distintas. StatPearls adopta la convención clínica (secundaria = evitar el segundo evento); el curso usa la epidemiológica (enfermedad establecida y manifestada → terciaria). La competencia que se evalúa es identificar QUÉ marco está usando cada texto — no declarar que uno es «el correcto». En la solemne rige el criterio epidemiológico."},
+ {q:"[Lectura 2] Gillman abre su editorial con una distinción precisa: la prevención primaria «trata factores de riesgo para prevenir la enfermedad», mientras que la primordial «evita que los factores de riesgo se desarrollen en primer lugar». Según esa distinción, la consejería dietaria del estudio STRIP —iniciada en la lactancia en niños sanos y sin factores de riesgo— es un ejemplo de:",
+  o:["Prevención primaria","Prevención primordial","Prevención secundaria","Promoción de salud, fuera de la clasificación"], r:1,
+  e:"Los lactantes de STRIP no tenían factores de riesgo que tratar: la intervención buscaba que la dislipidemia, la hipertensión y la obesidad nunca aparecieran. Eso es exactamente la definición de primordial que da Gillman. Noten el matiz con el criterio poblacional/individual que usamos en las secciones anteriores: en la literatura de cardiología del curso de la vida, «primordial» se define por el momento (antes de los FR), aunque la intervención sea individual. Otro ejemplo de que el marco importa."},
+ {q:"[Lectura 2] STRIP redujo la prevalencia de síndrome metabólico en jóvenes de 15–20 años de 10–13% (control) a 6–7% (intervención), con una reducción promedio de presión sistólica de −1,0 mmHg (IC 95%: −1,7 a −0,2). La pérdida de seguimiento fue cercana al 50% a los 15 años. La lectura crítica más defendible es:",
+  o:["El efecto es grande y definitivo: la consejería infantil debe ser política universal inmediata",
+     "El efecto es nulo porque −1,0 mmHg es clínicamente irrelevante en un individuo",
+     "Efectos modestos pero consistentes entre desenlaces; la pérdida de seguimiento amenaza la validez interna, aunque el conjunto respalda la plausibilidad de intervenir temprano",
+     "El estudio está invalidado por no tener grupo control"], r:2,
+  e:"Ni entusiasmo ciego ni nihilismo. −1,0 mmHg es poco para un individuo pero relevante si se desplaza la distribución poblacional completa (recuerden Rose y la paradoja de la prevención, de la Sesión 1). La atrición del 50% es la principal amenaza a la validez interna y los propios autores la discuten. STRIP sí tuvo grupo control aleatorizado."},
+ {q:"[Lectura 2] Gillman compara tres ensayos con seguimiento a la adolescencia: STRIP (consejería sostenida, −1,0 mmHg), el ensayo de restricción de sodio en lactantes (−3,6 mmHg a los 15 años) y PROBIT (promoción de lactancia materna, +1,0 mmHg, no significativo). ¿Qué conclusión respalda esta comparación?",
+  o:["Toda intervención temprana reduce la presión arterial en la adolescencia",
+     "No toda intervención temprana muestra efecto sobre este desenlace: la promoción de lactancia en PROBIT no redujo la presión arterial, aunque tenga otros beneficios",
+     "La lactancia materna es dañina para la presión arterial",
+     "Los tres ensayos son incomparables y nada puede concluirse"], r:1,
+  e:"El punto de Gillman es epistemológico: la evidencia debe construirse desenlace por desenlace. PROBIT no mostró efecto sobre presión arterial — eso no niega los demás beneficios de la lactancia, ni valida el nihilismo. Cuidado con el razonamiento «si es temprano, sirve para todo»: esa es la trampa que el editorial desmonta."},
+ {q:"[Lectura 3] Wessel y Marrero proponen usar test genéticos en niños sanos para identificar alto riesgo de diabetes tipo 2 ANTES de que aparezcan los factores de riesgo clínicos, y así activar cambios de conducta familiares. En términos de niveles de prevención, ese tamizaje genético habilita principalmente:",
+  o:["Prevención secundaria, porque todo tamizaje es secundaria por definición",
+     "Prevención primordial: detecta susceptibilidad, no enfermedad ni fase subclínica, y busca evitar que los factores de riesgo se instalen",
+     "Prevención terciaria, porque la genética es inmodificable",
+     "Prevención cuaternaria, porque todo test genético es sobremedicalización"], r:1,
+  e:"La trampa está en la palabra «tamizaje». El tamizaje clásico (PAP, EMP) detecta enfermedad subclínica → secundaria. Aquí no hay enfermedad en ninguna fase: se detecta susceptibilidad para impedir que los FR aparezcan — el propio título del paper lo dice: «the Case for Primordial Prevention». La lección: el nivel no lo define la herramienta (test), sino el momento de la historia natural sobre el que actúa."},
+ {q:"[Lectura 3] El paper reporta que hasta 70% de las madres con diabetes gestacional desarrollan DM2 en 5–10 años, y hasta 40% de los hijos expuestos a diabetes in utero desarrollarán DM2. La Academia Americana de Pediatría acepta el test genético predictivo en niños solo si una intervención iniciada en la infancia puede reducir morbimortalidad. Ese requisito ético conecta directamente con:",
+  o:["La prevención primaria: vacunar antes de exponer",
+     "La prevención cuaternaria: no someter a una persona a una intervención (el test y sus consecuencias) cuyo beneficio no supere su potencial daño",
+     "La prevención terciaria: rehabilitar precozmente",
+     "Ningún nivel: la ética y la prevención son dominios separados"], r:1,
+  e:"El criterio de la AAP es prevención cuaternaria aplicada al propio tamizaje: un test predictivo sin intervención útil solo produce etiquetado, ansiedad y cascadas — daño iatrogénico sin beneficio. Las familias con antecedente de diabetes gestacional son el caso donde el balance sí puede favorecer el test, porque el riesgo basal es altísimo y la intervención (primordial, familiar) existe."}
+];
+
+function renderLect(){
+  const c = document.getElementById('sec4');
+  c.innerHTML = LECTURAS_HTML + LECT.map((it,i)=>`
+   <div class="card-q">
+     <div class="enun">${i+1}. ${it.q}</div>
+     <div class="opts">${it.o.map((o,j)=>`<button onclick="ansLect(${i},${j},this)">${String.fromCharCode(97+j)}) ${o}</button>`).join('')}</div>
+     <div class="fb" id="fbl${i}"></div>
+   </div>`).join('');
+}
+function ansLect(i,j,btn){
+  if(S.lect[i]!==undefined) return;
+  S.lect[i]=j;
+  const it=LECT[i], box=btn.parentElement;
+  [...box.children].forEach((b,k)=>{ b.disabled=true; if(k===it.r)b.classList.add('ok'); });
+  const fb=document.getElementById('fbl'+i);
+  if(j===it.r){ fb.className='fb ok'; fb.innerHTML='<b>Correcto.</b> '+it.e; }
+  else { btn.classList.add('bad'); fb.className='fb bad'; fb.innerHTML='<b>No.</b> La correcta es la <b>'+String.fromCharCode(97+it.r)+'</b>. '+it.e; }
+  updateTabs();
+}
+
 /* ============ RESUMEN ============ */
 function totCasos(){ return CASOS.reduce((s,c)=>s+c.acc.length,0); }
 function score(){
   let m=0; MCQ.forEach((it,i)=>{ if(S.mcq[i]===it.r)m++; });
   let ch=0; CHART_ITEMS.forEach((it,i)=>{ if(S.chart[i]===it.r)ch++; });
   let ca=0; CASOS.forEach((c,ci)=>c.acc.forEach((a,ai)=>{ if(S.casos[ci+'_'+ai]===a.r)ca++; }));
-  return {m, ch, ca,
-    mT:MCQ.length, chT:CHART_ITEMS.length, caT:totCasos(),
-    mR:Object.keys(S.mcq).length, chR:Object.keys(S.chart).length, caR:Object.keys(S.casos).length};
+  let le=0; LECT.forEach((it,i)=>{ if(S.lect[i]===it.r)le++; });
+  return {m, ch, ca, le,
+    mT:MCQ.length, chT:CHART_ITEMS.length, caT:totCasos(), leT:LECT.length,
+    mR:Object.keys(S.mcq).length, chR:Object.keys(S.chart).length, caR:Object.keys(S.casos).length, leR:Object.keys(S.lect).length};
 }
 function renderResumen(){
   const s=score();
-  const tot=s.m+s.ch+s.ca, totT=s.mT+s.chT+s.caT;
+  const tot=s.m+s.ch+s.ca+s.le, totT=s.mT+s.chT+s.caT+s.leT;
   const falt=[];
   if(s.mR<s.mT)falt.push(`selección múltiple (${s.mT-s.mR} pendientes)`);
   if(s.chR<s.chT)falt.push(`línea de tiempo (${s.chT-s.chR} pendientes)`);
   if(s.caR<s.caT)falt.push(`casos (${s.caT-s.caR} pendientes)`);
-  document.getElementById('sec4').innerHTML=`
+  if(s.leR<s.leT)falt.push(`lectura crítica (${s.leT-s.leR} pendientes)`);
+  document.getElementById('sec5').innerHTML=`
    <div class="resumen">
     <h3>Resumen de la pareja</h3>
     ${falt.length?`<p class="pend">Aún quedan respuestas sin contestar: ${falt.join(', ')}.</p>`:''}
@@ -287,6 +360,7 @@ function renderResumen(){
       <tr><td>1 · Selección múltiple</td><td>${s.m} / ${s.mT}</td><td>${s.mR} / ${s.mT}</td></tr>
       <tr><td>2 · Línea de tiempo</td><td>${s.ch} / ${s.chT}</td><td>${s.chR} / ${s.chT}</td></tr>
       <tr><td>3 · Casos clínicos</td><td>${s.ca} / ${s.caT}</td><td>${s.caR} / ${s.caT}</td></tr>
+      <tr><td>4 · Lectura crítica</td><td>${s.le} / ${s.leT}</td><td>${s.leR} / ${s.leT}</td></tr>
     </table>
     <p style="font-size:.9em;color:#495057">Dejen esta pantalla abierta: la revisión en conjunto parte por la sección con más errores del curso.</p>
    </div>`;
@@ -296,14 +370,15 @@ function updateTabs(){
   document.getElementById('st1').textContent=`(${s.mR}/${s.mT})`;
   document.getElementById('st2').textContent=`(${s.chR}/${s.chT})`;
   document.getElementById('st3').textContent=`(${s.caR}/${s.caT})`;
+  document.getElementById('st4').textContent=`(${s.leR}/${s.leT})`;
 }
 function tab(n){
-  for(let i=1;i<=4;i++){
+  for(let i=1;i<=5;i++){
     document.getElementById('sec'+i).style.display = i===n?'block':'none';
     document.getElementById('tb'+i)?.classList.toggle('act', i===n);
   }
-  if(n===4) renderResumen();
+  if(n===5) renderResumen();
 }
-renderMCQ(); renderCasos(); loadChartItem(); updateTabs();
+renderMCQ(); renderCasos(); renderLect(); loadChartItem(); updateTabs();
 </script>
 ```
