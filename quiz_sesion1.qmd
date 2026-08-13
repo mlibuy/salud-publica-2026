@@ -1,0 +1,57 @@
+---
+title: "Control Sesión 1 — repaso"
+---
+
+Estas son las 10 preguntas del control de la Sesión 1 (6 de agosto), con la pauta oficial comentada. Marca una alternativa por pregunta y revisa la explicación. Puedes reiniciar cuantas veces quieras — este repaso **no lleva nota**.
+
+<div id="quiz"></div>
+<div id="score" class="quiz-score"></div>
+<button id="reset" class="btn btn-outline-secondary btn-sm">Reiniciar</button>
+
+<style>
+.qz-card{border:1px solid #dee2e6;border-radius:8px;padding:16px 18px;margin:14px 0;background:#fff}
+.qz-q{font-weight:600;margin-bottom:10px}
+.qz-opt{display:block;width:100%;text-align:left;margin:5px 0;padding:8px 12px;border:1px solid #ced4da;border-radius:6px;background:#f8f9fa;cursor:pointer}
+.qz-opt:hover{background:#e9ecef}
+.qz-opt.ok{background:#d1e7dd;border-color:#198754}
+.qz-opt.bad{background:#f8d7da;border-color:#dc3545}
+.qz-opt.disabled{pointer-events:none;opacity:.85}
+.qz-exp{margin-top:10px;padding:10px 12px;border-left:4px solid #1F3864;background:#eef2f8;font-size:.95em;display:none}
+.quiz-score{font-weight:600;margin:14px 0;color:#1F3864}
+</style>
+
+<script>
+const QS = [
+ {q:"1. En una comuna se implementan simultáneamente dos medidas: una campaña educativa sobre higiene bucal en escuelas y la fluoración del agua potable. Respecto de la caries dental, la clasificación correcta es:",
+  o:["a) Ambas corresponden a promoción de la salud","b) Ambas corresponden a protección específica","c) La campaña es promoción de la salud y la fluoración es protección específica","d) La campaña es promoción de la salud y la fluoración es prevención secundaria"],
+  a:2, e:"Ambas medidas son prevención primaria; lo que se pregunta es a qué nivel de Leavell y Clark corresponde cada una. La campaña es promoción de la salud (modifica conductas de forma amplia, sin interponer barrera frente a un agente definido) y la fluoración es protección específica (apunta a un mecanismo concreto: la desmineralización del esmalte). La fluoración actúa antes de que la caries aparezca y no detecta ni trata enfermedad existente, por lo que no puede ser secundaria."},
+ {q:"2. Hombre de 52 años, asintomático, se realiza colonoscopía de tamizaje. Se identifica y reseca un pólipo adenomatoso, sin evidencia de malignidad. Respecto del cáncer colorrectal, la polipectomía corresponde a:",
+  o:["a) Prevención primaria","b) Prevención secundaria","c) Prevención terciaria","d) Prevención cuaternaria"],
+  a:0, e:"El enunciado especifica la enfermedad de referencia: el cáncer colorrectal, que al momento de la polipectomía todavía no existe. Al resecar la lesión precursora, el cáncer nunca llega a aparecer — se actúa en período prepatogénico respecto de esa enfermedad: prevención primaria. La alternativa b sería correcta si la enfermedad de referencia fuera el adenoma, que sí estaba presente y se trató precozmente; pero el enunciado dice cáncer colorrectal. Compara con la pregunta 5, donde la enfermedad de referencia sí está presente."},
+ {q:"3. Una municipalidad aprueba una ordenanza que impide la instalación de locales de comida rápida en un radio de 200 metros de establecimientos educacionales. Respecto de la obesidad infantil, esta medida se describe mejor como:",
+  o:["a) Promoción de la salud","b) Protección específica","c) Prevención primordial","d) Prevención secundaria"],
+  a:2, e:"La distinción está entre actuar sobre el individuo expuesto y actuar sobre las condiciones que producen la exposición. La ordenanza no interviene sobre el niño ni sobre su conducta (no es promoción), no interpone barrera específica alguna (no es protección específica), y no detecta obesidad ya presente (no es secundaria). La prevención primordial, propuesta por Strasser, impide que el factor de riesgo se instale en la población actuando sobre las condiciones que lo generan; su instrumento es la regulación."},
+ {q:"4. En cardiología se denomina «prevención secundaria» al uso de estatinas y antiagregantes en un paciente que ya sufrió un infarto agudo al miocardio. Según la clasificación epidemiológica clásica de los niveles de prevención, esa misma intervención corresponde a:",
+  o:["a) Prevención primaria","b) Prevención secundaria","c) Prevención terciaria","d) Prevención cuaternaria"],
+  a:2, e:"El enunciado pide explícitamente la clasificación epidemiológica, no la terminología cardiológica. La enfermedad coronaria ya existe y ya se manifestó clínicamente con el infarto; el objetivo es evitar progresión, recurrencia y discapacidad — la definición de prevención terciaria. En la clasificación epidemiológica, la secundaria actúa antes del horizonte clínico o apenas cruzado, sobre enfermedad aún no manifiesta. No es cuaternaria: estatinas y antiagregantes post-infarto tienen beneficio demostrado."},
+ {q:"5. Hombre de 55 años, asintomático, con test de sangre oculta en deposiciones positivo. La colonoscopía confirma un adenocarcinoma in situ, que se reseca endoscópicamente. Respecto del cáncer colorrectal, esta conducta corresponde a:",
+  o:["a) Prevención primaria","b) Prevención secundaria","c) Prevención terciaria","d) Prevención cuaternaria"],
+  a:1, e:"A diferencia de la pregunta 2, acá la enfermedad de referencia sí está presente: el carcinoma in situ ya es cáncer, aunque el paciente esté asintomático. La lesión fue detectada bajo el horizonte clínico y tratada precozmente: diagnóstico precoz y tratamiento oportuno — prevención secundaria. No hay daño establecido ni secuelas que limitar (no es terciaria), y el tamizaje con test de sangre oculta en ese grupo etario tiene beneficio demostrado (no es cuaternaria)."},
+ {q:"6. Paciente con diabetes tipo 2 recién diagnosticada. Se establece un control metabólico estricto con el objetivo explícito de evitar la aparición de retinopatía y nefropatía. Según los cinco niveles de Leavell y Clark, esta conducta corresponde a:",
+  o:["a) Protección específica","b) Diagnóstico precoz y tratamiento oportuno","c) Limitación del daño","d) Rehabilitación"],
+  a:2, e:"El enunciado declara el objetivo de la intervención, y eso es lo que define el nivel. Impedir la progresión y las complicaciones de una enfermedad ya diagnosticada define la limitación del daño, cuarto nivel de Leavell y Clark. No es diagnóstico precoz (el diagnóstico ya se realizó y el objetivo declarado es evitar complicaciones) ni rehabilitación (la retinopatía y la nefropatía aún no aparecen: no hay daño que recuperar). Recuerda el criterio del curso: en la clasificación original, la limitación del daño pertenece a la prevención secundaria."},
+ {q:"7. Ante un caso confirmado de sarampión en un jardín infantil, se vacuna a los contactos susceptibles dentro de las 72 horas siguientes a la exposición. Respecto del sarampión en esos contactos, la vacunación de bloqueo corresponde a:",
+  o:["a) Prevención primaria, en su modalidad de protección específica","b) Prevención secundaria, porque se realiza después de la exposición","c) Prevención terciaria, porque busca evitar complicaciones","d) No corresponde a ningún nivel de prevención, es una medida de control de brote"],
+  a:0, e:"El criterio de clasificación es la posición en la historia natural de la enfermedad, no el momento respecto de la exposición. Los contactos aún no han desarrollado la enfermedad y se interpone una barrera inmunológica específica: prevención primaria por protección específica. Que la vacuna se administre después de la exposición no cambia el hecho de que la enfermedad todavía no existe en esos contactos. Y ser medida de control de brote y ser prevención primaria no son categorías excluyentes: la misma acción cumple ambas descripciones."},
+ {q:"8. En el Examen de Medicina Preventiva se detecta glicemia alterada en ayunas en una mujer de 46 años asintomática. Se la incorpora a un programa estructurado de actividad física y alimentación. Respecto de la diabetes tipo 2, el programa corresponde a:",
+  o:["a) Prevención primaria","b) Prevención secundaria","c) Prevención terciaria","d) Prevención primordial"],
+  a:0, e:"La glicemia alterada en ayunas es un estado de riesgo, no la enfermedad por la que se pregunta. La diabetes tipo 2 todavía no existe: intervenir sobre el estado de riesgo para impedir que aparezca es prevención primaria. El examen que detectó la alteración sí constituyó tamizaje, pero la pregunta interroga por el programa de actividad física y alimentación. No es primordial: la prevención primordial actúa sobre condiciones poblacionales que generan el riesgo, no sobre una persona ya identificada como expuesta."},
+ {q:"9. Hombre de 75 años, sin síntomas urinarios ni antecedentes familiares, solicita antígeno prostático específico porque se lo realizaba todos los años. El médico le explica que en su grupo etario no hay evidencia de que el tamizaje reduzca la mortalidad, y acuerdan suspenderlo. Esta conducta corresponde a:",
+  o:["a) Prevención primaria","b) Prevención secundaria","c) Prevención terciaria","d) Prevención cuaternaria"],
+  a:3, e:"La conducta no evita una enfermedad: evita una intervención sin beneficio esperable y sus consecuencias. Se protege al paciente del daño derivado de la propia intervención médica — falsos positivos, biopsias, sobrediagnóstico y tratamiento de lesiones que nunca habrían dado síntomas. Eso es prevención cuaternaria. La secundaria consiste en realizar el tamizaje, no en suspenderlo."},
+ {q:"10. ¿Cuál de las siguientes intervenciones NO corresponde a prevención terciaria?",
+  o:["a) Rehabilitación kinésica y fonoaudiológica tras un accidente cerebrovascular","b) Cuidados paliativos en un paciente con cáncer avanzado","c) Suspensión de un inhibidor de bomba de protones sin indicación vigente en un paciente polimedicado","d) Terapia ocupacional para reinserción laboral en un paciente con secuelas de traumatismo encefalocraneano"],
+  a:2, e:"Se pide identificar la excepción: tres alternativas actúan sobre las consecuencias de la enfermedad; una actúa sobre las consecuencias de la medicina. La deprescripción del IBP sin indicación vigente es prevención cuaternaria — el daño que se evita proviene del sistema de salud, no de la enfermedad del paciente. La rehabilitación post-ACV, los cuidados paliativos y la terapia ocupacional para reinserción laboral (ejemplo clásico del quinto nivel de Leavell y Clark) son terciaria."},
+];
+</script>
+{{< include _quiz_engine.qmd >}}

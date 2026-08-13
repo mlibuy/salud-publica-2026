@@ -1,0 +1,35 @@
+<script>
+(function(){
+  const cont = document.getElementById('quiz');
+  const scoreEl = document.getElementById('score');
+  let done = 0, ok = 0;
+  function render(){
+    cont.innerHTML = ''; done = 0; ok = 0; scoreEl.textContent = '';
+    QS.forEach((item, qi) => {
+      const card = document.createElement('div'); card.className = 'qz-card';
+      const q = document.createElement('div'); q.className = 'qz-q'; q.textContent = item.q; card.appendChild(q);
+      const exp = document.createElement('div'); exp.className = 'qz-exp';
+      item.o.forEach((opt, oi) => {
+        const b = document.createElement('button'); b.className = 'qz-opt'; b.textContent = opt;
+        b.onclick = () => {
+          card.querySelectorAll('.qz-opt').forEach((x, xi) => {
+            x.classList.add('disabled');
+            if (xi === item.a) x.classList.add('ok');
+          });
+          if (oi !== item.a) b.classList.add('bad'); else ok++;
+          exp.style.display = 'block';
+          exp.innerHTML = (oi === item.a ? '<strong>Correcto.</strong> ' : '<strong>La correcta es ' + item.o[item.a].slice(0,2) + '.</strong> ') + item.e;
+          done++;
+          scoreEl.textContent = 'Respondidas: ' + done + ' / ' + QS.length + ' — Correctas: ' + ok;
+          if (done === QS.length) scoreEl.textContent += (ok >= 8 ? ' · ¡Muy bien!' : ' · Revisa las explicaciones de las que fallaste.');
+        };
+        card.appendChild(b);
+      });
+      card.appendChild(exp);
+      cont.appendChild(card);
+    });
+  }
+  document.getElementById('reset').onclick = render;
+  render();
+})();
+</script>

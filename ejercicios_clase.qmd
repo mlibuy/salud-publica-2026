@@ -6,6 +6,16 @@ Aquí quedan acopiados los ejercicios interactivos que trabajamos **en parejas d
 
 ------------------------------------------------------------------------
 
+## 🟦 Sesión 1 — 06-08-2026
+
+### Control de repaso: conceptos, FESP e historia natural
+
+-   Las 10 preguntas del control aplicado en clase, ahora con retroalimentación por alternativa
+
+[**Abrir el quiz de repaso de la Sesión 1**](quiz_sesion1.qmd){.btn .btn-primary}
+
+------------------------------------------------------------------------
+
 ## 🟦 Sesión 2 — 13-08-2026
 
 ### Niveles de prevención e historia natural de la enfermedad
@@ -15,7 +25,7 @@ Aquí quedan acopiados los ejercicios interactivos que trabajamos **en parejas d
 -   Tres casos clínicos (TBC en situación de calle, programa cardiovascular, PAP alterado)
 -   Lectura crítica (StatPearls, Gillman 2015, Wessel & Marrero 2017)
 
-[**Abrir el ejercicio de la Sesión 2**](ejercicio_prevencion.qmd){.btn .btn-success}
+[**Abrir el ejercicio de la Sesión 2**](ejercicio_prevencion.qmd){.btn .btn-success} [**Quiz de repaso del control (Sesión 2)**](quiz_sesion2.qmd){.btn .btn-primary}
 
 ------------------------------------------------------------------------
 

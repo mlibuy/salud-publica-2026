@@ -1,0 +1,57 @@
+---
+title: "Control Sesión 2 — repaso"
+---
+
+Estas son las 10 preguntas del control de la Sesión 2 (13 de agosto), con retroalimentación para repaso. Marca una alternativa por pregunta y revisa la explicación. Puedes reiniciar cuantas veces quieras — este repaso **no lleva nota**.
+
+<div id="quiz"></div>
+<div id="score" class="quiz-score"></div>
+<button id="reset" class="btn btn-outline-secondary btn-sm">Reiniciar</button>
+
+<style>
+.qz-card{border:1px solid #dee2e6;border-radius:8px;padding:16px 18px;margin:14px 0;background:#fff}
+.qz-q{font-weight:600;margin-bottom:10px}
+.qz-opt{display:block;width:100%;text-align:left;margin:5px 0;padding:8px 12px;border:1px solid #ced4da;border-radius:6px;background:#f8f9fa;cursor:pointer}
+.qz-opt:hover{background:#e9ecef}
+.qz-opt.ok{background:#d1e7dd;border-color:#198754}
+.qz-opt.bad{background:#f8d7da;border-color:#dc3545}
+.qz-opt.disabled{pointer-events:none;opacity:.85}
+.qz-exp{margin-top:10px;padding:10px 12px;border-left:4px solid #1F3864;background:#eef2f8;font-size:.95em;display:none}
+.quiz-score{font-weight:600;margin:14px 0;color:#1F3864}
+</style>
+
+<script>
+const QS = [
+ {q:"1. Chile registró una TGF de 1,03 hijos por mujer en 2024 (estimación INE). La interpretación correcta de esta cifra es:",
+  o:["a) El promedio de hijos que efectivamente tuvieron las mujeres chilenas que terminaron su vida reproductiva en 2024","b) El número de hijos que tendría una mujer si a lo largo de su vida fértil experimentara las tasas de fecundidad específicas por edad observadas en 2024","c) La proporción de mujeres en edad fértil que tuvo al menos un hijo durante 2024","d) El número de nacimientos por cada mil mujeres entre 15 y 49 años ocurridos en 2024"],
+  a:1, e:"La TGF es un indicador sintético transversal: construye una cohorte hipotética con las tasas del año, no describe la experiencia real de ninguna generación. (a) es la descendencia final de cohorte; (d) es la tasa de fecundidad general — otro indicador."},
+ {q:"2. En el modelo clásico de transición demográfica, el crecimiento poblacional alcanza su máximo cuando:",
+  o:["a) Natalidad y mortalidad son altas y estables","b) La mortalidad ya descendió pero la natalidad se mantiene alta","c) La natalidad desciende más rápido que la mortalidad","d) Natalidad y mortalidad convergen en niveles bajos"],
+  a:1, e:"El crecimiento es la brecha entre natalidad y mortalidad, y la brecha máxima ocurre porque la mortalidad cae antes que la natalidad (saneamiento y vacunas actúan más rápido que el cambio en decisiones reproductivas). En (a) y (d) ambas tasas están juntas; en (c) la brecha se está cerrando."},
+ {q:"3. ¿Cuál de los siguientes fenómenos es evidencia directa de la transición epidemiológica y no de la demográfica?",
+  o:["a) La caída de la TGF de 5,4 a 1,03 entre 1960 y 2024","b) El aumento de la proporción de mayores de 65 años entre los censos de 1992 y 2024","c) El desplazamiento de las principales causas de muerte desde las infecciosas hacia las cardiovasculares y el cáncer","d) La disminución del tamaño de las cohortes que ingresan a la educación básica"],
+  a:2, e:"La transición epidemiológica (Omran) describe el cambio en el perfil de morbimortalidad — de qué se enferma y muere la población. (a), (b) y (d) son fenómenos de estructura y dinámica poblacional: transición demográfica. Ambos procesos ocurren a la vez y por eso se confunden."},
+ {q:"4. Según Faro UDD, el Índice de Dependencia en Chile mejoró sostenidamente hasta 2017 y volvió a subir en 2024. La explicación correcta de esta trayectoria es:",
+  o:["a) La natalidad repuntó transitoriamente hasta 2017 y luego volvió a caer","b) El aumento de la participación laboral femenina compensó el envejecimiento hasta que ese efecto se agotó","c) La migración redujo la dependencia hasta 2017 y su disminución posterior la aumentó","d) La reforma previsional de 2017 modificó la definición del indicador"],
+  a:1, e:"La incorporación de mujeres al trabajo (43% en 2007 → 52% en 2023) amplió la población activa y funcionó como colchón frente al envejecimiento; en 2024 ese margen se agotó. (a) es falsa: la natalidad cayó de forma sostenida todo el período."},
+ {q:"5. Suponga que mañana la TGF de Chile subiera instantáneamente a 2,1 (nivel de reemplazo) y se mantuviera. El número absoluto de nacimientos anuales:",
+  o:["a) Se estabilizaría de inmediato en el nivel actual","b) Aumentaría de inmediato hasta el nivel de 1990","c) Seguiría cayendo durante años antes de estabilizarse","d) Oscilaría sin tendencia definida"],
+  a:2, e:"Es la inercia (momentum) demográfica: los nacimientos dependen de la tasa Y del número de mujeres en edad fértil, y las cohortes que van entrando a la edad reproductiva son cada vez más pequeñas. Por eso las políticas pronatalistas, incluso si funcionaran, tardan una generación en verse en los nacimientos absolutos."},
+ {q:"6. El estudio del Ministerio de Hacienda (2025) reporta que el 31% de las personas mayores de 50 años tuvo menos hijos de los que deseaba, principalmente por barreras económicas, laborales y de vivienda. ¿Qué conclusión apoya directamente este dato?",
+  o:["a) La caída de la fecundidad se explica principalmente por un cambio de preferencias hacia familias más pequeñas","b) Existe una brecha entre fecundidad deseada y observada que políticas de remoción de barreras podrían acortar","c) Las transferencias monetarias por hijo son la intervención más costo-efectiva","d) La fecundidad deseada en Chile está bajo el nivel de reemplazo"],
+  a:1, e:"El dato muestra que una fracción relevante quiso tener más hijos de los que tuvo: la caída no es solo preferencia, y abre espacio a políticas que remuevan las barreras identificadas. (c) va en contra de los tres estudios de la sesión; (d) no se puede concluir — de hecho, la brecha sugiere que la fecundidad deseada es mayor que la observada."},
+ {q:"7. Respecto del impacto de la caída de la natalidad sobre la red asistencial (cierre de maternidades en clínicas y hospitales), la interpretación correcta desde la planificación sanitaria es:",
+  o:["a) La caída de la natalidad reduce la demanda total de atenciones del sistema de salud","b) La demanda obstétrica y neonatal cae, pero la demanda total se desplaza hacia patología crónica y aumenta","c) El cierre de maternidades es transitorio, porque la natalidad es cíclica","d) La menor natalidad libera recursos suficientes para financiar el envejecimiento"],
+  a:1, e:"La misma transición que vacía las maternidades llena los servicios de crónicos: la demanda no baja, cambia de forma y crece, porque la población envejecida consume más atenciones y de mayor complejidad. El gasto por adulto mayor supera con creces el ahorro obstétrico (d falsa)."},
+ {q:"8. Una pirámide poblacional con base angosta, mayor concentración en edades medias y cúspide en expansión indica:",
+  o:["a) Población joven en crecimiento acelerado","b) Natalidad en descenso sostenido y población en proceso de envejecimiento","c) Alta mortalidad infantil con esperanza de vida baja","d) Efecto reciente de inmigración masiva de población joven"],
+  a:1, e:"Es la pirámide constrictiva: cada cohorte nueva es menor que la anterior (base angosta) y las cohortes numerosas del pasado avanzan hacia edades mayores — la forma actual de Chile. (a) es la expansiva; (c) daría base ancha con cúspide estrecha; (d) engrosaría los tramos de 20-40 de forma asimétrica."},
+ {q:"9. ¿Cuál de las siguientes asociaciones entre estudio y orientación de política es correcta?",
+  o:["a) Ministerio de Hacienda (2025): aumentar los bonos por hijo como eje de la respuesta","b) Faro UDD (2025): productividad, automatización y migración calificada como adaptación","c) IdeaPaís (2025): transferencias monetarias directas como intervención principal","d) Faro UDD (2025): salas cuna universales como prioridad sobre medidas económicas"],
+  a:1, e:"Faro UDD enfatiza la adaptación económica al escenario de menor fuerza laboral. Hacienda propone paquetes integrados sobre medidas aisladas (a falsa); IdeaPaís sostiene que las transferencias no bastan sin corresponsabilidad y salas cuna (c invierte su tesis; d se la atribuye al estudio equivocado). Los tres coinciden en una cosa: los bonos por sí solos no bastan."},
+ {q:"10. La esperanza de vida al nacer en Chile alcanzó 81,1 años. La interpretación correcta de este indicador es:",
+  o:["a) La edad promedio a la que fallecieron las personas en Chile ese año","b) La edad que en promedio alcanzará un recién nacido de ese año, considerando los avances médicos futuros","c) Los años que viviría en promedio un recién nacido si experimentara durante toda su vida las tasas de mortalidad específicas por edad de ese año","d) La mediana de edad de defunción proyectada para la cohorte nacida ese año"],
+  a:2, e:"Igual que la TGF, es un indicador sintético transversal construido sobre una cohorte hipotética con las tasas actuales congeladas. (b) es el error más frecuente: el indicador NO incorpora mejoras futuras — la esperanza de vida real de los nacidos hoy probablemente será mayor. (a) es la edad media de defunción, que depende de la estructura etaria."},
+];
+</script>
+{{< include _quiz_engine.qmd >}}
