@@ -1,0 +1,30 @@
+---
+title: "Ejercicios en clase"
+---
+
+Aquí quedan acopiados los ejercicios interactivos que trabajamos **en parejas durante la clase**. Cada sesión tiene el suyo. Trabaja con tu compañero/a de puesto, no refresques la página hasta terminar, y deja abierta la pestaña **Resumen** para la revisión conjunta.
+
+------------------------------------------------------------------------
+
+## 🟦 Sesión 2 — 13-08-2026
+
+### Niveles de prevención e historia natural de la enfermedad
+
+-   Selección múltiple con retroalimentación por alternativa
+-   Línea de tiempo interactiva de la historia natural
+-   Tres casos clínicos (TBC en situación de calle, programa cardiovascular, PAP alterado)
+-   Lectura crítica (StatPearls, Gillman 2015, Wessel & Marrero 2017)
+
+[**Abrir el ejercicio de la Sesión 2**](ejercicio_prevencion.qmd){.btn .btn-success}
+
+------------------------------------------------------------------------
+
+## 🟦 Sesión 3 — 20-08-2026
+
+### Determinantes sociales de la salud, género y migración
+
+*Disponible el día de la clase.*
+
+------------------------------------------------------------------------
+
+*Los ejercicios de las próximas sesiones se irán publicando aquí a medida que avance el curso.*

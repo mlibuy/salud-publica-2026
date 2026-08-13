@@ -51,19 +51,19 @@ height="650">
 - 15 minutos de trabajo con el compañero de puesto en la aplicación del sitio  
 - Revisión en conjunto de niveles de prevención
 
-[**Abrir el ejercicio de niveles de prevención**](ejercicio_prevencion.qmd){.btn .btn-success}
+[**Abrir el ejercicio de niveles de prevención**](ejercicio_prevencion.qmd){.btn .btn-success} [**Ver todos los ejercicios en clase**](ejercicios_clase.qmd){.btn .btn-outline-secondary}
 
 ---
 
 ### 📂 Clase
 
 <iframe 
-src="https://docs.google.com/presentation/d/ID_PRESENTACION/preview" 
+src="https://docs.google.com/presentation/d/1O7RPAFThCwX2B7ujeFavaOx2h-6BT37CoTwnQGhMWMw/preview" 
 width="100%" 
 height="650">
 </iframe>
 
-[**Abrir presentación en Google Drive**](https://docs.google.com/presentation/d/ID_PRESENTACION/edit?usp=sharing){.btn .btn-primary}
+[**Abrir presentación en Google Drive**](https://docs.google.com/presentation/d/1O7RPAFThCwX2B7ujeFavaOx2h-6BT37CoTwnQGhMWMw/edit?usp=sharing){.btn .btn-primary}
 
 ------------------------------------------------------------------------
 
