@@ -1,0 +1,57 @@
+---
+title: "Control Sesión 3 — repaso"
+---
+
+Estas son las 10 preguntas del control de la Sesión 3 (20 de agosto: determinantes sociales de la salud, género y migración), con retroalimentación para repaso. Marca una alternativa por pregunta y revisa la explicación. Puedes reiniciar cuantas veces quieras — este repaso **no lleva nota**.
+
+<div id="quiz"></div>
+<div id="score" class="quiz-score"></div>
+<button id="reset" class="btn btn-outline-secondary btn-sm">Reiniciar</button>
+
+<style>
+.qz-card{border:1px solid #dee2e6;border-radius:8px;padding:16px 18px;margin:14px 0;background:#fff}
+.qz-q{font-weight:600;margin-bottom:10px}
+.qz-opt{display:block;width:100%;text-align:left;margin:5px 0;padding:8px 12px;border:1px solid #ced4da;border-radius:6px;background:#f8f9fa;cursor:pointer}
+.qz-opt:hover{background:#e9ecef}
+.qz-opt.ok{background:#d1e7dd;border-color:#198754}
+.qz-opt.bad{background:#f8d7da;border-color:#dc3545}
+.qz-opt.disabled{pointer-events:none;opacity:.85}
+.qz-exp{margin-top:10px;padding:10px 12px;border-left:4px solid #1F3864;background:#eef2f8;font-size:.95em;display:none}
+.quiz-score{font-weight:600;margin:14px 0;color:#1F3864}
+</style>
+
+<script>
+const QS = [
+ {q:"1. Según la definición de la Comisión de Determinantes Sociales de la Salud (OMS), los DSS corresponden a las circunstancias en que las personas nacen, crecen, viven, trabajan y envejecen. El elemento conceptual que distingue a las inequidades en salud de las simples desigualdades es que las primeras son:",
+  o:["a) Diferencias medibles entre grupos poblacionales definidos por nivel socioeconómico", "b) Diferencias injustas y evitables, producidas por la distribución desigual de poder y recursos", "c) Diferencias atribuibles a factores biológicos no modificables entre subpoblaciones", "d) Diferencias en resultados sanitarios que persisten tras ajustar por edad y sexo"],
+  a:1, e:"La inequidad se define por su carácter injusto y evitable (OMS). Una diferencia medible es solo una desigualdad; las diferencias biológicas no modificables no son inequidades precisamente porque no son evitables; y el ajuste estadístico por edad y sexo es una técnica de comparación, no un criterio de justicia."},
+ {q:"2. En el modelo de Dahlgren y Whitehead (1991), la cohesión social y el apoyo familiar se ubican en la capa de:",
+  o:["a) Estilos de vida individuales", "b) Condiciones de vida y de trabajo", "c) Redes sociales y comunitarias", "d) Condiciones socioeconómicas, culturales y ambientales generales"],
+  a:2, e:"Cohesión social y apoyo familiar conforman el tercer anillo (redes sociales y comunitarias), que media entre el individuo y las condiciones materiales. Estilos de vida = conductas (tabaco, dieta); condiciones de vida y trabajo = educación, empleo, vivienda, servicios; la capa externa = factores macro (PIB, Gini, políticas)."},
+ {q:"3. En el marco conceptual de Solar e Irwin, el nivel educacional de una persona se clasifica como:",
+  o:["a) Determinante intermedio, porque actúa a través de conductas individuales", "b) Determinante estructural, porque define la posición socioeconómica dentro de la jerarquía social", "c) Factor psicosocial, porque modula la exposición a estrés crónico", "d) Determinante proximal, porque su efecto en salud es directo e inmediato"],
+  a:1, e:"Educación, ocupación e ingreso definen la posición socioeconómica → determinantes estructurales, los que generan la estratificación. Los intermedios son circunstancias materiales, factores conductuales/biológicos, psicosociales y el sistema de salud. El efecto de la educación es además indirecto (mediado), no proximal."},
+ {q:"4. Una intervención dirigida a modificar el contexto socioeconómico y político (por ejemplo, una reforma tributaria redistributiva) se diferencia de una intervención sobre determinantes intermedios (por ejemplo, mejorar condiciones de vivienda) en que la primera:",
+  o:["a) Actúa sobre la vulnerabilidad diferencial de los grupos ya expuestos", "b) Actúa sobre los mecanismos que generan la estratificación social misma", "c) Tiene efecto más rápido sobre los resultados sanitarios individuales", "d) Requiere necesariamente participación del sector salud para implementarse"],
+  a:1, e:"Modificar el contexto socioeconómico y político interviene \"aguas arriba\", sobre los mecanismos que producen la estratificación. Actuar sobre vulnerabilidad diferencial corresponde a determinantes intermedios. Las intervenciones estructurales suelen ser más lentas (no más rápidas) y típicamente ocurren fuera del sector salud (lógica de Salud en Todas las Políticas)."},
+ {q:"5. De acuerdo con la definición de la OPS, el género corresponde a \"la construcción cultural que asigna, jerárquicamente, en las esferas públicas y privadas, roles y formas de comportamiento a las mujeres y a los hombres sobre la base de su diferenciación sexual\". El elemento de esta definición que Joan Scott enfatiza como central en su propia conceptualización es:",
+  o:["a) La dimensión biológica de la diferenciación sexual", "b) El carácter privado de los roles asignados", "c) El género como forma primaria de relaciones significantes de poder", "d) La estabilidad histórica de los roles de género a través del tiempo"],
+  a:2, e:"Para Scott, el género es \"una forma primaria de relaciones significantes de poder\": el poder es el núcleo de su conceptualización, y conecta con la jerarquía que ya insinúa la definición de la OPS. La construcción del género es además dinámica y contextual, no estable históricamente."},
+ {q:"6. Respecto a la distinción sexo/género aplicada al análisis de salud, es correcto afirmar que:",
+  o:["a) Las desigualdades en torno a la diferencia sexual derivan de factores biológicos y genéticos, mientras que las inequidades de género derivan de factores socioculturales e históricos", "b) Sexo y género son constructos intercambiables cuando se ajusta por nivel socioeconómico", "c) Las inequidades de género son inevitables porque se fundan en diferencias anatómicas", "d) El género es una variable estática que se define al nacimiento y opera de forma homogénea en todos los contextos"],
+  a:0, e:"Distinción central de la clase: diferencia sexual → factores biológicos/genéticos (desigualdades); género → factores socioculturales e históricos (inequidades: poder, violencia, trabajo/recursos, reconocimiento, protección social). Justificar desigualdades sociales por la anatomía es la \"naturalización\" que el concepto de género cuestiona; la construcción del género es dinámica y varía según contexto."},
+ {q:"7. La afirmación \"el género cruza la mayoría de los otros determinantes de salud —etnia, edad, estrato social, orientación sexual, origen territorial—, impactando de forma diferenciada a mujeres y hombres\" describe la propiedad de:",
+  o:["a) Gradiente social del género", "b) Transversalidad del género en las determinaciones de salud", "c) Determinación proximal del género", "d) Homogeneidad intragrupo del sistema sexo-género"],
+  a:1, e:"Es la transversalidad del género (emparentada con la interseccionalidad): el género atraviesa etnia, edad, estrato, orientación sexual y territorio. El gradiente social describe la relación escalonada entre posición socioeconómica y salud; y si el impacto es diferenciado según estas variables, los grupos son internamente heterogéneos, no homogéneos."},
+ {q:"8. Según la definición de la OIM (2023), el término \"migrante\" designa a toda persona que se traslada fuera de su lugar de residencia habitual, dentro de un país o a través de una frontera internacional, de manera temporal o permanente, y por diversas razones. Una característica clave de este término es que:",
+  o:["a) Está definido jurídicamente en el derecho internacional con criterios vinculantes", "b) Es un término genérico no definido en el derecho internacional, de uso común", "c) Excluye los desplazamientos internos dentro de un mismo país", "d) Se restringe a traslados permanentes con fines laborales"],
+  a:1, e:"La definición de la OIM parte señalando que \"migrante\" es un término genérico no definido en el derecho internacional (a diferencia de \"refugiado\", que sí tiene definición jurídica vinculante). Incluye desplazamientos internos e internacionales, temporales o permanentes, y por diversas razones, no solo laborales."},
+ {q:"9. Los datos CASEN muestran que la población migrante internacional en Chile reporta mejor autopercepción de salud y menor proporción de personas en tratamiento médico que la población nacida en Chile, coexistiendo con menor cobertura GES y mayor percepción de discriminación. La interpretación más adecuada de este patrón, según lo revisado en clase, es que:",
+  o:["a) La migración constituye por sí misma un factor protector permanente de la salud", "b) Los migrantes tienen menor carga real de enfermedad, por lo que no requieren políticas focalizadas", "c) La mejor autopercepción inicial puede reflejar selección de personas sanas que migran, mientras que las condiciones del proceso migratorio y las barreras de acceso pueden deteriorar la salud posteriormente", "d) Los instrumentos de encuesta no son válidos en población extranjera, invalidando la comparación"],
+  a:2, e:"El patrón es coherente con el efecto del migrante sano (sesgo de selección: migran personas relativamente más sanas). Pero la migración no es protectora por sí misma: las condiciones del proceso (precariedad, estrés, barreras de acceso, discriminación: 28,4% vs 14,7% de percepción de discriminación en hogares con y sin inmigrantes) pueden deteriorar esa ventaja. La menor cobertura GES muestra que sí se requieren políticas focalizadas."},
+ {q:"10. El marco normativo migratorio chileno (2023) promueve la regularidad migratoria fundamentalmente porque:",
+  o:["a) Permite el control estadístico del flujo migratorio para planificación sanitaria", "b) Es requisito legal exclusivo para el acceso a atención de urgencia", "c) Facilita la integración y otorga condiciones de acceso a trabajo decente, seguridad social, educación y salud, previniendo vulneraciones de derechos", "d) Reduce el uso de servicios de urgencia al derivar la demanda al sistema privado"],
+  a:2, e:"Es el objetivo 1.4 de la Política Nacional de Migración y Extranjería 2023: la regularidad como instrumento de integración y acceso a trabajo decente, seguridad social, educación y salud, que previene y atenúa riesgos de vulneración de derechos. La atención de urgencia es exigible con independencia de la situación migratoria (Ley 21.325, art. 15; Ordenanza MINSAL N° 500 de 2026)."},
+];
+</script>
+{{< include _quiz_engine.qmd >}}

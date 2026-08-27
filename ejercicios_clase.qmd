@@ -33,7 +33,10 @@ Aquí quedan acopiados los ejercicios interactivos que trabajamos **en parejas d
 
 ### Determinantes sociales de la salud, género y migración
 
-*Disponible el día de la clase.*
+-   Las 10 preguntas del control aplicado en clase, con retroalimentación por pregunta
+-   Modelos de Dahlgren-Whitehead y Solar e Irwin, sexo/género, transversalidad, migrante sano y marco normativo migratorio
+
+[**Quiz de repaso del control (Sesión 3)**](quiz_sesion3.qmd){.btn .btn-primary}
 
 ------------------------------------------------------------------------
 
