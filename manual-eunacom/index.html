@@ -79,13 +79,14 @@ th{font-weight:600;font-size:12.5px;color:var(--muted)}
 .note{font-size:13.5px;color:var(--muted);margin:10px 0 0}
 .callout{border-left:3px solid var(--ochre);background:var(--ochre-soft);padding:12px 14px;border-radius:0 8px 8px 0;font-size:14px}
 /* manual */
+.reader>*{min-width:0}
 .reader{display:grid;grid-template-columns:260px minmax(0,1fr);gap:28px;align-items:start}
 @media (max-width:820px){.reader{grid-template-columns:1fr}}
 .toc{position:sticky;top:calc(env(safe-area-inset-top,0px) + 100px);max-height:calc(100vh - 120px);overflow:auto;font-size:13.5px}
 @media (max-width:820px){.toc{position:static;max-height:280px;border:1px solid var(--line);border-radius:10px;padding:12px;background:var(--surface)}}
 .toc h4{margin:14px 0 4px;font-size:12px;font-family:var(--f-mono);letter-spacing:.04em;color:var(--muted);font-weight:500}
 .toc h4:first-child{margin-top:0}
-.toc button{all:unset;display:flex;gap:8px;width:100%;padding:4px 6px;border-radius:6px;cursor:pointer;color:var(--muted)}
+.toc button{all:unset;box-sizing:border-box;display:flex;gap:8px;width:100%;padding:4px 6px;border-radius:6px;cursor:pointer;color:var(--muted)}
 .toc button.has{color:var(--ink)}
 .toc button[aria-current="true"]{background:var(--accent-soft);color:var(--ink);font-weight:500}
 .toc button:focus-visible{outline:2px solid var(--accent)}
@@ -190,6 +191,140 @@ select{font:inherit;padding:8px 10px;border-radius:8px;border:1px solid var(--li
 .nl li{display:grid;grid-template-columns:30px 1fr;gap:10px;font-size:14px;align-items:start}
 .nl small{display:block;color:var(--muted);font-size:12.5px}
 .nn{font:500 12px/24px var(--f-mono);text-align:center;border-radius:6px;background:var(--accent-soft);color:var(--accent)}
+
+/* laboratorio */
+.lab-top{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,300px);gap:24px;align-items:end}
+@media (max-width:760px){.lab-top{grid-template-columns:1fr}}
+.hud{border:1px solid var(--line);border-radius:10px;padding:14px 16px;background:var(--surface);display:grid;grid-template-columns:1fr auto;gap:6px 12px;align-items:center}
+.hud small{display:block;font-size:11.5px;color:var(--muted);font-family:var(--f-mono);letter-spacing:.06em;text-transform:uppercase}
+.hud b{font-family:var(--f-serif);font-size:19px;font-weight:600}
+.hud .stars{font-family:var(--f-mono);font-size:14px;color:var(--ochre);text-align:right}
+.hud-bar{grid-column:1/-1;height:8px;border-radius:4px;background:var(--free);overflow:hidden}
+.hud-bar i{display:block;height:100%;background:var(--accent);transition:width .5s}
+.hud-n{grid-column:1/-1;display:flex;justify-content:space-between;font-size:12.5px;color:var(--muted);font-variant-numeric:tabular-nums}
+.lab-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(250px,1fr));gap:16px}
+.lab-card{all:unset;cursor:pointer;display:flex;flex-direction:column;gap:8px;padding:18px;border:1px solid var(--line);border-radius:10px;background:var(--surface);min-width:0}
+.lab-card:hover{border-color:var(--accent)}
+.lab-card:focus-visible{outline:2px solid var(--accent);outline-offset:2px}
+.lab-card .lc-top{display:flex;justify-content:space-between;align-items:center;gap:8px}
+.lab-card h3{font-family:var(--f-serif);font-size:18px;font-weight:600;line-height:1.25}
+.lab-card p{margin:0;font-size:14px;color:var(--muted)}
+.lab-card .go{margin-top:auto;font-weight:600;font-size:14px;color:var(--accent)}
+.st3{font-family:var(--f-mono);letter-spacing:2px;color:var(--line);font-size:15px}
+.st3 i{font-style:normal;color:var(--ochre)}
+.lab-thumb{height:70px;border-radius:8px;background:var(--bg);display:grid;place-items:center;overflow:hidden}
+.lab-thumb svg{width:100%;height:100%}
+.backlink{all:unset;cursor:pointer;color:var(--accent);font-weight:600;font-size:14px;margin-bottom:14px;display:inline-block}
+.backlink:focus-visible{outline:2px solid var(--accent)}
+.lab-head{display:flex;flex-wrap:wrap;justify-content:space-between;align-items:flex-end;gap:10px;margin-bottom:16px}
+.lab-head h2{font-size:24px}
+.scorebox{font-family:var(--f-mono);font-size:14px;display:flex;gap:14px;align-items:center;font-variant-numeric:tabular-nums}
+.streak{color:var(--ochre);font-weight:500}
+.svgwrap{overflow-x:auto;border:1px solid var(--line);border-radius:10px;background:var(--surface);padding:10px}
+.svgwrap svg{display:block;width:100%;min-width:560px;height:auto}
+.dg text{fill:var(--ink);font-family:var(--f-sans)}
+.dg .muted{fill:var(--muted)}
+.dg .zone rect{fill:var(--bg);stroke:var(--line);stroke-width:1.5;transition:fill .2s}
+.dg .zone{cursor:pointer}
+.dg .zone:hover rect,.dg .zone:focus-visible rect{fill:var(--accent-soft);stroke:var(--accent)}
+.dg .zone:focus{outline:none}
+.dg .zone.ok rect{fill:var(--ok-soft);stroke:var(--ok)}
+.dg .zone.bad rect{fill:var(--bad-soft);stroke:var(--bad)}
+.dg .zone.lock{pointer-events:none}
+.dg .zt{font-weight:600;font-size:14px}
+.dg .curve{fill:none;stroke:var(--accent);stroke-width:3}
+.dg .horizon{stroke:var(--muted);stroke-dasharray:5 5;stroke-width:1.5}
+.dg .pin circle{fill:var(--accent)} .dg .pin text{fill:var(--surface);font:600 11px var(--f-mono)}
+.hcard{border:1px solid var(--line);border-left:4px solid var(--accent);border-radius:8px;padding:14px 16px;background:var(--surface);margin-bottom:14px}
+.hcard small{color:var(--muted);font-family:var(--f-mono);font-size:12px}
+.hcard p{margin:4px 0 0;font-family:var(--f-serif);font-size:17px;line-height:1.5}
+.endbox{text-align:center;padding:28px 16px}
+.endbox .big{font-family:var(--f-mono);font-size:34px;letter-spacing:6px;color:var(--ochre)}
+/* timeline */
+.tl{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:12px;margin-top:6px}
+@media (max-width:760px){.tl{grid-template-columns:1fr 1fr}}
+.slot{border:2px dashed var(--line);border-radius:10px;padding:12px;min-height:150px;display:flex;flex-direction:column;gap:8px;cursor:pointer;background:var(--surface)}
+.slot:focus-visible{outline:2px solid var(--accent)}
+.slot.ready{border-color:var(--accent);background:var(--accent-soft)}
+.slot.ok{border-style:solid;border-color:var(--ok);background:var(--ok-soft);cursor:default}
+.slot.bad{border-color:var(--bad);background:var(--bad-soft)}
+.slot .yr{font-family:var(--f-mono);font-size:22px;font-weight:500}
+.slot .who{font-weight:600;font-size:14px}
+.slot .txt{font-family:var(--f-serif);font-size:14px;line-height:1.45}
+.pool{display:flex;flex-direction:column;gap:8px;margin-top:16px}
+.dcard{all:unset;cursor:pointer;border:1px solid var(--line);border-radius:8px;padding:10px 12px;background:var(--surface);font-family:var(--f-serif);font-size:15px;line-height:1.45}
+.dcard:hover{border-color:var(--accent)}
+.dcard:focus-visible{outline:2px solid var(--accent)}
+.dcard.sel{border-color:var(--accent);background:var(--accent-soft);box-shadow:inset 3px 0 0 var(--accent)}
+/* tasas */
+.data{display:grid;grid-template-columns:minmax(0,1fr) auto;gap:4px 18px;max-width:520px;font-size:14.5px;margin:10px 0 16px}
+.data span:nth-child(even){font-family:var(--f-mono);text-align:right;font-variant-numeric:tabular-nums}
+.choices{display:grid;grid-template-columns:repeat(auto-fit,minmax(200px,1fr));gap:8px;max-width:640px}
+.choice{all:unset;cursor:pointer;padding:10px 12px;border:1px solid var(--line);border-radius:8px;font-size:14.5px;background:var(--surface)}
+.choice:hover{border-color:var(--accent)}
+.choice:focus-visible{outline:2px solid var(--accent)}
+.choice.right{border-color:var(--ok);background:var(--ok-soft)}
+.choice.wrong{border-color:var(--bad);background:var(--bad-soft)}
+.choice[aria-disabled="true"]{cursor:default}
+.ansrow{display:flex;flex-wrap:wrap;gap:10px;align-items:center;margin-top:12px}
+.ansrow input{font:inherit;font-variant-numeric:tabular-nums;width:140px;padding:9px 12px;border-radius:8px;border:1px solid var(--line);background:var(--surface);color:var(--ink);text-align:right}
+.ansrow input:focus-visible{outline:2px solid var(--accent)}
+.step{font-family:var(--f-mono);font-size:12px;color:var(--muted);letter-spacing:.06em;text-transform:uppercase;margin-top:18px}
+/* tanque */
+.tank-grid{display:grid;grid-template-columns:minmax(0,1.25fr) minmax(0,1fr);gap:20px;align-items:start}
+@media (max-width:860px){.tank-grid{grid-template-columns:1fr}}
+.tank3d{position:relative;border:1px solid var(--line);border-radius:10px;background:var(--surface);overflow:hidden;min-height:320px;touch-action:pan-y}
+.tank3d canvas{display:block;cursor:grab;touch-action:pan-y}
+.tank3d canvas:active{cursor:grabbing}
+.tlab{position:absolute;transform:translate(-50%,-50%);font-size:12px;font-weight:600;padding:2px 7px;border-radius:999px;background:var(--surface);border:1px solid var(--line);white-space:nowrap;pointer-events:none}
+.tlab.in{color:var(--accent)} .tlab.cure{color:var(--ok)} .tlab.death{color:var(--bad)} .tlab.tick{font:500 10.5px var(--f-mono);color:var(--muted);border:0;background:transparent;padding:0}
+.tank-hint{position:absolute;left:12px;bottom:10px;font-size:12px;color:var(--muted)}
+.tank-msg{padding:40px 20px;text-align:center;color:var(--muted)}
+.ctrl{display:flex;flex-direction:column;gap:14px}
+.ctrl label{display:flex;justify-content:space-between;gap:10px;font-size:14px;font-weight:500}
+.ctrl label output{font-family:var(--f-mono);font-weight:500;color:var(--accent);font-variant-numeric:tabular-nums;text-align:right}
+.ctrl input[type=range]{width:100%;accent-color:var(--accent)}
+.readout{display:grid;grid-template-columns:1fr 1fr;gap:10px}
+.readout .out b{font-size:22px}
+.eq{font-family:var(--f-mono);font-size:13px;padding:10px 12px;border-radius:8px;background:var(--bg);line-height:1.6}
+.scen{display:flex;flex-wrap:wrap;gap:6px}
+.scen button{all:unset;cursor:pointer;font-size:13px;padding:5px 10px;border-radius:999px;border:1px solid var(--line)}
+.scen button:hover{border-color:var(--accent)}
+.scen button:focus-visible{outline:2px solid var(--accent)}
+.spark{width:100%;height:70px;display:block}
+.spark polyline{fill:none;stroke:var(--accent);stroke-width:2}
+.spark .ax{stroke:var(--line)}
+.chal{margin-top:20px}
+/* tamizaje */
+.tz-grid{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1fr);gap:20px;align-items:start}
+@media (max-width:860px){.tz-grid{grid-template-columns:1fr}}
+.icons{width:100%;display:block;border-radius:8px}
+.lg{display:flex;flex-wrap:wrap;gap:6px 14px;font-size:13px;margin-top:8px;font-variant-numeric:tabular-nums}
+.lg span{display:inline-flex;align-items:center;gap:6px}
+.lg i{width:11px;height:11px;border-radius:3px;display:inline-block}
+.c-vp{background:var(--accent)} .c-fn{background:var(--ochre)} .c-fp{background:var(--bad)} .c-vn{background:var(--free);box-shadow:inset 0 0 0 1px var(--line)}
+.chart text{fill:var(--muted);font:11px var(--f-mono)}
+.chart .grid{stroke:var(--line)}
+.chart .vpp{fill:none;stroke:var(--accent);stroke-width:2.5}
+.chart .vpn{fill:none;stroke:var(--ochre);stroke-width:2.5}
+.chart .pt-vpp{fill:var(--accent)} .chart .pt-vpn{fill:var(--ochre)}
+.chart .cur{stroke:var(--ink);stroke-dasharray:3 3}
+.retos{list-style:none;margin:10px 0 0;padding:0;display:flex;flex-direction:column;gap:8px}
+.retos li{display:grid;grid-template-columns:24px 1fr;gap:8px;font-size:14.5px;align-items:start}
+.retos li .ck{width:20px;height:20px;border-radius:50%;border:2px solid var(--line);display:grid;place-items:center;font-size:12px;color:var(--surface)}
+.retos li.done .ck{background:var(--ok);border-color:var(--ok)}
+.retos li.done span:last-child{color:var(--muted);text-decoration:line-through}
+.insight{font-family:var(--f-serif);font-size:16px;margin:12px 0 0}
+/* toast */
+.toast{position:fixed;left:50%;bottom:calc(20px + env(safe-area-inset-bottom,0px));transform:translateX(-50%);background:var(--ink);color:var(--surface);padding:10px 18px;border-radius:999px;font-weight:600;font-size:14px;z-index:20;box-shadow:0 6px 20px rgba(0,0,0,.18);max-width:calc(100vw - 32px)}
+.toast.show{animation:pop .3s ease-out}
+@keyframes pop{from{transform:translate(-50%,12px);opacity:0}to{transform:translate(-50%,0);opacity:1}}
+.labbtn{margin-left:auto}
+#v-lab.playing .lab-top>div:first-child{display:none}
+#v-lab.playing .lab-top{grid-template-columns:minmax(0,1fr)}
+#v-lab.playing .hud{max-width:420px}
+.toc button b.ldot{color:var(--ochre);font-size:9px;margin-left:auto;align-self:center;font-weight:400}
+
 @media (prefers-reduced-motion:reduce){*{transition:none!important;animation:none!important}}
 </style>
 </head>
@@ -202,9 +337,9 @@ select{font:inherit;padding:8px 10px;border-radius:8px;border:1px solid var(--li
     <nav role="tablist" aria-label="Secciones">
       <button role="tab" id="tab-avance" data-v="avance">Avance</button>
       <button role="tab" id="tab-manual" data-v="manual">Manual</button>
+      <button role="tab" id="tab-lab" data-v="lab">Laboratorio</button>
       <button role="tab" id="tab-preguntas" data-v="preguntas">Banco de preguntas</button>
       <button role="tab" id="tab-formato" data-v="formato">Formato de pregunta</button>
-      <button role="tab" id="tab-herramientas" data-v="herramientas">Herramientas</button>
       <button role="tab" id="tab-ruta" data-v="ruta">Hoja de ruta</button>
     </nav>
   </div>
@@ -267,11 +402,11 @@ select{font:inherit;padding:8px 10px;border-radius:8px;border:1px solid var(--li
       <div>
         <div class="eyebrow">Siguiente bloque · Epidemiología</div>
         <ul class="nl">
-          <li><span class="nn">23</span><span>Medidas de asociación e impacto: RR, OR, RA, NNT<small>Con calculadora, como la tabla 2×2</small></span></li>
+          <li><span class="nn">23</span><span>Medidas de asociación e impacto: RR, OR, RA, NNT<small>Con su interactivo de cálculo en el Laboratorio</small></span></li>
           <li><span class="nn">24</span><span>Diseños de investigación epidemiológica</span></li>
           <li><span class="nn">26</span><span>Estudios de casos y controles</span></li>
           <li><span class="nn">27</span><span>Estudios de cohortes</span></li>
-          <li><span class="nn">32</span><span>Pruebas de tamizaje y diagnósticas<small>Ya tiene su calculadora en Herramientas</small></span></li>
+          <li><span class="nn">32</span><span>Pruebas de tamizaje y diagnósticas<small>Ya tiene su interactivo en el Laboratorio</small></span></li>
         </ul>
       </div>
       <div>
@@ -432,36 +567,55 @@ Autor/a: [nombre] · Revisor/a: [nombre]</pre>
   </div>
 </section>
 
-<!-- HERRAMIENTAS -->
-<section id="v-herramientas" class="stack" hidden>
-  <div>
-    <div class="eyebrow">Ejemplo de herramienta interactiva</div>
-    <h1>Calculadoras para el examen</h1>
-    <p class="lede">Los temas de epidemiología piden calcular. Cada capítulo puede traer su calculadora; estas dos muestran la idea con los ejemplos de los temas 15 y 32.</p>
+<!-- LABORATORIO -->
+<section id="v-lab" class="stack" hidden>
+  <div class="lab-top">
+    <div style="min-width:0">
+      <div class="eyebrow">Capítulos que se juegan</div>
+      <h1>Laboratorio</h1>
+      <p class="lede">Cada tema tiene su interactivo: un esquema que se completa, un cálculo con desafío, un gráfico que se mueve o un modelo en 3D. Cada acierto suma puntos y cada interactivo da hasta tres estrellas.</p>
+    </div>
+    <div class="hud" id="hud" aria-live="polite"></div>
   </div>
-  <div class="grid2">
+
+  <div id="lab-home" class="stack">
+    <div class="lab-grid" id="lab-grid"></div>
+
     <div class="panel">
-      <h2>Tabla 2×2 · prueba diagnóstica</h2>
-      <p class="note">Tema 32. Edita los valores; los indicadores se recalculan al instante.</p>
-      <div class="t22" style="margin-top:14px">
-        <span></span><span class="h">Enfermo</span><span class="h">Sano</span>
-        <span class="h" style="text-align:left">Test +</span><input id="a" type="number" min="0" value="90" aria-label="Verdaderos positivos"><input id="b" type="number" min="0" value="40" aria-label="Falsos positivos">
-        <span class="h" style="text-align:left">Test −</span><input id="c" type="number" min="0" value="10" aria-label="Falsos negativos"><input id="d" type="number" min="0" value="860" aria-label="Verdaderos negativos">
+      <div style="display:flex;flex-wrap:wrap;justify-content:space-between;gap:10px;align-items:center">
+        <h2>Propón el interactivo de tu tema</h2>
+        <button class="btn ghost" id="copy-lab">Copiar plantilla</button>
       </div>
-      <div class="outs" id="t22-out"></div>
+      <p class="note">Cada ayudante describe en seis líneas qué debería jugar el estudiante. Con eso se construye la pieza y se enlaza desde el capítulo.</p>
+      <pre class="tpl" id="tpl-lab">TEMA: [número y título]
+TIPO: [Esquema / Cálculo / Gráfico / Modelo 3D / Línea de tiempo / Clasificación]
+CONCEPTO: [la idea que el estudiante debe ver o descubrir]
+QUÉ HACE EL ESTUDIANTE: [ubica, calcula, mueve un control, ordena o predice]
+QUÉ VE AL ACERTAR O FALLAR: [la explicación]
+DATOS O EJEMPLOS: [números, casos o fuentes del capítulo]</pre>
+      <p class="note" id="copy-lab-msg" aria-live="polite"></p>
+      <h3 style="margin-top:18px">Ideas para los próximos temas</h3>
+      <div class="tw" style="margin-top:8px"><table>
+        <thead><tr><th>Tema</th><th>Tipo</th><th>Idea</th></tr></thead>
+        <tbody>
+          <tr><td>12. Transición demográfica</td><td>Gráfico</td><td>Pirámide de población que se deforma al mover natalidad y mortalidad.</td></tr>
+          <tr><td>20. Epidemiología descriptiva</td><td>Gráfico</td><td>Curva y mapa de casos para describir persona, tiempo y lugar.</td></tr>
+          <tr><td>23. Medidas de asociación</td><td>Cálculo</td><td>Tabla 2×2 de exposición con RR, OR, riesgo atribuible y NNT.</td></tr>
+          <tr><td>26 y 27. Casos y controles, cohortes</td><td>Esquema</td><td>Arma el diseño eligiendo desde dónde parte el estudio y hacia dónde mira en el tiempo.</td></tr>
+          <tr><td>33. Estudio de brotes</td><td>Gráfico</td><td>Curva epidémica que el estudiante clasifica: fuente común, propagada o mixta.</td></tr>
+          <tr><td>E y D 27. Triage START</td><td>Clasificación</td><td>Víctimas de un accidente con múltiples víctimas para clasificar por color contra el reloj.</td></tr>
+        </tbody>
+      </table></div>
     </div>
-    <div class="panel">
-      <h2>Tasa de mortalidad infantil</h2>
-      <p class="note">Tema 15. Defunciones de menores de 1 año sobre nacidos vivos del mismo período.</p>
-      <div class="t22" style="grid-template-columns:1fr 1fr;margin-top:14px">
-        <span class="h" style="text-align:left">Defunciones &lt; 1 año</span><input id="mi-d" type="number" min="0" value="45">
-        <span class="h" style="text-align:left">Nacidos vivos</span><input id="mi-n" type="number" min="1" value="5000">
-      </div>
-      <div class="outs"><div class="out"><small>TMI</small><b id="mi-out">9,0</b><div class="formula">por 1.000 nacidos vivos</div></div></div>
-      <p class="note">El mismo ejemplo de la pregunta 1 del tema 15: (45 / 5.000) × 1.000 = 9.</p>
-    </div>
+  </div>
+
+  <div id="lab-stage" hidden>
+    <button class="backlink" id="lab-back">← Volver al laboratorio</button>
+    <div id="lab-body"></div>
   </div>
 </section>
+
+<div id="toast" class="toast" role="status" hidden></div>
 
 <!-- RUTA -->
 <section id="v-ruta" class="stack" hidden>
@@ -494,7 +648,7 @@ Autor/a: [nombre] · Revisor/a: [nombre]</pre>
     <div class="phase"><div><div class="eyebrow">Próximo</div><h3>Verano</h3></div><ul>
       <li><b>Generador de preguntas asistido:</b> a partir de cada capítulo propone variantes (cambia el caso, los números, el distractor). Ninguna entra al banco sin revisión de un ayudante.</li>
       <li><b>Simulacro por código EUNACOM</b> con tiempo y reporte por sección, para que cada estudiante vea sus temas débiles.</li>
-      <li><b>Calculadoras</b> en los temas de epidemiología y bioestadística: tasas, 2×2, RR, OR, NNT, pirámide poblacional.</li>
+      <li><b>Laboratorio:</b> un interactivo por tema, sea esquema, cálculo, gráfico, modelo 3D o línea de tiempo, con puntos y estrellas. Cada ayudante lo propone con la plantilla.</li>
       <li><b>Glosario y formulario</b> en una página, enlazados desde cada capítulo.</li>
     </ul></div>
     <div class="phase"><div><div class="eyebrow">Después</div><h3>2027</h3></div><ul>
@@ -510,6 +664,7 @@ Autor/a: [nombre] · Revisor/a: [nombre]</pre>
     <ul style="margin:10px 0 0;padding-left:1.2em;max-width:72ch">
       <li>Quién revisa qué tema y en qué plazo.</li>
       <li>Adoptar el formato de pregunta y reescribir las autoevaluaciones de los 18 borradores.</li>
+      <li>Que cada ayudante proponga el interactivo de su tema con la plantilla del Laboratorio.</li>
       <li>Licencia del contenido, por ejemplo CC BY-NC-SA, y regla para imágenes: solo propias o con permiso explícito.</li>
       <li>Cuántos temas se priorizan antes de marzo y si se suman ayudantes para Emergencias y Desastres.</li>
     </ul>
@@ -656,10 +811,583 @@ const esc = s => String(s).replace(/[&<>"]/g, c => ({"&":"&amp;","<":"&lt;",">":
 const topicName = n => (TOPICS.find(t => t.n === n) || {}).t || "";
 const fmt = (x, d=1) => isFinite(x) ? x.toLocaleString("es-CL",{minimumFractionDigits:d,maximumFractionDigits:d}) : "—";
 
+/* ================= LABORATORIO ================= */
+const LABS = [
+  {id:"hist",  t:6,  kind:"Esquema",         title:"Historia natural de la enfermedad", desc:"Ubica 12 intervenciones en el esquema de los niveles de prevención."},
+  {id:"def",   t:1,  kind:"Línea de tiempo", title:"Cien años de salud pública",        desc:"Asigna cada definición a su autor, de Winslow a la OPS."},
+  {id:"tasas", t:15, kind:"Cálculo",         title:"Desafío de tasas",                  desc:"Elige el denominador y calcula. Seis casos con números nuevos en cada partida."},
+  {id:"tank",  t:21, kind:"Modelo 3D",       title:"La bañera de la prevalencia",       desc:"La incidencia entra, la curación y la muerte salen. Predice qué pasa y compruébalo."},
+  {id:"tamiz", t:32, kind:"Gráfico",         title:"Tamizaje en 1.000 personas",        desc:"Mueve la prevalencia y mira qué le pasa al valor predictivo positivo."}
+];
+const LAB_BY_TOPIC = Object.fromEntries(LABS.map(l => [l.t, l.id]));
+const THUMBS = {
+  hist:`<svg viewBox="0 0 200 70" aria-hidden="true"><rect x="6" y="8" width="44" height="54" rx="5" fill="var(--free)"/><rect x="54" y="8" width="44" height="54" rx="5" fill="var(--accent-soft)"/><rect x="102" y="8" width="44" height="54" rx="5" fill="var(--free)"/><rect x="150" y="8" width="44" height="54" rx="5" fill="var(--free)"/><path d="M102 56 C130 56 140 34 160 24 S190 14 194 14" fill="none" stroke="var(--accent)" stroke-width="3"/><line x1="102" y1="36" x2="194" y2="36" stroke="var(--muted)" stroke-dasharray="4 4"/></svg>`,
+  def:`<svg viewBox="0 0 200 70" aria-hidden="true"><line x1="14" y1="40" x2="186" y2="40" stroke="var(--line)" stroke-width="3"/><g fill="var(--accent)"><circle cx="24" cy="40" r="7"/><circle cx="120" cy="40" r="7"/><circle cx="142" cy="40" r="7"/><circle cx="176" cy="40" r="7"/></g><g font-family="var(--f-mono)" font-size="10" fill="var(--muted)" text-anchor="middle"><text x="24" y="62">1920</text><text x="120" y="62">1988</text><text x="148" y="24">1992</text><text x="176" y="62">2002</text></g></svg>`,
+  tasas:`<svg viewBox="0 0 200 70" aria-hidden="true"><g font-family="var(--f-mono)" text-anchor="middle"><text x="100" y="28" font-size="16" fill="var(--ink)">45</text><line x1="60" y1="36" x2="140" y2="36" stroke="var(--ink)" stroke-width="2"/><text x="100" y="56" font-size="16" fill="var(--accent)">5.000</text><text x="170" y="44" font-size="13" fill="var(--muted)">×1.000</text></g></svg>`,
+  tank:`<svg viewBox="0 0 200 70" aria-hidden="true"><rect x="70" y="14" width="60" height="50" rx="6" fill="none" stroke="var(--muted)" stroke-width="2"/><rect x="72" y="36" width="56" height="26" rx="4" fill="var(--accent)" opacity=".75"/><path d="M40 8 H100 V16" fill="none" stroke="var(--accent)" stroke-width="4"/><path d="M70 56 H44" stroke="var(--ok)" stroke-width="4"/><path d="M130 56 H156" stroke="var(--bad)" stroke-width="4"/></svg>`,
+  tamiz:`<svg viewBox="0 0 200 70" aria-hidden="true"><g>${Array.from({length:60},(_,i)=>`<rect x="${8+(i%15)*8}" y="${10+Math.floor(i/15)*13}" width="6" height="10" rx="1.5" fill="${i<2?"var(--accent)":i<8?"var(--bad)":"var(--free)"}"/>`).join("")}</g><path d="M136 60 C150 58 160 40 170 26 S188 12 194 10" fill="none" stroke="var(--accent)" stroke-width="2.5"/></svg>`
+};
+
+/* ---------- puntos, niveles y estrellas ---------- */
+const LEVELS = [[0,"Estudiante"],[100,"Interno/a"],[250,"Médico/a general"],[450,"Médico/a de APS"],[700,"Salubrista"],[1000,"Epidemiólogo/a"]];
+let G = {xp:0, stars:{}};
+try{ const raw = localStorage.getItem("eunacom-lab-v1"); if(raw) G = Object.assign(G, JSON.parse(raw)); }catch(e){}
+function saveG(){ try{ localStorage.setItem("eunacom-lab-v1", JSON.stringify(G)); }catch(e){} }
+function lvlOf(xp){ let i = 0; while(i + 1 < LEVELS.length && xp >= LEVELS[i+1][0]) i++; return i; }
+function renderHUD(){
+  const i = lvlOf(G.xp), cur = LEVELS[i][0], nxt = LEVELS[i+1] ? LEVELS[i+1][0] : null;
+  const pct = nxt ? (G.xp - cur) / (nxt - cur) * 100 : 100;
+  const st = LABS.reduce((a, l) => a + (G.stars[l.id] || 0), 0);
+  $("#hud").innerHTML = `<div><small>Nivel</small><b>${LEVELS[i][1]}</b></div><div class="stars">★ ${st} / ${LABS.length * 3}</div>
+    <div class="hud-bar"><i style="width:${pct}%"></i></div>
+    <div class="hud-n"><span>${G.xp.toLocaleString("es-CL")} puntos</span><span>${nxt ? (nxt - G.xp) + " para " + LEVELS[i+1][1] : "Nivel máximo"}</span></div>`;
+}
+function toast(msg){
+  const t = $("#toast"); t.textContent = msg; t.hidden = false;
+  t.classList.remove("show"); void t.offsetWidth; t.classList.add("show");
+  clearTimeout(toast.h); toast.h = setTimeout(() => { t.hidden = true; }, 2300);
+}
+function gain(pts, msg){
+  const before = lvlOf(G.xp); G.xp += pts; saveG(); renderHUD();
+  const after = lvlOf(G.xp);
+  toast(after > before ? `+${pts} puntos · Subiste a ${LEVELS[after][1]}` : `+${pts} puntos${msg ? " · " + msg : ""}`);
+}
+function setStars(id, n){ G.stars[id] = Math.max(G.stars[id] || 0, n); saveG(); renderHUD(); renderLabGrid(); }
+const starStr = n => `<span class="st3" aria-label="${n} de 3 estrellas">${"<i>★</i>".repeat(n)}${"★".repeat(3 - n)}</span>`;
+
+/* ---------- portada del laboratorio ---------- */
+function renderLabGrid(){
+  $("#lab-grid").innerHTML = LABS.map(l => `<button class="lab-card" data-lab="${l.id}">
+    <div class="lab-thumb">${THUMBS[l.id]}</div>
+    <div class="lc-top"><span class="pill b">${l.kind}</span>${starStr(G.stars[l.id] || 0)}</div>
+    <div class="eyebrow">Tema ${l.t} · ${esc(topicName(l.t))}</div>
+    <h3>${esc(l.title)}</h3><p>${esc(l.desc)}</p>
+    <span class="go">${G.stars[l.id] ? "Jugar de nuevo" : "Jugar"} →</span></button>`).join("");
+  $("#lab-grid").querySelectorAll(".lab-card").forEach(b => b.addEventListener("click", () => openLab(b.dataset.lab)));
+}
+let labCleanup = null;
+function openLab(id){
+  if(labCleanup){ labCleanup(); labCleanup = null; }
+  show("lab");
+  $("#lab-home").hidden = true; $("#lab-stage").hidden = false; $("#v-lab").classList.add("playing");
+  ({hist:labHist, def:labDef, tasas:labTasas, tank:labTank, tamiz:labTamiz})[id]($("#lab-body"));
+  window.scrollTo(0, 0);
+}
+function closeLab(){
+  if(labCleanup){ labCleanup(); labCleanup = null; }
+  $("#lab-stage").hidden = true; $("#lab-home").hidden = false; $("#lab-body").innerHTML = ""; $("#v-lab").classList.remove("playing");
+}
+$("#lab-back").addEventListener("click", closeLab);
+function labHeader(id, extra=""){
+  const l = LABS.find(x => x.id === id);
+  return `<div class="lab-head"><div><div class="eyebrow">Tema ${l.t} · ${esc(topicName(l.t))} · ${l.kind}</div><h2>${esc(l.title)}</h2></div><div class="scorebox">${extra}</div></div>`;
+}
+function copyFrom(btnId, preId, msgId){
+  $(btnId).addEventListener("click", () => {
+    const txt = $(preId).textContent, msg = $(msgId);
+    const fallback = () => { const r = document.createRange(); r.selectNodeContents($(preId)); const s = getSelection(); s.removeAllRanges(); s.addRange(r); msg.textContent = "Texto seleccionado. Cópialo con Ctrl+C o Cmd+C."; };
+    try{ navigator.clipboard.writeText(txt).then(() => { msg.textContent = "Plantilla copiada."; }, fallback); }catch(e){ fallback(); }
+  });
+}
+copyFrom("#copy-lab", "#tpl-lab", "#copy-lab-msg");
+
+/* ---------- 1. Historia natural (tema 6) ---------- */
+const HLV = ["Primordial","Primaria","Secundaria","Terciaria","Cuaternaria"];
+const HIST = [
+  {x:"Ley que obliga a rotular con sellos de advertencia los alimentos altos en azúcar, sodio o grasas saturadas.", lv:0, e:"Modifica el entorno de toda la población antes de que se instalen los factores de riesgo: prevención primordial."},
+  {x:"Ordenanza municipal que impide instalar locales de comida rápida a menos de 200 metros de los colegios.", lv:0, e:"Regula las condiciones que generan el riesgo sin intervenir sobre una persona expuesta: primordial."},
+  {x:"Vacunación escolar contra el virus papiloma humano.", lv:1, e:"Protección específica en personas sanas, antes de que exista la enfermedad: primaria."},
+  {x:"Fluoración del agua potable para prevenir caries.", lv:1, e:"Interpone una barrera contra un mecanismo concreto antes de que aparezca la caries: primaria."},
+  {x:"Quimioprofilaxis a los contactos de un caso de enfermedad meningocócica.", lv:1, e:"Los contactos no tienen la enfermedad y se busca que no la desarrollen: primaria, aunque se haga después de la exposición."},
+  {x:"Toma de presión arterial a un adulto asintomático en el Examen de Medicina Preventiva.", lv:2, e:"Busca enfermedad sin síntomas para tratarla a tiempo: tamizaje, prevención secundaria."},
+  {x:"Mamografía de tamizaje en una mujer asintomática de 50 años.", lv:2, e:"Detecta el cáncer antes del horizonte clínico: secundaria."},
+  {x:"Glicemia en ayunas a un adulto asintomático con obesidad.", lv:2, e:"Pesquisa diabetes en fase sin síntomas en un grupo de riesgo: secundaria."},
+  {x:"Rehabilitación kinésica de una persona con hemiparesia tras un accidente cerebrovascular.", lv:3, e:"La enfermedad ya dejó secuelas y se busca recuperar funciones: terciaria."},
+  {x:"Cuidados paliativos en una persona con cáncer avanzado.", lv:3, e:"Enfermedad establecida; se busca aliviar el sufrimiento y preservar la calidad de vida: terciaria."},
+  {x:"Suspender un inhibidor de la bomba de protones sin indicación vigente en un adulto mayor polimedicado.", lv:4, e:"El daño que se evita proviene de la propia atención de salud: prevención cuaternaria."},
+  {x:"No solicitar resonancia de columna en un lumbago agudo sin signos de alarma.", lv:4, e:"Evita un examen sin beneficio que puede llevar a sobrediagnóstico y procedimientos innecesarios: cuaternaria."}
+];
+function labHist(root){
+  const deck = shuffle(HIST); let i = 0, ok = 0, streak = 0, best = 0; const placed = [0,0,0,0,0];
+  const zones = [[10,56,140,200],[150,56,170,200],[320,56,170,200],[490,56,180,200],[10,8,660,36]];
+  root.innerHTML = labHeader("hist", `<span id="h-score">0 / 12</span><span class="streak" id="h-streak"></span>`) + `
+    <div id="h-play">
+      <div class="hcard"><small id="h-n"></small><p id="h-text"></p></div>
+      <div class="svgwrap"><svg class="dg" viewBox="0 0 680 330" role="group" aria-label="Esquema de la historia natural de la enfermedad">
+        <g class="zone" data-z="4" tabindex="0" role="button" aria-label="Cuaternaria"><rect x="10" y="8" width="660" height="36" rx="6"/><text class="zt" x="340" y="31" text-anchor="middle">Cuaternaria · evitar el daño de la propia atención, en cualquier momento</text></g>
+        <g class="zone" data-z="0" tabindex="0" role="button" aria-label="Primordial"><rect x="10" y="56" width="140" height="200" rx="6"/><text class="zt" x="80" y="80" text-anchor="middle">Primordial</text><text class="muted" font-size="12" text-anchor="middle"><tspan x="80" y="232">Condiciones</tspan><tspan x="80" y="247">del entorno</tspan></text></g>
+        <g class="zone" data-z="1" tabindex="0" role="button" aria-label="Primaria"><rect x="150" y="56" width="170" height="200" rx="6"/><text class="zt" x="235" y="80" text-anchor="middle">Primaria</text><text class="muted" font-size="12" text-anchor="middle"><tspan x="235" y="232">Persona sana</tspan><tspan x="235" y="247">o expuesta</tspan></text></g>
+        <g class="zone" data-z="2" tabindex="0" role="button" aria-label="Secundaria"><rect x="320" y="56" width="170" height="200" rx="6"/><text class="zt" x="405" y="80" text-anchor="middle">Secundaria</text><text class="muted" font-size="12" text-anchor="middle"><tspan x="405" y="232">Enfermedad</tspan><tspan x="405" y="247">sin síntomas</tspan></text></g>
+        <g class="zone" data-z="3" tabindex="0" role="button" aria-label="Terciaria"><rect x="490" y="56" width="180" height="200" rx="6"/><text class="zt" x="580" y="80" text-anchor="middle">Terciaria</text><text class="muted" font-size="12" text-anchor="middle"><tspan x="580" y="232">Enfermedad con</tspan><tspan x="580" y="247">síntomas y secuelas</tspan></text></g>
+        <g pointer-events="none">
+          <line class="horizon" x1="320" y1="150" x2="670" y2="150"/><text class="muted" font-size="11.5" x="664" y="143" text-anchor="end">Horizonte clínico</text>
+          <path class="curve" d="M 320 214 C 410 214, 450 180, 500 140 S 610 92, 668 92"/>
+          <circle cx="320" cy="214" r="5" fill="var(--accent)"/>
+        </g>
+        <g id="h-pins" pointer-events="none"></g>
+        <g pointer-events="none" class="muted" font-size="12.5">
+          <line x1="12" y1="276" x2="318" y2="276" stroke="var(--muted)"/><line x1="322" y1="276" x2="668" y2="276" stroke="var(--muted)"/>
+          <line x1="12" y1="270" x2="12" y2="282" stroke="var(--muted)"/><line x1="318" y1="270" x2="318" y2="282" stroke="var(--muted)"/><line x1="322" y1="270" x2="322" y2="282" stroke="var(--muted)"/><line x1="668" y1="270" x2="668" y2="282" stroke="var(--muted)"/>
+          <text class="muted" x="165" y="300" text-anchor="middle">Período prepatogénico</text><text class="muted" x="495" y="300" text-anchor="middle">Período patogénico</text>
+          <text class="muted" x="320" y="320" text-anchor="middle" font-size="11">Inicio biológico de la enfermedad</text>
+        </g>
+      </svg></div>
+      <p class="note">Toca la zona del esquema que corresponde a la intervención. En pantallas angostas, desliza el esquema hacia los lados.</p>
+      <div class="expl" id="h-fb" hidden></div>
+      <div class="qnav"><span></span><button class="btn" id="h-next" hidden>Siguiente</button></div>
+    </div>
+    <div id="h-end" hidden></div>`;
+  const zs = root.querySelectorAll(".zone");
+  function card(){
+    $("#h-n").textContent = `Intervención ${i+1} de ${deck.length}`;
+    $("#h-text").textContent = deck[i].x;
+    $("#h-fb").hidden = true; $("#h-next").hidden = true;
+    zs.forEach(z => z.classList.remove("ok","bad","lock"));
+  }
+  function pin(z){
+    const [x,y,w] = zones[z], k = placed[z]++;
+    const cx = z === 4 ? x + w - 20 - k * 26 : x + 22 + (k % 4) * 32, cy = z === 4 ? 26 : y + 104 + Math.floor(k / 4) * 30;
+    const g = document.createElementNS("http://www.w3.org/2000/svg", "g"); g.setAttribute("class", "pin");
+    g.innerHTML = `<circle cx="${cx}" cy="${cy}" r="11"/><text x="${cx}" y="${cy + 4}" text-anchor="middle">${i + 1}</text>`;
+    $("#h-pins").appendChild(g);
+  }
+  function choose(z){
+    if(!$("#h-next").hidden) return;
+    const it = deck[i], right = z === it.lv;
+    zs.forEach(el => el.classList.add("lock"));
+    root.querySelector(`.zone[data-z="${it.lv}"]`).classList.add("ok");
+    if(right){ ok++; streak++; best = Math.max(best, streak); pin(z); gain(streak >= 3 ? 15 : 10, streak >= 3 ? `racha de ${streak}` : ""); }
+    else { streak = 0; root.querySelector(`.zone[data-z="${z}"]`).classList.add("bad"); }
+    $("#h-score").textContent = `${ok} / ${deck.length}`;
+    $("#h-streak").textContent = streak >= 2 ? `Racha ${streak}` : "";
+    $("#h-fb").innerHTML = `<strong class="${right ? "res-ok" : "res-bad"}">${right ? "Correcto: " + HLV[it.lv] + "." : "Es " + HLV[it.lv] + "."}</strong>${esc(it.e)}`;
+    $("#h-fb").hidden = false; $("#h-next").hidden = false;
+    $("#h-next").textContent = i < deck.length - 1 ? "Siguiente" : "Ver resultado";
+    $("#h-next").focus();
+  }
+  zs.forEach(z => {
+    z.addEventListener("click", () => choose(+z.dataset.z));
+    z.addEventListener("keydown", ev => { if(ev.key === "Enter" || ev.key === " "){ ev.preventDefault(); choose(+z.dataset.z); } });
+  });
+  $("#h-next").addEventListener("click", () => {
+    if(i < deck.length - 1){ i++; card(); return; }
+    const s = ok >= 11 ? 3 : ok >= 9 ? 2 : ok >= 6 ? 1 : 0;
+    setStars("hist", s); if(s) gain(20, "esquema completo");
+    $("#h-play").hidden = true; $("#h-end").hidden = false;
+    $("#h-end").innerHTML = `<div class="panel endbox"><div class="big">${"★".repeat(s)}${"☆".repeat(3-s)}</div><h2 style="margin-top:8px">${ok} de ${deck.length} correctas</h2><p class="note">Mejor racha: ${best}. ${ok < 12 ? "Las que más se confunden son primordial con primaria y secundaria con terciaria: la clave es si ya existe la enfermedad y si ya dio síntomas." : "Esquema dominado."}</p><div style="display:flex;gap:10px;justify-content:center;flex-wrap:wrap;margin-top:14px"><button class="btn" id="h-again">Jugar de nuevo</button><button class="btn ghost" id="h-home">Otros interactivos</button></div></div>`;
+    $("#h-again").addEventListener("click", () => labHist(root));
+    $("#h-home").addEventListener("click", closeLab);
+  });
+  card();
+}
+
+/* ---------- 2. Línea de tiempo de definiciones (tema 1) ---------- */
+const DEFS = [
+  {y:1920, who:"Winslow", txt:"Ciencia y arte de prevenir la enfermedad y prolongar la vida mediante el esfuerzo organizado de la comunidad: saneamiento, control de infecciones, educación en higiene, servicios médicos y una maquinaria social que asegure un nivel de vida adecuado.", k:"La primera definición moderna: enumera todo lo que la comunidad organizada debe hacer."},
+  {y:1988, who:"Acheson", txt:"Ciencia y arte de prevenir la enfermedad, prolongar la vida y fomentar la salud mediante el esfuerzo organizado de la sociedad.", k:"Síntesis breve de Winslow, la más citada hoy."},
+  {y:1992, who:"Terris", txt:"Actualiza a Winslow agregando la salud mental, las enfermedades no infecciosas, las lesiones y la rehabilitación.", k:"Amplía el campo a lo que el siglo XX sumó a la carga de enfermedad."},
+  {y:2002, who:"Organización Panamericana de la Salud", txt:"Acciones colectivas e individuales, del Estado y de la sociedad civil, dirigidas a mejorar la salud de la población.", k:"Pone el acento en quiénes actúan: el Estado y la sociedad civil."}
+];
+function labDef(root){
+  let pool = shuffle(DEFS.map((d, j) => j)), placed = [null,null,null,null], locked = [false,false,false,false], sel = null, tries = 0;
+  root.innerHTML = labHeader("def", `<span id="d-tries">Intentos: 0</span>`) + `
+    <p class="note" style="margin-top:0">Toca una definición y luego el autor al que corresponde. Cuando las cuatro estén ubicadas, revisa.</p>
+    <div class="tl" id="d-slots"></div>
+    <div class="pool" id="d-pool"></div>
+    <div class="qnav"><span class="note" id="d-msg" aria-live="polite"></span><button class="btn" id="d-check" disabled>Revisar</button></div>
+    <div id="d-end"></div>`;
+  function render(){
+    $("#d-slots").innerHTML = DEFS.map((d, s) => {
+      const p = placed[s];
+      return `<div class="slot ${locked[s] ? "ok" : p !== null ? "ready" : ""}" data-s="${s}" tabindex="0" role="button" aria-label="${d.y}, ${esc(d.who)}"><span class="yr">${d.y}</span><span class="who">${esc(d.who)}</span>${p !== null ? `<span class="txt">${esc(DEFS[p].txt)}</span>` : `<span class="note" style="margin:0">Toca aquí para ubicar la definición seleccionada</span>`}${locked[s] ? `<span class="note" style="margin:0;color:var(--ok)">${esc(d.k)}</span>` : ""}</div>`;
+    }).join("");
+    $("#d-pool").innerHTML = pool.map(j => `<button class="dcard ${sel === j ? "sel" : ""}" data-j="${j}">${esc(DEFS[j].txt)}</button>`).join("");
+    $("#d-check").disabled = placed.some(p => p === null) || locked.every(Boolean);
+    root.querySelectorAll(".dcard").forEach(b => b.addEventListener("click", () => { sel = +b.dataset.j; render(); }));
+    root.querySelectorAll(".slot").forEach(el => {
+      const act = () => {
+        const s = +el.dataset.s; if(locked[s]) return;
+        if(sel !== null){ if(placed[s] !== null) pool.push(placed[s]); placed[s] = sel; pool = pool.filter(j => j !== sel); sel = null; }
+        else if(placed[s] !== null){ pool.push(placed[s]); placed[s] = null; }
+        render();
+      };
+      el.addEventListener("click", act);
+      el.addEventListener("keydown", ev => { if(ev.key === "Enter" || ev.key === " "){ ev.preventDefault(); act(); } });
+    });
+  }
+  $("#d-check").addEventListener("click", () => {
+    tries++; $("#d-tries").textContent = `Intentos: ${tries}`;
+    let wrong = 0;
+    placed.forEach((p, s) => { if(locked[s]) return; if(p === s) locked[s] = true; else { wrong++; pool.push(p); placed[s] = null; } });
+    if(wrong){ $("#d-msg").textContent = `${4 - locked.filter(x => !x).length} de 4 bien ubicadas. Las incorrectas volvieron a la lista.`; render(); return; }
+    render(); $("#d-msg").textContent = "";
+    const s = tries === 1 ? 3 : tries === 2 ? 2 : 1;
+    setStars("def", s); gain(tries === 1 ? 40 : 20, "línea de tiempo completa");
+    $("#d-end").innerHTML = `<div class="panel endbox" style="margin-top:16px"><div class="big">${"★".repeat(s)}${"☆".repeat(3-s)}</div><p class="note">La pista para no confundirlas: Winslow enumera, Acheson resume, Terris amplía y la OPS dice quién actúa.</p><div style="display:flex;gap:10px;justify-content:center;flex-wrap:wrap;margin-top:12px"><button class="btn" id="d-again">Jugar de nuevo</button><button class="btn ghost" id="d-home">Otros interactivos</button></div></div>`;
+    $("#d-again").addEventListener("click", () => labDef(root));
+    $("#d-home").addEventListener("click", closeLab);
+  });
+  render();
+}
+
+/* ---------- 3. Desafío de tasas (tema 15) ---------- */
+const DEN = {nv:"Nacidos vivos del período", pob:"Población a mitad del período", casos:"Casos de la enfermedad", mef:"Mujeres de 15 a 49 años"};
+const DEN_WHY = {
+  nv:"Los eventos infantiles y maternos se refieren a los nacidos vivos: son quienes estaban expuestos a morir antes del año, o cuyas madres podían morir por causas maternas.",
+  pob:"Las tasas de mortalidad general y por causa usan la población a mitad del período, que estima a las personas expuestas durante el año.",
+  casos:"La letalidad mide qué proporción de los enfermos muere: el denominador son los casos, no la población."
+};
+const RATES = [
+  {k:"tmi", name:"tasa de mortalidad infantil", mult:1000, unit:"por 1.000 nacidos vivos", num:"d1", den:"nv"},
+  {k:"tmn", name:"tasa de mortalidad neonatal", mult:1000, unit:"por 1.000 nacidos vivos", num:"d28", den:"nv"},
+  {k:"rmm", name:"razón de mortalidad materna", mult:100000, unit:"por 100.000 nacidos vivos", num:"dmat", den:"nv"},
+  {k:"tmg", name:"tasa de mortalidad general", mult:1000, unit:"por 1.000 habitantes", num:"dtot", den:"pob"},
+  {k:"tcv", name:"tasa de mortalidad por enfermedades cardiovasculares", mult:100000, unit:"por 100.000 habitantes", num:"dcv", den:"pob"},
+  {k:"let", name:"letalidad por síndrome cardiopulmonar por hantavirus", mult:100, unit:"%", num:"dhan", den:"casos"}
+];
+const LBL = {pob:"Población a mitad del período", nv:"Nacidos vivos", dtot:"Defunciones totales", d1:"Defunciones de menores de 1 año", d28:"Defunciones de menores de 28 días", dmat:"Defunciones por causas maternas", dcv:"Defunciones por enfermedades cardiovasculares", casos:"Casos confirmados de hantavirus", dhan:"Defunciones por hantavirus"};
+const rnd = (a, b) => a + Math.random() * (b - a), rint = (a, b) => Math.floor(rnd(a, b + 1));
+function makeData(){
+  const pob = rint(150, 900) * 1000, nv = Math.round(pob * rnd(.010, .013)), dtot = Math.round(pob * rnd(.0058, .0068));
+  const d1 = Math.max(4, Math.round(nv * rnd(.004, .009))), d28 = Math.max(2, Math.round(d1 * rnd(.5, .7)));
+  const casos = rint(12, 60);
+  return {pob, nv, dtot, d1, d28, dmat:rint(1, 4), dcv:Math.round(dtot * rnd(.24, .30)), casos, dhan:Math.max(2, Math.round(casos * rnd(.2, .35)))};
+}
+function labTasas(root){
+  const items = shuffle(RATES).map(r => ({r, d:makeData()}));
+  let i = 0, pts = 0, streak = 0;
+  root.innerHTML = labHeader("tasas", `<span id="t-n"></span><span id="t-pts">0 puntos</span><span class="streak" id="t-streak"></span>`) + `<div id="t-play"></div><div id="t-end"></div>`;
+  function show1(){
+    const {r, d} = items[i];
+    const shown = r.k === "let" ? ["pob","dtot","casos","dhan"] : ["pob","nv","dtot", r.num, r.num === "d1" ? "dmat" : "d1"].filter((v, j, a) => a.indexOf(v) === j);
+    $("#t-n").textContent = `Caso ${i+1} de ${items.length}`;
+    $("#t-play").innerHTML = `<div class="hcard"><small>${r.k === "let" ? "Región del sur, temporada 2025–2026" : "Región ficticia, año 2025"}</small><p>Calcula la ${r.name}.</p></div>
+      <div class="data">${shown.map(k => `<span>${LBL[k]}</span><span>${d[k].toLocaleString("es-CL")}</span>`).join("")}</div>
+      <div class="step">Paso 1 · ¿Cuál es el denominador?</div>
+      <div class="choices" id="t-den">${["nv","pob","casos","mef"].map(k => `<button class="choice" data-k="${k}">${DEN[k]}</button>`).join("")}</div>
+      <div class="expl" id="t-denfb" hidden></div>
+      <div id="t-calc" hidden>
+        <div class="step">Paso 2 · Calcula el resultado, ${r.unit}</div>
+        <div class="ansrow"><label for="t-ans" class="sr" style="position:absolute;left:-9999px">Resultado</label><input id="t-ans" inputmode="decimal" autocomplete="off" placeholder="Ej. 8,4"><span>${r.unit}</span><button class="btn" id="t-check">Comprobar</button></div>
+        <p class="note">Con un decimal. Puedes usar coma o punto.</p>
+        <div class="expl" id="t-fb" hidden></div>
+      </div>
+      <div class="qnav"><span></span><button class="btn" id="t-next" hidden>${i < items.length - 1 ? "Siguiente caso" : "Ver resultado"}</button></div>`;
+    let denTried = false, tries = 0;
+    root.querySelectorAll("#t-den .choice").forEach(b => b.addEventListener("click", () => {
+      if(b.getAttribute("aria-disabled") === "true") return;
+      const k = b.dataset.k, right = k === r.den;
+      root.querySelectorAll("#t-den .choice").forEach(x => { x.setAttribute("aria-disabled","true"); if(x.dataset.k === r.den) x.classList.add("right"); });
+      if(!right) b.classList.add("wrong");
+      if(right && !denTried){ pts += 5; gain(5, "denominador"); }
+      denTried = true;
+      $("#t-denfb").innerHTML = `<strong class="${right ? "res-ok" : "res-bad"}">${right ? "Correcto." : "El denominador es: " + DEN[r.den].toLowerCase() + "."}</strong>${DEN_WHY[r.den]}`;
+      $("#t-denfb").hidden = false; $("#t-calc").hidden = false; $("#t-pts").textContent = `${pts} puntos`;
+      $("#t-ans").focus();
+    }));
+    const target = d[r.num] / d[r.den] * r.mult;
+    const check = () => {
+      const v = parseFloat(String($("#t-ans").value).replace(/\s/g, "").replace(",", "."));
+      if(isNaN(v)){ $("#t-fb").hidden = false; $("#t-fb").innerHTML = "<strong>Escribe un número.</strong>Por ejemplo 8,4."; return; }
+      tries++;
+      const ok = Math.abs(v - target) <= Math.max(0.1, Math.abs(target) * 0.01);
+      const formula = `(${d[r.num].toLocaleString("es-CL")} / ${d[r.den].toLocaleString("es-CL")}) × ${r.mult.toLocaleString("es-CL")} = ${fmt(target)}`;
+      if(ok){
+        streak++; const p = tries === 1 ? (streak >= 3 ? 15 : 10) : 5; pts += p; gain(p, streak >= 3 ? `racha de ${streak}` : "");
+        $("#t-fb").innerHTML = `<strong class="res-ok">Correcto: ${fmt(target)} ${r.unit}.</strong>${formula}`;
+      } else if(tries === 1){
+        streak = 0; $("#t-fb").innerHTML = `<strong class="res-bad">No coincide.</strong>Revisa el multiplicador: el resultado va ${r.unit}. Tienes un intento más.`;
+        $("#t-fb").hidden = false; $("#t-streak").textContent = ""; return;
+      } else {
+        $("#t-fb").innerHTML = `<strong class="res-bad">La respuesta es ${fmt(target)} ${r.unit}.</strong>${formula}`;
+      }
+      $("#t-fb").hidden = false; $("#t-ans").disabled = true; $("#t-check").disabled = true;
+      $("#t-pts").textContent = `${pts} puntos`; $("#t-streak").textContent = streak >= 2 ? `Racha ${streak}` : "";
+      $("#t-next").hidden = false; $("#t-next").focus();
+    };
+    $("#t-check").addEventListener("click", check);
+    $("#t-ans").addEventListener("keydown", ev => { if(ev.key === "Enter") check(); });
+    $("#t-next").addEventListener("click", () => { if(i < items.length - 1){ i++; show1(); } else end(); });
+  }
+  function end(){
+    const s = pts >= 80 ? 3 : pts >= 55 ? 2 : pts >= 30 ? 1 : 0; setStars("tasas", s);
+    $("#t-play").innerHTML = ""; $("#t-n").textContent = "";
+    $("#t-end").innerHTML = `<div class="panel endbox"><div class="big">${"★".repeat(s)}${"☆".repeat(3-s)}</div><h2 style="margin-top:8px">${pts} de 90 puntos</h2><p class="note">Cada partida trae números nuevos. La regla que más se olvida: la mortalidad materna se divide por nacidos vivos, no por mujeres en edad fértil.</p><div style="display:flex;gap:10px;justify-content:center;flex-wrap:wrap;margin-top:12px"><button class="btn" id="t-again">Nueva partida</button><button class="btn ghost" id="t-home">Otros interactivos</button></div></div>`;
+    $("#t-again").addEventListener("click", () => labTasas(root));
+    $("#t-home").addEventListener("click", closeLab);
+  }
+  show1();
+}
+
+/* ---------- 4. Bañera de la prevalencia en 3D (tema 21) ---------- */
+const INC = [1,3,5,10,20,40,60,80,100,200,500,1000];
+const CUR = [{t:"1 semana",c:52},{t:"2 semanas",c:26},{t:"1 mes",c:12},{t:"3 meses",c:4},{t:"6 meses",c:2},{t:"1 año",c:1},{t:"2 años",c:.5},{t:"5 años",c:.2},{t:"10 años",c:.1},{t:"No se cura",c:0}];
+const MU = [0.5,1,2,3.5,5,10,20,40,60];
+const SCEN = {
+  dm: {name:"Diabetes tipo 2",       i:5,  c:9, m:3},
+  flu:{name:"Influenza",             i:11, c:0, m:1},
+  vih:{name:"VIH sin tratamiento",   i:1,  c:9, m:5},
+  hcv:{name:"Hepatitis C crónica",   i:2,  c:9, m:1}
+};
+const TQ = [
+  {scen:"dm",  q:"Diabetes tipo 2. Si la incidencia se duplica y todo lo demás se mantiene, ¿qué ocurre con la prevalencia?", opts:["Sube","Baja","No cambia"], a:0, act:{i:7}, e:"Entra más agua y la salida no cambia: el nivel sube hasta un nuevo equilibrio. La prevalencia de equilibrio es la incidencia por la duración."},
+  {scen:"vih", q:"VIH sin tratamiento. Llega una terapia que baja el riesgo anual de morir de 10% a 1%, pero no cura. ¿Qué ocurre con la prevalencia?", opts:["Sube","Baja","No cambia"], a:0, act:{m:1}, e:"Se cierra buena parte de la salida por muerte y nadie sale por curación: las personas viven más años con la enfermedad y la prevalencia sube. Un buen tratamiento que no cura aumenta la prevalencia."},
+  {scen:"hcv", q:"Hepatitis C crónica. Llega un tratamiento que cura en tres meses. ¿Qué ocurre con la prevalencia?", opts:["Sube","Baja","No cambia"], a:1, act:{c:3}, e:"Se abre la salida por curación: la duración cae de décadas a meses y la prevalencia baja aunque la incidencia no cambie."},
+  {scen:"dm",  q:"Ahora compara con influenza, que tiene 25 veces más casos nuevos al año que la diabetes. En un día cualquiera, ¿cuál tiene mayor prevalencia?", opts:["Influenza","Diabetes","Son iguales"], a:1, act:{scen:"flu"}, e:"La influenza dura una semana: el estanque se vacía casi tan rápido como se llena. La diabetes dura décadas y acumula casos. Mira cómo baja el nivel."}
+];
+function loadThree(){
+  return new Promise((res, rej) => {
+    if(window.THREE) return res();
+    const s = document.createElement("script");
+    s.src = "https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js";
+    s.onload = () => res(); s.onerror = () => rej(); document.head.appendChild(s);
+  });
+}
+const fmtDur = D => !isFinite(D) ? "sin límite" : D < 1/12 ? Math.max(1, Math.round(D * 52)) + (Math.round(D * 52) === 1 ? " semana" : " semanas") : D < 1 ? Math.round(D * 12) + (Math.round(D * 12) === 1 ? " mes" : " meses") : fmt(D) + " años";
+const fmtP = P => P < 10 ? fmt(P) : Math.round(P).toLocaleString("es-CL");
+function labTank(root){
+  const S = {i:5, c:9, m:3, P:0, t:0}, hist = [];
+  const r = () => CUR[S.c].c + MU[S.m] / 100, Pst = () => INC[S.i] / r();
+  S.P = Pst();
+  let qi = 0, okN = 0, raf = 0, alive = true, last = performance.now(), sampleAcc = 0;
+  const reduce = matchMedia("(prefers-reduced-motion: reduce)").matches;
+  root.innerHTML = labHeader("tank", `<span id="k-yr">Año 0</span>`) + `
+    <div class="tank-grid">
+      <div class="tank3d" id="k-3d"><div class="tank-msg" id="k-load">Cargando el modelo 3D…</div></div>
+      <div class="ctrl">
+        <div class="scen" role="group" aria-label="Escenarios">${Object.entries(SCEN).map(([k, v]) => `<button data-s="${k}">${v.name}</button>`).join("")}</div>
+        <div><label for="k-i">Casos nuevos al año (por 10.000) <output id="k-io"></output></label><input type="range" id="k-i" min="0" max="${INC.length-1}" step="1"></div>
+        <div><label for="k-c">Tiempo hasta curarse <output id="k-co"></output></label><input type="range" id="k-c" min="0" max="${CUR.length-1}" step="1"></div>
+        <div><label for="k-m">Riesgo anual de morir de los casos <output id="k-mo"></output></label><input type="range" id="k-m" min="0" max="${MU.length-1}" step="1"></div>
+        <div class="readout"><div class="out"><small>Prevalencia ahora (por 10.000)</small><b id="k-p"></b></div><div class="out"><small>Duración media</small><b id="k-d" style="font-size:18px"></b></div></div>
+        <div class="eq" id="k-eq"></div>
+        <div><small class="note" style="margin:0">Prevalencia en el tiempo</small><svg class="spark" viewBox="0 0 300 70" preserveAspectRatio="none"><line class="ax" x1="0" y1="69" x2="300" y2="69"/><polyline id="k-sp" points=""/></svg></div>
+      </div>
+    </div>
+    <div class="panel chal" id="k-chal"></div>`;
+  const inI = $("#k-i"), inC = $("#k-c"), inM = $("#k-m");
+  function syncUI(){
+    inI.value = S.i; inC.value = S.c; inM.value = S.m;
+    $("#k-io").textContent = INC[S.i].toLocaleString("es-CL"); $("#k-co").textContent = CUR[S.c].t; $("#k-mo").textContent = fmt(MU[S.m]) + "%";
+  }
+  function readouts(){
+    const D = 1 / r();
+    $("#k-p").textContent = fmtP(S.P); $("#k-d").textContent = fmtDur(D);
+    $("#k-eq").innerHTML = `Prevalencia de equilibrio ≈ incidencia × duración<br>${INC[S.i].toLocaleString("es-CL")} × ${fmt(D, 2)} años ≈ <b>${fmtP(Pst())}</b> por 10.000`;
+    $("#k-yr").textContent = `Año ${fmt(S.t)}`;
+  }
+  [inI, inC, inM].forEach(el => el.addEventListener("input", () => { S.i = +inI.value; S.c = +inC.value; S.m = +inM.value; syncUI(); readouts(); }));
+  function loadScen(k, jump){ const sc = SCEN[k]; S.i = sc.i; S.c = sc.c; S.m = sc.m; if(jump){ S.P = Pst(); S.t = 0; hist.length = 0; } syncUI(); readouts(); }
+  root.querySelectorAll(".scen button").forEach(b => b.addEventListener("click", () => loadScen(b.dataset.s, true)));
+
+  /* reto de predicción */
+  function renderQ(){
+    if(qi >= TQ.length){
+      const s = okN >= 4 ? 3 : okN >= 3 ? 2 : okN >= 1 ? 1 : 0; setStars("tank", s);
+      $("#k-chal").innerHTML = `<div class="endbox" style="padding:8px"><div class="big">${"★".repeat(s)}${"☆".repeat(3-s)}</div><h3 style="margin-top:6px">${okN} de 4 predicciones correctas</h3><p class="note">Sigue jugando con los controles. La regla de oro: prevalencia ≈ incidencia × duración. Todo lo que alarga la enfermedad, incluso un tratamiento que evita muertes, sube la prevalencia.</p><div style="display:flex;gap:10px;justify-content:center;flex-wrap:wrap"><button class="btn" id="k-again">Repetir el reto</button><button class="btn ghost" id="k-home">Otros interactivos</button></div></div>`;
+      $("#k-again").addEventListener("click", () => { qi = 0; okN = 0; renderQ(); });
+      $("#k-home").addEventListener("click", closeLab);
+      return;
+    }
+    const q = TQ[qi]; loadScen(q.scen, true);
+    $("#k-chal").innerHTML = `<div class="eyebrow">Predice · ${qi+1} de ${TQ.length}</div><p class="stem" style="margin:6px 0 12px">${esc(q.q)}</p>
+      <div class="choices" id="k-opts">${q.opts.map((o, j) => `<button class="choice" data-j="${j}">${o}</button>`).join("")}</div>
+      <div class="expl" id="k-fb" hidden></div><div class="qnav"><span></span><button class="btn" id="k-next" hidden>${qi < TQ.length - 1 ? "Siguiente predicción" : "Ver resultado"}</button></div>`;
+    root.querySelectorAll("#k-opts .choice").forEach(b => b.addEventListener("click", () => {
+      if(b.getAttribute("aria-disabled") === "true") return;
+      const j = +b.dataset.j, right = j === q.a;
+      root.querySelectorAll("#k-opts .choice").forEach(x => { x.setAttribute("aria-disabled","true"); if(+x.dataset.j === q.a) x.classList.add("right"); });
+      if(!right) b.classList.add("wrong"); else { okN++; gain(15, "predicción correcta"); }
+      $("#k-fb").innerHTML = `<strong class="${right ? "res-ok" : "res-bad"}">${right ? "Bien predicho." : "La respuesta es: " + q.opts[q.a].toLowerCase() + "."}</strong>${esc(q.e)} <span style="color:var(--muted)">Observa el modelo: aplicamos el cambio.</span>`;
+      $("#k-fb").hidden = false; $("#k-next").hidden = false;
+      setTimeout(() => { if(q.act.scen) loadScen(q.act.scen, false); else { Object.assign(S, q.act); syncUI(); readouts(); } }, 500);
+    }));
+    $("#k-next").addEventListener("click", () => { qi++; renderQ(); });
+  }
+
+  /* simulación */
+  function step(dt){
+    const rr = r(), D = 1 / rr, yps = Math.min(10, Math.max(0.01, D / 5)), dy = dt * yps;
+    const ps = Pst(); S.P = ps + (S.P - ps) * Math.exp(-rr * dy); S.t += dy;
+    sampleAcc += dt; if(sampleAcc > 0.1){ sampleAcc = 0; hist.push(S.P); if(hist.length > 150) hist.shift();
+      const mx = Math.max(...hist, 1) * 1.15; $("#k-sp").setAttribute("points", hist.map((p, j) => `${(j / Math.max(1, hist.length - 1) * 300).toFixed(1)},${(68 - p / mx * 64).toFixed(1)}`).join(" ")); }
+  }
+
+  /* escena 3D */
+  let three = null;
+  function build3D(){
+    const T = window.THREE, host = $("#k-3d"); host.innerHTML = "";
+    const css = n => getComputedStyle(document.documentElement).getPropertyValue(n).trim() || "#888";
+    const W = host.clientWidth, H = Math.max(320, Math.min(440, W * 0.78));
+    const renderer = new T.WebGLRenderer({antialias:true, alpha:true});
+    renderer.setPixelRatio(Math.min(2, window.devicePixelRatio || 1)); renderer.setSize(W, H); host.appendChild(renderer.domElement);
+    const scene = new T.Scene(), camera = new T.PerspectiveCamera(35, W / H, 0.1, 100);
+    camera.position.set(0, 2.1, 9.2); camera.lookAt(0, 1.0, 0);
+    scene.add(new T.HemisphereLight(0xffffff, 0x445566, 0.95));
+    const dl = new T.DirectionalLight(0xffffff, 0.65); dl.position.set(3, 6, 4); scene.add(dl);
+    const g = new T.Group(); g.rotation.y = -0.35; scene.add(g);
+    const mat = (c, o = 1) => new T.MeshPhongMaterial({color:new T.Color(c), transparent:o < 1, opacity:o, shininess:60});
+    const glass = new T.Mesh(new T.CylinderGeometry(1.3, 1.3, 2.6, 48, 1, true), new T.MeshPhongMaterial({color:0x9fc4d0, transparent:true, opacity:0.16, side:T.DoubleSide, shininess:100, depthWrite:false}));
+    glass.position.y = 1.3; g.add(glass);
+    const rim = new T.Mesh(new T.TorusGeometry(1.3, 0.03, 8, 64), mat(css("--muted"))); rim.rotation.x = Math.PI / 2; rim.position.y = 2.6; g.add(rim);
+    const base = new T.Mesh(new T.CylinderGeometry(1.42, 1.42, 0.14, 48), mat(css("--line"))); base.position.y = -0.07; g.add(base);
+    const wGeo = new T.CylinderGeometry(1.25, 1.25, 1, 48); wGeo.translate(0, 0.5, 0);
+    const water = new T.Mesh(wGeo, mat(css("--accent"), 0.72)); g.add(water);
+    const hOf = P => Math.max(0.01, Math.log10(1 + P) / 4 * 2.5);
+    const ticks = [10, 100, 1000].map(v => { const t = new T.Mesh(new T.TorusGeometry(1.31, 0.012, 6, 64), mat(css("--muted"), 0.6)); t.rotation.x = Math.PI / 2; t.position.y = hOf(v); g.add(t); return v; });
+    const pipe = (len, rad, color) => new T.Mesh(new T.CylinderGeometry(rad, rad, len, 16), mat(color));
+    const pIn = pipe(1.9, 0.09, css("--accent")); pIn.rotation.z = Math.PI / 2; pIn.position.set(-0.95, 3.3, 0); g.add(pIn);
+    const sp = pipe(0.28, 0.1, css("--accent")); sp.position.set(0, 3.18, 0); g.add(sp);
+    const pC = pipe(0.9, 0.08, css("--ok")); pC.rotation.z = Math.PI / 2; pC.position.set(-1.72, 0.22, 0); g.add(pC);
+    const pD = pipe(0.9, 0.08, css("--bad")); pD.rotation.z = Math.PI / 2; pD.position.set(1.72, 0.22, 0); g.add(pD);
+    const dropGeo = new T.SphereGeometry(0.055, 8, 8), mats = {in:mat(css("--accent")), cure:mat(css("--ok")), death:mat(css("--bad"))};
+    const pool = []; const acc = {in:0, cure:0, death:0};
+    function spawn(type){
+      let p = pool.find(q => !q.alive && q.type === type);
+      if(!p){ if(pool.length > 360) return; const m = new T.Mesh(dropGeo, mats[type]); g.add(m); p = {m, type, v:new T.Vector3()}; pool.push(p); }
+      p.alive = true; p.m.visible = true;
+      if(type === "in"){ p.m.position.set((Math.random() - .5) * .12, 3.02, (Math.random() - .5) * .12); p.v.set(0, -1.2, 0); }
+      else { const s = type === "cure" ? -1 : 1; p.m.position.set(s * 2.16, 0.22, (Math.random() - .5) * .08); p.v.set(s * (0.7 + Math.random() * .5), 0.35, 0); }
+    }
+    const labels = [
+      {cls:"in", txt:"Incidencia · casos nuevos", p:new T.Vector3(-1.6, 3.62, 0)},
+      {cls:"cure", txt:"Curación", p:new T.Vector3(-2.35, -0.3, 0)},
+      {cls:"death", txt:"Muerte", p:new T.Vector3(2.35, -0.3, 0)},
+      ...ticks.map(v => ({cls:"tick", txt:v.toLocaleString("es-CL"), p:new T.Vector3(1.48, hOf(v), 0.2)}))
+    ].map(l => { const el = document.createElement("div"); el.className = "tlab " + l.cls; el.textContent = l.txt; host.appendChild(el); return {...l, el}; });
+    const hint = document.createElement("div"); hint.className = "tank-hint"; hint.textContent = "Arrastra para girar · escala logarítmica, por 10.000"; host.appendChild(hint);
+    let drag = false, lx = 0, idle = 0;
+    const cv = renderer.domElement;
+    cv.addEventListener("pointerdown", e => { drag = true; lx = e.clientX; idle = 0; });
+    const onUp = () => { drag = false; }; window.addEventListener("pointerup", onUp);
+    cv.addEventListener("pointermove", e => { if(!drag) return; g.rotation.y += (e.clientX - lx) * 0.01; lx = e.clientX; });
+    const onResize = () => { const w = host.clientWidth, h = Math.max(320, Math.min(440, w * 0.78)); renderer.setSize(w, h); camera.aspect = w / h; camera.updateProjectionMatrix(); };
+    window.addEventListener("resize", onResize);
+    const vis = n => Math.min(40, 2.6 * Math.sqrt(Math.max(0, n)));
+    three = {
+      frame(dt){
+        const h = hOf(S.P); water.scale.y = h;
+        const inflow = INC[S.i], cureF = CUR[S.c].c * S.P, deathF = MU[S.m] / 100 * S.P, outT = cureF + deathF;
+        acc.in += vis(inflow) * dt; const vo = vis(outT) * dt;
+        acc.cure += outT > 0 ? vo * cureF / outT : 0; acc.death += outT > 0 ? vo * deathF / outT : 0;
+        for(const k of ["in","cure","death"]) while(acc[k] >= 1){ acc[k] -= 1; spawn(k); }
+        for(const p of pool){ if(!p.alive) continue;
+          p.v.y -= 4.9 * dt; p.m.position.addScaledVector(p.v, dt);
+          if((p.type === "in" && p.m.position.y <= h) || p.m.position.y < -1.5){ p.alive = false; p.m.visible = false; } }
+        if(!drag && !reduce){ idle += dt; if(idle > 2) g.rotation.y += dt * 0.12; }
+        renderer.render(scene, camera);
+        const W2 = cv.clientWidth, H2 = cv.clientHeight;
+        for(const l of labels){ const v = l.p.clone(); g.localToWorld(v); v.project(camera);
+          l.el.style.left = ((v.x + 1) / 2 * W2) + "px"; l.el.style.top = ((1 - v.y) / 2 * H2) + "px"; }
+      },
+      dispose(){ window.removeEventListener("resize", onResize); window.removeEventListener("pointerup", onUp); renderer.dispose(); }
+    };
+  }
+  function loop(now){
+    if(!alive) return;
+    const dt = Math.min(0.05, (now - last) / 1000); last = now;
+    step(dt); readouts(); if(three) three.frame(dt);
+    raf = requestAnimationFrame(loop);
+  }
+  syncUI(); readouts(); renderQ();
+  raf = requestAnimationFrame(loop);
+  loadThree().then(() => { if(alive) try{ build3D(); }catch(e){ $("#k-3d").innerHTML = `<div class="tank-msg">Este navegador no pudo dibujar el modelo 3D. Los controles y los números siguen funcionando.</div>`; } })
+    .catch(() => { if(alive) $("#k-3d").innerHTML = `<div class="tank-msg">No se pudo cargar el modelo 3D. Los controles y los números siguen funcionando.</div>`; });
+  labCleanup = () => { alive = false; cancelAnimationFrame(raf); if(three) three.dispose(); };
+}
+
+/* ---------- 5. Tamizaje en 1.000 personas (tema 32) ---------- */
+const PREVS = [0.1,0.2,0.5,1,2,5,10,20,30,40,50];
+function labTamiz(root){
+  const S = {p:3, s:90, e:95}; const done = [false,false,false];
+  const RETOS = [
+    {t:"Con sensibilidad 90% y especificidad 95%, lleva el valor predictivo positivo sobre 90%.", ok:(m) => S.s === 90 && S.e === 95 && m.vpp >= 90},
+    {t:"Con prevalencia de 1% y sensibilidad 90%, consigue un valor predictivo positivo de al menos 50% moviendo solo la especificidad.", ok:(m) => PREVS[S.p] === 1 && S.s === 90 && m.vpp >= 50},
+    {t:"Haz que el valor predictivo negativo baje de 95%.", ok:(m) => m.vpn < 95}
+  ];
+  root.innerHTML = labHeader("tamiz", `<span id="z-done">Retos 0 / 3</span>`) + `
+    <div class="tz-grid">
+      <div class="panel" style="padding:16px">
+        <canvas class="icons" id="z-cv" role="img" aria-label="1.000 personas clasificadas según su resultado"></canvas>
+        <div class="lg" id="z-lg"></div>
+        <p class="insight" id="z-ins"></p>
+      </div>
+      <div class="ctrl">
+        <div><label for="z-p">Prevalencia <output id="z-po"></output></label><input type="range" id="z-p" min="0" max="${PREVS.length-1}" step="1"></div>
+        <div><label for="z-s">Sensibilidad <output id="z-so"></output></label><input type="range" id="z-s" min="50" max="100" step="0.5"></div>
+        <div><label for="z-e">Especificidad <output id="z-eo"></output></label><input type="range" id="z-e" min="50" max="100" step="0.5"></div>
+        <div class="readout"><div class="out"><small>Valor predictivo positivo</small><b id="z-vpp" style="color:var(--accent)"></b></div><div class="out"><small>Valor predictivo negativo</small><b id="z-vpn" style="color:var(--ochre)"></b></div></div>
+        <div class="tw"><table class="num" id="z-tab"></table></div>
+      </div>
+    </div>
+    <div class="grid2" style="margin-top:20px">
+      <div class="panel"><h3>Valores predictivos según la prevalencia</h3><svg class="chart" id="z-ch" viewBox="0 0 520 250" role="img" aria-label="Curvas de valor predictivo positivo y negativo según la prevalencia"></svg>
+        <div class="lg"><span><i class="c-vp"></i>Valor predictivo positivo</span><span><i style="background:var(--ochre)"></i>Valor predictivo negativo</span></div></div>
+      <div class="panel"><h3>Retos</h3><ul class="retos" id="z-retos"></ul><p class="note">Los retos se marcan solos cuando los cumples.</p></div>
+    </div>`;
+  const cv = $("#z-cv"), ctx = cv.getContext("2d");
+  const css = n => getComputedStyle(document.documentElement).getPropertyValue(n).trim();
+  const metrics = () => {
+    const p = PREVS[S.p] / 100, s = S.s / 100, e = S.e / 100;
+    const dis = Math.round(1000 * p), vp = Math.round(dis * s), fn = dis - vp, sanos = 1000 - dis, vn = Math.round(sanos * e), fp = sanos - vn;
+    const vpp = p * s / (p * s + (1 - p) * (1 - e)) * 100, vpn = (1 - p) * e / ((1 - p) * e + p * (1 - s)) * 100;
+    return {dis, vp, fn, fp, vn, vpp: isFinite(vpp) ? vpp : 0, vpn: isFinite(vpn) ? vpn : 100};
+  };
+  function drawIcons(m){
+    const W = cv.clientWidth || 400, cols = 50, rows = 20, cell = W / cols, H = cell * rows, dpr = Math.min(2, window.devicePixelRatio || 1);
+    cv.width = W * dpr; cv.height = H * dpr; cv.style.height = H + "px"; ctx.setTransform(dpr, 0, 0, dpr, 0, 0); ctx.clearRect(0, 0, W, H);
+    const seq = [[m.vp, css("--accent")], [m.fn, css("--ochre")], [m.fp, css("--bad")], [m.vn, css("--free")]];
+    let k = 0;
+    for(const [n, col] of seq){ ctx.fillStyle = col; for(let j = 0; j < n; j++, k++){ const x = (k % cols) * cell, y = Math.floor(k / cols) * cell, pad = cell * 0.14; ctx.beginPath(); if(ctx.roundRect) ctx.roundRect(x + pad, y + pad, cell - 2 * pad, cell - 2 * pad, cell * 0.2); else ctx.rect(x + pad, y + pad, cell - 2 * pad, cell - 2 * pad); ctx.fill(); } }
+  }
+  function chart(){
+    const W = 520, H = 250, L = 44, R = 14, T = 12, B = 36, x0 = Math.log10(0.1), x1 = Math.log10(50);
+    const X = p => L + (Math.log10(p) - x0) / (x1 - x0) * (W - L - R), Y = v => T + (100 - v) / 100 * (H - T - B);
+    const s = S.s / 100, e = S.e / 100, pts = [], ptn = [];
+    for(let j = 0; j <= 80; j++){ const p = Math.pow(10, x0 + (x1 - x0) * j / 80), q = p / 100;
+      pts.push(`${X(p).toFixed(1)},${Y(q * s / (q * s + (1 - q) * (1 - e)) * 100).toFixed(1)}`);
+      ptn.push(`${X(p).toFixed(1)},${Y((1 - q) * e / ((1 - q) * e + q * (1 - s)) * 100).toFixed(1)}`); }
+    const m = metrics(), cp = PREVS[S.p];
+    $("#z-ch").innerHTML = [0,25,50,75,100].map(v => `<line class="grid" x1="${L}" x2="${W-R}" y1="${Y(v)}" y2="${Y(v)}"/><text x="${L-8}" y="${Y(v)+4}" text-anchor="end">${v}%</text>`).join("")
+      + [0.1,1,10,50].map(p => `<text x="${X(p)}" y="${H-14}" text-anchor="middle">${String(p).replace(".", ",")}%</text>`).join("")
+      + `<text x="${(L+W-R)/2}" y="${H-1}" text-anchor="middle">Prevalencia (escala logarítmica)</text>`
+      + `<line class="cur" x1="${X(cp)}" x2="${X(cp)}" y1="${T}" y2="${H-B}"/>`
+      + `<polyline class="vpn" points="${ptn.join(" ")}"/><polyline class="vpp" points="${pts.join(" ")}"/>`
+      + `<circle class="pt-vpn" cx="${X(cp)}" cy="${Y(m.vpn)}" r="5"/><circle class="pt-vpp" cx="${X(cp)}" cy="${Y(m.vpp)}" r="6"/>`;
+  }
+  function update(){
+    $("#z-p").value = S.p; $("#z-s").value = S.s; $("#z-e").value = S.e;
+    $("#z-po").textContent = String(PREVS[S.p]).replace(".", ",") + "%"; $("#z-so").textContent = fmt(S.s) + "%"; $("#z-eo").textContent = fmt(S.e) + "%";
+    const m = metrics();
+    $("#z-vpp").textContent = fmt(m.vpp) + "%"; $("#z-vpn").textContent = fmt(m.vpn) + "%";
+    $("#z-tab").innerHTML = `<thead><tr><th></th><th>Enfermos</th><th>Sanos</th><th>Total</th></tr></thead><tbody>
+      <tr><th>Test +</th><td style="color:var(--accent)">${m.vp}</td><td style="color:var(--bad)">${m.fp}</td><td>${m.vp + m.fp}</td></tr>
+      <tr><th>Test −</th><td style="color:var(--ochre)">${m.fn}</td><td>${m.vn}</td><td>${m.fn + m.vn}</td></tr>
+      <tr><th>Total</th><td>${m.dis}</td><td>${1000 - m.dis}</td><td>1.000</td></tr></tbody>`;
+    $("#z-lg").innerHTML = `<span><i class="c-vp"></i>Verdaderos positivos ${m.vp}</span><span><i class="c-fn"></i>Falsos negativos ${m.fn}</span><span><i class="c-fp"></i>Falsos positivos ${m.fp}</span><span><i class="c-vn"></i>Verdaderos negativos ${m.vn}</span>`;
+    $("#z-ins").innerHTML = m.vp + m.fp ? `De ${m.vp + m.fp} personas con test positivo, <b>${m.vp}</b> tienen la enfermedad.` : "Nadie tiene test positivo.";
+    drawIcons(m); chart();
+    RETOS.forEach((rt, j) => { if(!done[j] && rt.ok(m)){ done[j] = true; gain(20, "reto cumplido"); } });
+    const n = done.filter(Boolean).length; $("#z-done").textContent = `Retos ${n} / 3`;
+    $("#z-retos").innerHTML = RETOS.map((rt, j) => `<li class="${done[j] ? "done" : ""}"><span class="ck">${done[j] ? "✓" : ""}</span><span>${esc(rt.t)}</span></li>`).join("");
+    if(n) setStars("tamiz", n);
+  }
+  $("#z-p").addEventListener("input", e => { S.p = +e.target.value; update(); });
+  $("#z-s").addEventListener("input", e => { S.s = +e.target.value; update(); });
+  $("#z-e").addEventListener("input", e => { S.e = +e.target.value; update(); });
+  const onR = () => drawIcons(metrics()); window.addEventListener("resize", onR);
+  labCleanup = () => window.removeEventListener("resize", onR);
+  update();
+}
+
+renderLabGrid(); renderHUD();
+
+
 /* ---------- vistas ---------- */
-const VIEWS = ["avance","manual","preguntas","formato","herramientas","ruta"];
+const VIEWS = ["avance","manual","lab","preguntas","formato","ruta"];
 function show(v){
   if(!VIEWS.includes(v)) v = "avance";
+  if(v !== "lab" && typeof closeLab === "function" && !$("#lab-stage").hidden) closeLab();
   VIEWS.forEach(x => { $("#v-"+x).hidden = x !== v; $("#tab-"+x).setAttribute("aria-selected", x === v); });
   try{ localStorage.setItem("eunacom-view", v); }catch(e){}
   window.scrollTo(0,0);
@@ -696,7 +1424,7 @@ let current = 6;
 function renderToc(){
   const secs = [...new Set(TOPICS.map(t => t.s))];
   $("#toc").innerHTML = secs.map(s => `<h4>${esc(s)}</h4>` + TOPICS.filter(t => t.s === s).map(t =>
-    `<button data-n="${t.n}" class="${CHAPTERS[t.n] ? "has" : ""}" ${t.n === current ? 'aria-current="true"' : ""}><em>${t.n}</em><span>${esc(t.t)}</span></button>`).join("")).join("");
+    `<button data-n="${t.n}" class="${CHAPTERS[t.n] ? "has" : ""}" ${t.n === current ? 'aria-current="true"' : ""}><em>${t.n}</em><span>${esc(t.t)}</span>${LAB_BY_TOPIC[t.n] ? '<b class="ldot" title="Tiene interactivo">●</b>' : ""}</button>`).join("")).join("");
   $("#toc").querySelectorAll("button").forEach(b => b.addEventListener("click", () => { current = +b.dataset.n; renderToc(); renderChapter(); }));
 }
 function renderChapter(){
@@ -705,7 +1433,7 @@ function renderChapter(){
   if(!ch){
     $("#chapter").innerHTML = `<div class="meta"><span class="pill">Tema ${t.n}</span><span class="pill">${status}</span>${t.a ? `<span class="pill">${esc(t.a)}</span>` : ""}</div>
       <h1>${esc(t.t)}</h1><div class="empty">${t.st === "borrador" ? "El borrador existe en Drive y aparecerá aquí cuando pase a versión 1." : "Este tema aún no tiene texto."}<br><br>
-      <button class="btn ghost" onclick="current=6;renderToc();renderChapter()">Ver un capítulo de ejemplo</button></div>`;
+      ${LAB_BY_TOPIC[t.n] ? `<button class="btn" onclick="openLab('${LAB_BY_TOPIC[t.n]}')">Abrir el interactivo de este tema</button> ` : ""}<button class="btn ghost" onclick="current=6;renderToc();renderChapter()">Ver un capítulo de ejemplo</button></div>`;
     return;
   }
   const nq = QS.filter(q => q.t === current).length;
@@ -713,7 +1441,8 @@ function renderChapter(){
     <h1>${esc(t.t)}</h1><p class="note" style="margin-top:6px">${esc(ch.author)} · ${esc(t.s)}</p>
     <div class="prose">${ch.html}</div>
     <div style="margin-top:24px;display:flex;flex-wrap:wrap;gap:10px;align-items:center">
-      <button class="btn" id="practice">Practicar este tema · ${nq} preguntas</button>
+      ${LAB_BY_TOPIC[current] ? `<button class="btn" onclick="openLab('${LAB_BY_TOPIC[current]}')">Abrir el interactivo · ${LABS.find(l => l.t === current).kind}</button>` : ""}
+      <button class="btn ghost" id="practice">Practicar este tema · ${nq} preguntas</button>
     </div>`;
   $("#practice").addEventListener("click", () => { $("#q-filter").value = String(current); setMode("prac"); show("preguntas"); startQuiz(); });
 }
@@ -763,7 +1492,7 @@ function renderQ(){
     </div></div>`;
   tick();
   $("#q-area").querySelectorAll(".opt").forEach(b => b.addEventListener("click", () => {
-    if(revealed) return; answers[idx] = +b.dataset.i; renderQ();
+    if(revealed) return; answers[idx] = +b.dataset.i; if(mode === "prac" && answers[idx] === q.ans) gain(5, "pregunta correcta"); renderQ();
   }));
   const on = (id, fn) => { const el = $(id); if(el) el.addEventListener("click", fn); };
   on("#prev", () => { if(idx > 0){ idx--; renderQ(); } });
@@ -796,24 +1525,6 @@ $("#copy-tpl").addEventListener("click", () => {
   const fallback = () => { const r = document.createRange(); r.selectNodeContents($("#tpl")); const sel = getSelection(); sel.removeAllRanges(); sel.addRange(r); msg.textContent = "Texto seleccionado. Cópialo con Ctrl+C o Cmd+C."; };
   try { navigator.clipboard.writeText(txt).then(() => { msg.textContent = "Plantilla copiada."; }, fallback); } catch(e){ fallback(); }
 });
-
-/* ---------- herramientas ---------- */
-function calc22(){
-  const v = id => Math.max(0, +$(id).value || 0);
-  const a = v("#a"), b = v("#b"), c = v("#c"), d = v("#d"), n = a+b+c+d;
-  const items = [
-    ["Sensibilidad", a/(a+c)*100, "a / (a + c)", "%"],
-    ["Especificidad", d/(b+d)*100, "d / (b + d)", "%"],
-    ["VPP", a/(a+b)*100, "a / (a + b)", "%"],
-    ["VPN", d/(c+d)*100, "d / (c + d)", "%"],
-    ["Prevalencia", (a+c)/n*100, "(a + c) / N", "%"],
-    ["LR+", (a/(a+c))/(1-d/(b+d)), "S / (1 − E)", ""]
-  ];
-  $("#t22-out").innerHTML = items.map(([k, x, f, u]) => `<div class="out"><small>${k}</small><b>${fmt(x)}${u}</b><div class="formula">${f}</div></div>`).join("");
-}
-["#a","#b","#c","#d"].forEach(id => $(id).addEventListener("input", calc22)); calc22();
-function calcMI(){ const d = +$("#mi-d").value || 0, n = +$("#mi-n").value || 0; $("#mi-out").textContent = n > 0 ? fmt(d/n*1000) : "—"; }
-["#mi-d","#mi-n"].forEach(id => $(id).addEventListener("input", calcMI)); calcMI();
 
 /* ---------- inicio ---------- */
 let start = location.hash.slice(1);
