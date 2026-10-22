@@ -182,6 +182,12 @@ select{font:inherit;padding:8px 10px;border-radius:8px;border:1px solid var(--li
 .fbl li b{font-family:var(--f-mono);font-weight:500}
 .fbl li.c b,.fbl li.c span{color:var(--ok)}
 .fbl li.x span{color:var(--muted)}
+.next{display:grid;grid-template-columns:repeat(auto-fit,minmax(240px,1fr));gap:24px;margin-top:16px}
+.next>*{min-width:0}
+.nl{list-style:none;margin:8px 0 0;padding:0;display:flex;flex-direction:column;gap:8px}
+.nl li{display:grid;grid-template-columns:30px 1fr;gap:10px;font-size:14px;align-items:start}
+.nl small{display:block;color:var(--muted);font-size:12.5px}
+.nn{font:500 12px/24px var(--f-mono);text-align:center;border-radius:6px;background:var(--accent-soft);color:var(--accent)}
 @media (prefers-reduced-motion:reduce){*{transition:none!important;animation:none!important}}
 </style>
 </head>
@@ -220,8 +226,8 @@ select{font:inherit;padding:8px 10px;border-radius:8px;border:1px solid var(--li
       <span><i class="sw st-final"></i>Versión final</span>
       <span><i class="sw st-revision"></i>En revisión</span>
       <span><i class="sw st-borrador"></i>Borrador entregado</span>
-      <span><i class="sw st-asignado"></i>Asignado, sin borrador</span>
-      <span><i class="sw st-libre"></i>Sin asignar</span>
+      <span><i class="sw st-asignado"></i>En desarrollo</span>
+      <span><i class="sw st-libre"></i>Por asignar</span>
     </div>
     <div class="mosaic" id="sp-mosaic"></div>
   </div>
@@ -231,11 +237,11 @@ select{font:inherit;padding:8px 10px;border-radius:8px;border:1px solid var(--li
       <h2>Manual de Emergencias y Desastres</h2>
       <div class="stats">
         <div class="stat"><b class="num">0<small style="font-size:16px"> / 79</small></b><small>borradores</small></div>
-        <div class="stat"><b class="num">2</b><small>temas asignados</small></div>
+        <div class="stat"><b class="num">2</b><small>temas en desarrollo</small></div>
         <div class="stat"><b class="num">13</b><small>secciones</small></div>
       </div>
       <div class="cells" style="margin-top:16px" id="ed-cells"></div>
-      <p class="note">Asignados: tema 1 (Lorena) y tema 2 (Catalina). La carpeta del manual aún no tiene documentos.</p>
+      <p class="note">Arranca con el tema 1 (Lorena) y el tema 2 (Catalina).</p>
     </div>
     <div class="panel">
       <h2>Borradores por ayudante</h2>
@@ -244,9 +250,40 @@ select{font:inherit;padding:8px 10px;border-radius:8px;border:1px solid var(--li
   </div>
 
   <div class="panel">
-    <h2>Ritmo y proyección</h2>
-    <p class="note" style="color:var(--ink);font-size:15px;max-width:72ch">El primer borrador llegó a mediados de julio. En unas 14 semanas se completaron 18 borradores, cerca de <b>1,3 por semana</b>. Quedan 148 temas entre ambos manuales (69 de Salud Pública y 79 de Emergencias), y ningún tema ha pasado todavía a revisión.</p>
-    <div class="callout" style="margin-top:14px">A este ritmo, terminar solo los borradores tomaría alrededor de dos años. Para llegar con algo útil a la próxima rendición conviene priorizar los temas de mayor rendimiento en el examen, sumar ayudantes y abrir ya la etapa de revisión de los 18 existentes.</div>
+    <h2>Lo que viene</h2>
+    <p class="note" style="color:var(--ink);font-size:15px;max-width:72ch">Ya hay 18 temas con borrador y el manual empieza a tomar forma. Hay que seguir avanzando, un tema a la vez.</p>
+    <div class="next">
+      <div>
+        <div class="eyebrow">En curso</div>
+        <ul class="nl">
+          <li><span class="nn">16</span><span>Descripción sistemática de problemas de salud<small>Catalina</small></span></li>
+          <li><span class="nn">19</span><span>Concepto y campo de la epidemiología<small>Catalina</small></span></li>
+          <li><span class="nn">21</span><span>Medidas de frecuencia: prevalencia e incidencia<small>Joaquín</small></span></li>
+          <li><span class="nn">22</span><span>Epidemiología analítica<small>Yu</small></span></li>
+        </ul>
+      </div>
+      <div>
+        <div class="eyebrow">Siguiente bloque · Epidemiología</div>
+        <ul class="nl">
+          <li><span class="nn">23</span><span>Medidas de asociación e impacto: RR, OR, RA, NNT<small>Con calculadora, como la tabla 2×2</small></span></li>
+          <li><span class="nn">24</span><span>Diseños de investigación epidemiológica</span></li>
+          <li><span class="nn">26</span><span>Estudios de casos y controles</span></li>
+          <li><span class="nn">27</span><span>Estudios de cohortes</span></li>
+          <li><span class="nn">32</span><span>Pruebas de tamizaje y diagnósticas<small>Ya tiene su calculadora en Herramientas</small></span></li>
+        </ul>
+      </div>
+      <div>
+        <div class="eyebrow">Emergencias y Desastres</div>
+        <ul class="nl">
+          <li><span class="nn">1</span><span>Conceptos y terminología: amenaza, vulnerabilidad, riesgo<small>Lorena</small></span></li>
+          <li><span class="nn">2</span><span>Clasificación de emergencias y desastres<small>Catalina</small></span></li>
+        </ul>
+        <div class="eyebrow" style="margin-top:18px">Revisión</div>
+        <ul class="nl">
+          <li><span class="nn">18</span><span>Los borradores entregados pasan a Revisión 1 con un compañero y la rúbrica</span></li>
+        </ul>
+      </div>
+    </div>
   </div>
 </section>
 
@@ -638,9 +675,8 @@ document.querySelectorAll("nav button").forEach(b => b.addEventListener("click",
   const total = TOPICS.length;
   $("#sp-stats").innerHTML = `
     <div class="stat"><b class="num">${c.borrador}<small style="font-size:16px"> / ${total}</small></b><small>borradores entregados</small></div>
-    <div class="stat"><b class="num">0</b><small>en revisión o versión final</small></div>
-    <div class="stat"><b class="num">${c.asignado}</b><small>asignados sin borrador</small></div>
-    <div class="stat"><b class="num">${c.libre}</b><small>sin asignar</small></div>`;
+        <div class="stat"><b class="num">${c.asignado}</b><small>en desarrollo</small></div>
+    <div class="stat"><b class="num">${c.libre}</b><small>por asignar</small></div>`;
   $("#sp-meter").innerHTML = `<i class="st-borrador" style="width:${c.borrador/total*100}%"></i><i class="st-asignado" style="width:${c.asignado/total*100}%"></i>`;
   const secs = [...new Set(TOPICS.map(t => t.s))];
   $("#sp-mosaic").innerHTML = secs.map(s => {
@@ -667,7 +703,7 @@ function renderToc(){
 }
 function renderChapter(){
   const t = TOPICS.find(x => x.n === current), ch = CHAPTERS[current];
-  const status = {borrador:"Borrador en Drive", asignado:"Asignado", libre:"Sin asignar"}[t.st];
+  const status = {borrador:"Borrador en Drive", asignado:"En desarrollo", libre:"Por asignar"}[t.st];
   if(!ch){
     $("#chapter").innerHTML = `<div class="meta"><span class="pill">Tema ${t.n}</span><span class="pill">${status}</span>${t.a ? `<span class="pill">${esc(t.a)}</span>` : ""}</div>
       <h1>${esc(t.t)}</h1><div class="empty">${t.st === "borrador" ? "El borrador existe en Drive y aparecerá aquí cuando pase a versión 1." : "Este tema aún no tiene texto."}<br><br>
