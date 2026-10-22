@@ -1,6 +1,8 @@
 project:
   type: website
   output-dir: docs
+  resources:
+    - manual-eunacom/
 
 website:
   title: "Salud Pública Finis Terrae 2026"

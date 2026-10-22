@@ -1,0 +1,793 @@
+<!doctype html>
+<html lang="es">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<meta name="robots" content="noindex, nofollow">
+<style>:root{padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px)}body{margin:0;font-size:14px}img{max-width:100%}[hidden]{display:none!important}</style>
+<title>Manual EUNACOM Área 7</title>
+<meta name="claude:viewport-fit-sides" content="cover">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500&family=IBM+Plex+Sans:wght@400;500;600;700&family=IBM+Plex+Serif:ital,wght@0,400;0,600;1,400&display=swap">
+<style>
+/* Layout: cuaderno clínico — barra superior con pestañas, columna de lectura ~68ch, paneles de herramienta en grilla */
+:root{
+  --bg:#F4F7F6; --surface:#FFFFFF; --ink:#14201D; --muted:#56665F; --line:#D8E1DD;
+  --accent:#0D6A61; --accent-soft:#DDEEEA; --ochre:#A86E12; --ochre-soft:#F6EBD6;
+  --ok:#25784A; --ok-soft:#DFF1E6; --bad:#B42318; --bad-soft:#FBE4E1; --free:#E3E9E6;
+  --f-sans:"IBM Plex Sans",system-ui,-apple-system,"Segoe UI",sans-serif;
+  --f-serif:"IBM Plex Serif",Georgia,"Times New Roman",serif;
+  --f-mono:"IBM Plex Mono",ui-monospace,Menlo,Consolas,monospace;
+}
+@media (prefers-color-scheme:dark){:root:not([data-theme="light"]){
+  --bg:#0E1412; --surface:#151D1A; --ink:#E4EBE8; --muted:#97A8A1; --line:#26332F;
+  --accent:#4DB3A5; --accent-soft:#16332E; --ochre:#DDA645; --ochre-soft:#3A2D14;
+  --ok:#5CBF83; --ok-soft:#163323; --bad:#F27B6C; --bad-soft:#3D1C18; --free:#222D29; color-scheme:dark}}
+:root[data-theme="dark"]{
+  --bg:#0E1412; --surface:#151D1A; --ink:#E4EBE8; --muted:#97A8A1; --line:#26332F;
+  --accent:#4DB3A5; --accent-soft:#16332E; --ochre:#DDA645; --ochre-soft:#3A2D14;
+  --ok:#5CBF83; --ok-soft:#163323; --bad:#F27B6C; --bad-soft:#3D1C18; --free:#222D29; color-scheme:dark}
+*{box-sizing:border-box}
+body{background:var(--bg);color:var(--ink);font-family:var(--f-sans);font-size:15px;line-height:1.55}
+body::before{content:"";position:fixed;inset:0 0 auto;height:env(safe-area-inset-top,0px);z-index:10;background:var(--surface)}
+.wrap{max-width:1080px;margin:0 auto;padding-left:max(16px,env(safe-area-inset-left,0px));padding-right:max(16px,env(safe-area-inset-right,0px))}
+header{position:sticky;top:env(safe-area-inset-top,0px);z-index:5;background:var(--surface);border-bottom:1px solid var(--line)}
+.bar{display:flex;flex-wrap:wrap;align-items:center;gap:8px 24px;padding-block:12px 0}
+.brand{display:flex;align-items:baseline;gap:10px;flex-wrap:wrap}
+.brand b{font-family:var(--f-serif);font-weight:600;font-size:19px;letter-spacing:-.01em}
+.brand span{font-family:var(--f-mono);font-size:12px;color:var(--muted)}
+nav{display:flex;gap:2px;overflow-x:auto;width:100%;scrollbar-width:none}
+nav button{all:unset;cursor:pointer;padding:10px 12px 11px;font-weight:500;color:var(--muted);border-bottom:2px solid transparent;white-space:nowrap}
+nav button[aria-selected="true"]{color:var(--ink);border-bottom-color:var(--accent)}
+nav button:focus-visible{outline:2px solid var(--accent);outline-offset:-2px}
+main{padding-block:28px 64px}
+h1,h2,h3{text-wrap:balance;margin:0}
+h1{font-family:var(--f-serif);font-weight:600;font-size:clamp(24px,3.2vw,32px);line-height:1.2;letter-spacing:-.015em}
+h2{font-family:var(--f-serif);font-weight:600;font-size:21px;line-height:1.25}
+h3{font-size:15px;font-weight:600}
+.lede{color:var(--muted);max-width:68ch;margin:8px 0 0}
+.eyebrow{font-family:var(--f-mono);font-size:11.5px;letter-spacing:.08em;text-transform:uppercase;color:var(--muted)}
+.stack{display:flex;flex-direction:column;gap:28px}
+.panel{background:var(--surface);border:1px solid var(--line);border-radius:10px;padding:20px}
+.grid2{display:grid;grid-template-columns:repeat(auto-fit,minmax(280px,1fr));gap:20px}
+.grid2>*{min-width:0}
+.num{font-variant-numeric:tabular-nums}
+.stats{display:flex;flex-wrap:wrap;gap:12px 32px;margin-top:14px}
+.stat b{display:block;font-family:var(--f-serif);font-size:30px;font-weight:600;line-height:1.1}
+.stat small{color:var(--muted);font-size:13px}
+.meter{height:8px;background:var(--free);border-radius:4px;overflow:hidden;display:flex;margin-top:14px}
+.meter i{display:block;height:100%}
+/* mosaico */
+.legend{display:flex;flex-wrap:wrap;gap:6px 16px;font-size:12.5px;color:var(--muted);margin-top:10px}
+.legend span{display:inline-flex;align-items:center;gap:6px}
+.sw{width:12px;height:12px;border-radius:3px;display:inline-block}
+.st-final{background:var(--ok)} .st-revision{background:var(--accent);opacity:.55} .st-borrador{background:var(--accent)}
+.st-asignado{background:var(--ochre-soft);box-shadow:inset 0 0 0 1.5px var(--ochre)} .st-libre{background:var(--free)}
+.mosaic{display:flex;flex-direction:column;gap:10px;margin-top:16px}
+.mrow{display:grid;grid-template-columns:minmax(0,230px) 1fr;gap:12px;align-items:center}
+.mrow .lab{font-size:13px;color:var(--muted);overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+.cells{display:flex;flex-wrap:wrap;gap:4px}
+.cell{width:22px;height:22px;border-radius:4px;font:500 10px/22px var(--f-mono);text-align:center;color:transparent;cursor:default}
+.cell.st-borrador{color:var(--surface)} .cell.st-asignado{color:var(--ochre)}
+.cell:hover{color:var(--ink)} .cell.st-borrador:hover{color:var(--surface)}
+@media (max-width:640px){.mrow{grid-template-columns:1fr;gap:4px}}
+table{border-collapse:collapse;width:100%;font-size:14px}
+th,td{text-align:left;padding:8px 10px;border-bottom:1px solid var(--line);vertical-align:top}
+th{font-weight:600;font-size:12.5px;color:var(--muted)}
+.tw{overflow-x:auto}
+.note{font-size:13.5px;color:var(--muted);margin:10px 0 0}
+.callout{border-left:3px solid var(--ochre);background:var(--ochre-soft);padding:12px 14px;border-radius:0 8px 8px 0;font-size:14px}
+/* manual */
+.reader{display:grid;grid-template-columns:260px minmax(0,1fr);gap:28px;align-items:start}
+@media (max-width:820px){.reader{grid-template-columns:1fr}}
+.toc{position:sticky;top:calc(env(safe-area-inset-top,0px) + 100px);max-height:calc(100vh - 120px);overflow:auto;font-size:13.5px}
+@media (max-width:820px){.toc{position:static;max-height:280px;border:1px solid var(--line);border-radius:10px;padding:12px;background:var(--surface)}}
+.toc h4{margin:14px 0 4px;font-size:12px;font-family:var(--f-mono);letter-spacing:.04em;color:var(--muted);font-weight:500}
+.toc h4:first-child{margin-top:0}
+.toc button{all:unset;display:flex;gap:8px;width:100%;padding:4px 6px;border-radius:6px;cursor:pointer;color:var(--muted)}
+.toc button.has{color:var(--ink)}
+.toc button[aria-current="true"]{background:var(--accent-soft);color:var(--ink);font-weight:500}
+.toc button:focus-visible{outline:2px solid var(--accent)}
+.toc button em{font-style:normal;font-family:var(--f-mono);font-size:11.5px;min-width:22px;color:var(--muted)}
+.chapter{background:var(--surface);border:1px solid var(--line);border-radius:10px;padding:clamp(18px,4vw,40px)}
+.chapter .meta{display:flex;flex-wrap:wrap;gap:8px;align-items:center;margin-bottom:10px}
+.pill{display:inline-flex;align-items:center;gap:6px;font-size:12px;font-weight:500;padding:2px 9px;border-radius:999px;border:1px solid var(--line);color:var(--muted)}
+.pill.b{background:var(--accent-soft);border-color:transparent;color:var(--accent)}
+.pill.code{font-family:var(--f-mono)}
+.prose{font-family:var(--f-serif);font-size:16.5px;line-height:1.65;max-width:68ch}
+.prose h2{font-family:var(--f-sans);font-size:13px;letter-spacing:.07em;text-transform:uppercase;color:var(--accent);margin:30px 0 8px}
+.prose p{margin:0 0 12px} .prose ul,.prose ol{margin:0 0 12px;padding-left:1.3em}
+.prose li{margin-bottom:4px}
+.prose blockquote{margin:0 0 14px;padding:4px 0 4px 16px;border-left:2px solid var(--line);font-style:italic;color:var(--muted)}
+.prose table{font-family:var(--f-sans);font-size:13.5px;margin:6px 0 14px}
+.prose .tw{margin:0 0 14px}
+.key{margin-top:28px;background:var(--accent-soft);border-radius:8px;padding:16px 18px;font-family:var(--f-sans);font-size:14.5px}
+.key ul{margin:6px 0 0;padding-left:1.2em}
+.empty{padding:40px 24px;text-align:center;color:var(--muted)}
+.btn{all:unset;cursor:pointer;display:inline-flex;align-items:center;gap:8px;padding:9px 16px;border-radius:8px;background:var(--accent);color:var(--surface);font-weight:600;font-size:14px}
+.btn.ghost{background:transparent;color:var(--accent);box-shadow:inset 0 0 0 1.5px var(--accent)}
+.btn:focus-visible{outline:2px solid var(--ink);outline-offset:2px}
+.btn[disabled]{opacity:.45;cursor:default}
+/* preguntas */
+.qtools{display:flex;flex-wrap:wrap;gap:10px;align-items:center}
+select{font:inherit;padding:8px 10px;border-radius:8px;border:1px solid var(--line);background:var(--surface);color:var(--ink);max-width:100%}
+.seg{display:inline-flex;border:1px solid var(--line);border-radius:8px;overflow:hidden}
+.seg button{all:unset;cursor:pointer;padding:8px 14px;font-weight:500;font-size:14px;color:var(--muted)}
+.seg button[aria-pressed="true"]{background:var(--accent);color:var(--surface)}
+.seg button:focus-visible{outline:2px solid var(--accent);outline-offset:-2px}
+.qcard{background:var(--surface);border:1px solid var(--line);border-radius:10px;padding:clamp(18px,3.5vw,32px)}
+.qhead{display:flex;flex-wrap:wrap;justify-content:space-between;gap:8px;align-items:center;margin-bottom:14px}
+.stem{font-family:var(--f-serif);font-size:17px;line-height:1.6;max-width:70ch;margin:0 0 18px}
+.opts{display:flex;flex-direction:column;gap:8px;max-width:74ch}
+.opt{all:unset;cursor:pointer;display:grid;grid-template-columns:28px 1fr;gap:10px;padding:10px 12px;border:1px solid var(--line);border-radius:8px;align-items:start}
+.opt:hover{border-color:var(--accent)}
+.opt:focus-visible{outline:2px solid var(--accent)}
+.opt b{font-family:var(--f-mono);font-weight:500;color:var(--muted)}
+.opt.sel{border-color:var(--accent);background:var(--accent-soft)}
+.opt.right{border-color:var(--ok);background:var(--ok-soft)}
+.opt.wrong{border-color:var(--bad);background:var(--bad-soft)}
+.opt[aria-disabled="true"]{cursor:default}
+.expl{margin-top:16px;padding:14px 16px;border-radius:8px;background:var(--bg);font-size:14.5px;max-width:74ch}
+.expl strong{display:block;margin-bottom:4px}
+.qnav{display:flex;flex-wrap:wrap;justify-content:space-between;gap:10px;margin-top:20px;align-items:center}
+.timer{font-family:var(--f-mono);font-size:14px}
+.dots{display:flex;flex-wrap:wrap;gap:4px}
+.dot{width:10px;height:10px;border-radius:50%;background:var(--free)}
+.dot.cur{box-shadow:0 0 0 2px var(--accent)} .dot.ans{background:var(--accent)}
+.res-ok{color:var(--ok);font-weight:600} .res-bad{color:var(--bad);font-weight:600}
+/* herramientas */
+.t22{display:grid;grid-template-columns:auto 1fr 1fr;gap:6px;max-width:420px;align-items:center;font-size:14px}
+.t22 .h{font-size:12.5px;color:var(--muted);text-align:center}
+.t22 input{width:100%;font:inherit;font-variant-numeric:tabular-nums;padding:8px 10px;border-radius:8px;border:1px solid var(--line);background:var(--surface);color:var(--ink);text-align:right}
+.t22 input:focus-visible{outline:2px solid var(--accent)}
+.outs{display:grid;grid-template-columns:repeat(auto-fit,minmax(130px,1fr));gap:10px;margin-top:16px}
+.out{padding:12px;border:1px solid var(--line);border-radius:8px}
+.out small{display:block;color:var(--muted);font-size:12px}
+.out b{font-family:var(--f-serif);font-size:24px;font-weight:600;font-variant-numeric:tabular-nums}
+.formula{font-family:var(--f-mono);font-size:12px;color:var(--muted)}
+/* ruta */
+.flow{display:flex;flex-wrap:wrap;gap:8px;align-items:stretch;margin-top:14px}
+.node{flex:1 1 150px;min-width:0;border:1px solid var(--line);border-radius:8px;padding:10px 12px;background:var(--surface)}
+.node b{display:block;font-size:13.5px} .node small{color:var(--muted);font-size:12.5px}
+.arrow{align-self:center;color:var(--muted);font-family:var(--f-mono)}
+@media (max-width:640px){.arrow{display:none}}
+.phase{display:grid;grid-template-columns:120px minmax(0,1fr);gap:16px;padding:18px 0;border-top:1px solid var(--line)}
+.phase:first-of-type{border-top:0}
+@media (max-width:640px){.phase{grid-template-columns:1fr;gap:6px}}
+.phase ul{margin:0;padding-left:1.1em} .phase li{margin-bottom:8px;max-width:72ch}
+.phase li b{font-weight:600}
+/* formato */
+.anat{display:grid;grid-template-columns:130px minmax(0,1fr) minmax(0,240px);gap:14px 18px;margin-top:16px;align-items:start}
+.anat>*{min-width:0}
+.al{font-weight:600;font-size:13.5px;display:flex;gap:8px;align-items:center}
+.tag{display:inline-grid;place-items:center;width:22px;height:22px;border-radius:50%;background:var(--accent);color:var(--surface);font:500 11.5px var(--f-mono)}
+.ab{padding-bottom:14px;border-bottom:1px solid var(--line)}
+.ah{font-size:13px;color:var(--muted)}
+@media (max-width:760px){.anat{grid-template-columns:1fr;gap:6px}.ah{margin-bottom:14px}.ab{border-bottom:0;padding-bottom:0}}
+.stemx{font-family:var(--f-serif);font-size:16px;line-height:1.6}
+.alts{margin:0;padding-left:1.6em;list-style:upper-alpha;font-size:14.5px}
+.alts li{padding:2px 0}
+.alts li.ok{color:var(--ok);font-weight:600}
+.grid3{display:grid;grid-template-columns:repeat(auto-fit,minmax(240px,1fr));gap:20px}
+.grid3>*{min-width:0}
+.rules{margin:10px 0 0;padding-left:1.1em;font-size:14px}
+.rules li{margin-bottom:6px}
+.rules.issues li::marker{color:var(--bad)} .rules.fixes li::marker{color:var(--ok)}
+.ba{display:grid;grid-template-columns:repeat(auto-fit,minmax(280px,1fr));gap:28px;margin-top:16px}
+.ba>*{min-width:0}
+.tpl{margin:14px 0 0;padding:16px;background:var(--bg);border:1px solid var(--line);border-radius:8px;font:12.5px/1.6 var(--f-mono);white-space:pre-wrap;overflow-x:auto}
+.fbl{list-style:none;margin:10px 0 0;padding:0;display:flex;flex-direction:column;gap:6px}
+.fbl li{display:grid;grid-template-columns:22px 1fr;gap:8px;font-size:14px}
+.fbl li b{font-family:var(--f-mono);font-weight:500}
+.fbl li.c b,.fbl li.c span{color:var(--ok)}
+.fbl li.x span{color:var(--muted)}
+@media (prefers-reduced-motion:reduce){*{transition:none!important;animation:none!important}}
+</style>
+</head>
+<body>
+
+
+<header>
+  <div class="wrap bar">
+    <div class="brand"><b>Manual EUNACOM · Área 7</b><span>Salud Pública · Emergencias y Desastres</span></div>
+    <nav role="tablist" aria-label="Secciones">
+      <button role="tab" id="tab-avance" data-v="avance">Avance</button>
+      <button role="tab" id="tab-manual" data-v="manual">Manual</button>
+      <button role="tab" id="tab-preguntas" data-v="preguntas">Banco de preguntas</button>
+      <button role="tab" id="tab-formato" data-v="formato">Formato de pregunta</button>
+      <button role="tab" id="tab-herramientas" data-v="herramientas">Herramientas</button>
+      <button role="tab" id="tab-ruta" data-v="ruta">Hoja de ruta</button>
+    </nav>
+  </div>
+</header>
+
+<main class="wrap">
+
+<!-- AVANCE -->
+<section id="v-avance" class="stack">
+  <div>
+    <div class="eyebrow">Corte al 22 de octubre de 2026</div>
+    <h1>Dónde estamos</h1>
+    <p class="lede">Dos manuales anclados al Perfil de Conocimientos EUNACOM 2026. Cada cuadro es un tema; el color indica su etapa en el flujo Borrador → Revisión 1 → Versión 1 → Revisión 2 → Versión final.</p>
+  </div>
+
+  <div class="panel">
+    <h2>Manual de Salud Pública</h2>
+    <div class="stats" id="sp-stats"></div>
+    <div class="meter" id="sp-meter" aria-hidden="true"></div>
+    <div class="legend">
+      <span><i class="sw st-final"></i>Versión final</span>
+      <span><i class="sw st-revision"></i>En revisión</span>
+      <span><i class="sw st-borrador"></i>Borrador entregado</span>
+      <span><i class="sw st-asignado"></i>Asignado, sin borrador</span>
+      <span><i class="sw st-libre"></i>Sin asignar</span>
+    </div>
+    <div class="mosaic" id="sp-mosaic"></div>
+  </div>
+
+  <div class="grid2">
+    <div class="panel">
+      <h2>Manual de Emergencias y Desastres</h2>
+      <div class="stats">
+        <div class="stat"><b class="num">0<small style="font-size:16px"> / 79</small></b><small>borradores</small></div>
+        <div class="stat"><b class="num">2</b><small>temas asignados</small></div>
+        <div class="stat"><b class="num">13</b><small>secciones</small></div>
+      </div>
+      <div class="cells" style="margin-top:16px" id="ed-cells"></div>
+      <p class="note">Asignados: tema 1 (Lorena) y tema 2 (Catalina). La carpeta del manual aún no tiene documentos.</p>
+    </div>
+    <div class="panel">
+      <h2>Borradores por ayudante</h2>
+      <div class="tw"><table class="num" id="by-author"></table></div>
+    </div>
+  </div>
+
+  <div class="panel">
+    <h2>Ritmo y proyección</h2>
+    <p class="note" style="color:var(--ink);font-size:15px;max-width:72ch">El primer borrador llegó a mediados de julio. En unas 14 semanas se completaron 18 borradores, cerca de <b>1,3 por semana</b>. Quedan 148 temas entre ambos manuales (69 de Salud Pública y 79 de Emergencias), y ningún tema ha pasado todavía a revisión.</p>
+    <div class="callout" style="margin-top:14px">A este ritmo, terminar solo los borradores tomaría alrededor de dos años. Para llegar con algo útil a la próxima rendición conviene priorizar los temas de mayor rendimiento en el examen, sumar ayudantes y abrir ya la etapa de revisión de los 18 existentes.</div>
+  </div>
+</section>
+
+<!-- MANUAL -->
+<section id="v-manual" hidden>
+  <div style="margin-bottom:22px">
+    <div class="eyebrow">Vista previa del sitio</div>
+    <h1>Manual de Salud Pública</h1>
+    <p class="lede">Así se vería el manual publicado. Los capítulos se generan desde los Google Docs de cada ayudante; en esta demo están cargados tres borradores reales. Los temas en gris aún no tienen texto.</p>
+  </div>
+  <div class="reader">
+    <aside class="toc" id="toc" aria-label="Índice"></aside>
+    <article class="chapter" id="chapter" aria-live="polite"></article>
+  </div>
+</section>
+
+<!-- PREGUNTAS -->
+<section id="v-preguntas" class="stack" hidden>
+  <div>
+    <div class="eyebrow">Preguntas escritas por los ayudantes</div>
+    <h1>Banco de preguntas</h1>
+    <p class="lede">Las 13 preguntas de autoevaluación de los temas 1, 6 y 15, reescritas con el formato estándar: viñeta, 5 alternativas y explicación de cada alternativa. En modo práctica ves la retroalimentación al responder; en simulacro, al final.</p>
+  </div>
+  <div class="qtools">
+    <div class="seg" role="group" aria-label="Modo">
+      <button id="m-prac" aria-pressed="true">Práctica</button>
+      <button id="m-sim" aria-pressed="false">Simulacro</button>
+    </div>
+    <label class="sr" for="q-filter" style="position:absolute;left:-9999px">Filtrar por tema</label>
+    <select id="q-filter"></select>
+    <button class="btn ghost" id="q-start">Empezar</button>
+  </div>
+  <div id="q-area"></div>
+</section>
+
+<!-- FORMATO -->
+<section id="v-formato" class="stack" hidden>
+  <div>
+    <div class="eyebrow">Estándar para todo el banco</div>
+    <h1>Formato de pregunta</h1>
+    <p class="lede">Cada tema aporta 5 preguntas con esta estructura. Una sola mejor respuesta, cinco alternativas y una explicación para cada una, porque el estudiante aprende tanto del distractor como de la correcta.</p>
+  </div>
+
+  <div class="panel">
+    <h2>Anatomía de una pregunta</h2>
+    <div class="anat">
+      <div class="al"><span class="tag">1</span>Viñeta</div>
+      <div class="ab stemx">Una mujer de 50 años, asintomática y sin antecedentes familiares de cáncer, se realiza una mamografía de tamizaje en su CESFAM. El informe describe una lesión BI-RADS 4.</div>
+      <div class="ah">Paciente, edad, contexto y lugar de atención. Solo datos que se usan para responder.</div>
+
+      <div class="al"><span class="tag">2</span>Pregunta</div>
+      <div class="ab stemx"><b>¿A qué nivel de prevención corresponde la mamografía realizada?</b></div>
+      <div class="ah">Cerrada y en positivo. Debe poder responderse tapando las alternativas.</div>
+
+      <div class="al"><span class="tag">3</span>Alternativas</div>
+      <div class="ab"><ol class="alts"><li>Prevención primordial</li><li>Prevención primaria</li><li class="ok">Prevención secundaria</li><li>Prevención terciaria</li><li>Prevención cuaternaria</li></ol></div>
+      <div class="ah">Cinco, del mismo largo y tipo, en orden lógico. Los distractores salen de errores frecuentes.</div>
+
+      <div class="al"><span class="tag">4</span>Retroalimentación</div>
+      <div class="ab"><p style="margin:0 0 6px"><b>C.</b> El tamizaje en una persona asintomática busca detectar enfermedad en fase precoz.</p><p style="margin:0;color:var(--muted)"><b>D.</b> El hallazgo no transforma el examen en terciaria: aún no hay enfermedad confirmada.</p></div>
+      <div class="ah">Una línea por alternativa: por qué la correcta lo es y por qué cada distractor no.</div>
+
+      <div class="al"><span class="tag">5</span>Ficha</div>
+      <div class="ab"><div style="display:flex;flex-wrap:wrap;gap:6px"><span class="pill">Tema 6</span><span class="pill code">7.01.3.004</span><span class="pill b">Caso clínico</span><span class="pill">Analizar</span><span class="pill">Dificultad media</span><span class="pill">Autora: C. Loayza</span><span class="pill">Revisión: pendiente</span></div></div>
+      <div class="ah">Permite armar simulacros por código EUNACOM y medir qué se falla.</div>
+    </div>
+  </div>
+
+  <div class="grid3">
+    <div class="panel">
+      <h3>Enunciado</h3>
+      <ul class="rules">
+        <li>Mide un objetivo del Perfil EUNACOM del tema.</li>
+        <li>Prefiere casos que piden aplicar o decidir; las de memoria pura, como máximo 1 de 5.</li>
+        <li>Al menos 2 casos clínicos por tema, y 1 de cálculo cuando el tema lo permita.</li>
+        <li>Situado en Chile: CESFAM, SAPU, SEREMI, GES.</li>
+        <li>Sin negaciones del tipo «excepto» o «no es».</li>
+      </ul>
+    </div>
+    <div class="panel">
+      <h3>Alternativas</h3>
+      <ul class="rules">
+        <li>Exactamente 5, con una sola mejor respuesta.</li>
+        <li>Homogéneas en largo, estructura y categoría.</li>
+        <li>Ordenadas: números de menor a mayor, niveles en su secuencia.</li>
+        <li>Sin «todas las anteriores» ni «ninguna de las anteriores».</li>
+        <li>Sin absolutos como «siempre» o «nunca», que delatan al distractor.</li>
+      </ul>
+    </div>
+    <div class="panel">
+      <h3>Retroalimentación</h3>
+      <ul class="rules">
+        <li>Una explicación breve para cada alternativa.</li>
+        <li>En cálculos, mostrar la operación y el error que produce cada distractor.</li>
+        <li>Al menos una referencia del capítulo.</li>
+        <li>Revisada por un segundo ayudante antes de entrar al banco.</li>
+      </ul>
+    </div>
+  </div>
+
+  <div class="panel">
+    <h2>Antes y después</h2>
+    <p class="note">Tema 6, pregunta 4. El contenido es el mismo; cambian la viñeta, la pregunta y las alternativas.</p>
+    <div class="ba">
+      <div>
+        <div class="eyebrow" style="margin-bottom:8px">Borrador</div>
+        <p class="stemx" style="margin:0 0 10px">Una mujer de 50 años asintomática se realiza una mamografía de tamizaje, que informa una lesión BI-RADS 4. ¿A qué nivel de prevención corresponde?</p>
+        <ol class="alts"><li>Prevención primaria</li><li class="ok">Prevención secundaria</li><li>Prevención terciaria</li><li>Prevención cuaternaria</li></ol>
+        <ul class="rules issues"><li>Cuatro alternativas; falta la primordial, que el capítulo sí enseña.</li><li>La pregunta no aclara si se pregunta por la mamografía o por lo que sigue.</li><li>Explicación solo de la correcta.</li></ul>
+      </div>
+      <div>
+        <div class="eyebrow" style="margin-bottom:8px">Con el formato</div>
+        <p class="stemx" style="margin:0 0 10px">Una mujer de 50 años, asintomática y sin antecedentes familiares de cáncer, se realiza una mamografía de tamizaje en su CESFAM. El informe describe una lesión BI-RADS 4. ¿A qué nivel de prevención corresponde <b>la mamografía realizada</b>?</p>
+        <ol class="alts"><li>Prevención primordial</li><li>Prevención primaria</li><li class="ok">Prevención secundaria</li><li>Prevención terciaria</li><li>Prevención cuaternaria</li></ol>
+        <ul class="rules fixes"><li>Cinco alternativas en el orden de los niveles.</li><li>Contexto chileno y datos que descartan alto riesgo.</li><li>Distractor D trabajado: el hallazgo no vuelve terciaria al examen.</li></ul>
+      </div>
+    </div>
+  </div>
+
+  <div class="panel">
+    <div style="display:flex;flex-wrap:wrap;justify-content:space-between;gap:10px;align-items:center">
+      <h2>Plantilla para el Google Doc</h2>
+      <button class="btn ghost" id="copy-tpl">Copiar plantilla</button>
+    </div>
+    <pre class="tpl" id="tpl">PREGUNTA [N] · Tema [número] · Código EUNACOM [7.01.x.xxx]
+Tipo: [Caso clínico / Cálculo / Concepto / Normativa]
+Nivel: [Recordar / Comprender / Aplicar / Analizar] · Dificultad: [Baja / Media / Alta]
+
+Viñeta: [paciente, edad, contexto, lugar de atención, datos necesarios]
+Pregunta: [¿Cuál es...? en positivo, responde tapando las alternativas]
+
+A) [alternativa]
+B) [alternativa]
+C) [alternativa]
+D) [alternativa]
+E) [alternativa]
+
+Respuesta correcta: [letra]
+Retroalimentación:
+A) [por qué es correcta o incorrecta]
+B) [...]
+C) [...]
+D) [...]
+E) [...]
+Referencia: [número de la bibliografía del capítulo]
+Autor/a: [nombre] · Revisor/a: [nombre]</pre>
+    <p class="note" id="copy-msg" aria-live="polite"></p>
+  </div>
+</section>
+
+<!-- HERRAMIENTAS -->
+<section id="v-herramientas" class="stack" hidden>
+  <div>
+    <div class="eyebrow">Ejemplo de herramienta interactiva</div>
+    <h1>Calculadoras para el examen</h1>
+    <p class="lede">Los temas de epidemiología piden calcular. Cada capítulo puede traer su calculadora; estas dos muestran la idea con los ejemplos de los temas 15 y 32.</p>
+  </div>
+  <div class="grid2">
+    <div class="panel">
+      <h2>Tabla 2×2 · prueba diagnóstica</h2>
+      <p class="note">Tema 32. Edita los valores; los indicadores se recalculan al instante.</p>
+      <div class="t22" style="margin-top:14px">
+        <span></span><span class="h">Enfermo</span><span class="h">Sano</span>
+        <span class="h" style="text-align:left">Test +</span><input id="a" type="number" min="0" value="90" aria-label="Verdaderos positivos"><input id="b" type="number" min="0" value="40" aria-label="Falsos positivos">
+        <span class="h" style="text-align:left">Test −</span><input id="c" type="number" min="0" value="10" aria-label="Falsos negativos"><input id="d" type="number" min="0" value="860" aria-label="Verdaderos negativos">
+      </div>
+      <div class="outs" id="t22-out"></div>
+    </div>
+    <div class="panel">
+      <h2>Tasa de mortalidad infantil</h2>
+      <p class="note">Tema 15. Defunciones de menores de 1 año sobre nacidos vivos del mismo período.</p>
+      <div class="t22" style="grid-template-columns:1fr 1fr;margin-top:14px">
+        <span class="h" style="text-align:left">Defunciones &lt; 1 año</span><input id="mi-d" type="number" min="0" value="45">
+        <span class="h" style="text-align:left">Nacidos vivos</span><input id="mi-n" type="number" min="1" value="5000">
+      </div>
+      <div class="outs"><div class="out"><small>TMI</small><b id="mi-out">9,0</b><div class="formula">por 1.000 nacidos vivos</div></div></div>
+      <p class="note">El mismo ejemplo de la pregunta 1 del tema 15: (45 / 5.000) × 1.000 = 9.</p>
+    </div>
+  </div>
+</section>
+
+<!-- RUTA -->
+<section id="v-ruta" class="stack" hidden>
+  <div>
+    <div class="eyebrow">Propuesta para conversar</div>
+    <h1>Hacia un manual vivo</h1>
+    <p class="lede">Los ayudantes siguen escribiendo en Google Docs, como hasta ahora. Una tarea automática convierte los documentos aprobados y publica el sitio cada semana, con registro de cambios.</p>
+  </div>
+
+  <div class="panel">
+    <h2>Cómo fluye el contenido</h2>
+    <div class="flow">
+      <div class="node"><b>Google Docs</b><small>cada ayudante escribe su tema con la plantilla de 9 partes</small></div>
+      <span class="arrow">→</span>
+      <div class="node"><b>Planilla de temas</b><small>marca el estado: borrador, revisión, versión final</small></div>
+      <span class="arrow">→</span>
+      <div class="node"><b>GitHub</b><small>tarea semanal convierte a Markdown y guarda el historial</small></div>
+      <span class="arrow">→</span>
+      <div class="node"><b>Sitio web</b><small>Quarto en GitHub Pages: manual, banco y buscador</small></div>
+    </div>
+    <p class="note">Solo se publica lo que está marcado como versión 1 o superior; los borradores quedan internos.</p>
+  </div>
+
+  <div class="panel">
+    <div class="phase"><div><div class="eyebrow">Ahora</div><h3>Noviembre</h3></div><ul>
+      <li><b>Abrir la revisión</b> de los 18 borradores con pares cruzados y la rúbrica de 100 puntos.</li>
+      <li><b>Estandarizar preguntas</b> con el formato de la pestaña «Formato de pregunta»: 5 por tema, 5 alternativas, retroalimentación por alternativa y revisión de un segundo ayudante.</li>
+      <li><b>Repositorio y sitio</b> con los temas en versión 1; dominio del tipo usuario.github.io/manual-eunacom.</li>
+    </ul></div>
+    <div class="phase"><div><div class="eyebrow">Próximo</div><h3>Verano</h3></div><ul>
+      <li><b>Generador de preguntas asistido:</b> a partir de cada capítulo propone variantes (cambia el caso, los números, el distractor). Ninguna entra al banco sin revisión de un ayudante.</li>
+      <li><b>Simulacro por código EUNACOM</b> con tiempo y reporte por sección, para que cada estudiante vea sus temas débiles.</li>
+      <li><b>Calculadoras</b> en los temas de epidemiología y bioestadística: tasas, 2×2, RR, OR, NNT, pirámide poblacional.</li>
+      <li><b>Glosario y formulario</b> en una página, enlazados desde cada capítulo.</li>
+    </ul></div>
+    <div class="phase"><div><div class="eyebrow">Después</div><h3>2027</h3></div><ul>
+      <li><b>Datos de uso:</b> qué preguntas se fallan más; eso orienta qué capítulo reescribir primero.</li>
+      <li><b>Reportar error</b> en cada página, con seguimiento público de correcciones.</li>
+      <li><b>Casos integradores</b> que crucen ambos manuales, por ejemplo un brote post-terremoto que va de la vigilancia a la notificación y al control.</li>
+      <li><b>Productos académicos:</b> DOI en Zenodo por versión anual, autoría de cada ayudante y evaluación pre/post en un curso real.</li>
+    </ul></div>
+  </div>
+
+  <div class="panel">
+    <h2>Lo que necesitamos acordar mañana</h2>
+    <ul style="margin:10px 0 0;padding-left:1.2em;max-width:72ch">
+      <li>Quién revisa qué tema y en qué plazo.</li>
+      <li>Adoptar el formato de pregunta y reescribir las autoevaluaciones de los 18 borradores.</li>
+      <li>Licencia del contenido, por ejemplo CC BY-NC-SA, y regla para imágenes: solo propias o con permiso explícito.</li>
+      <li>Cuántos temas se priorizan antes de marzo y si se suman ayudantes para Emergencias y Desastres.</li>
+    </ul>
+  </div>
+</section>
+</main>
+
+<script>
+const TOPICS = [{"n": 1, "s": "I. Fundamentos y Conceptos de Salud Pública", "t": "Conceptos y definiciones de Salud Pública", "a": "Joaquín", "st": "borrador"}, {"n": 2, "s": "I. Fundamentos y Conceptos de Salud Pública", "t": "Funciones esenciales de la Salud Pública (FESP)", "a": "Yu", "st": "borrador"}, {"n": 3, "s": "I. Fundamentos y Conceptos de Salud Pública", "t": "Salud Pública y medicina clínica: ámbitos y diferencias", "a": "Joaquín", "st": "borrador"}, {"n": 4, "s": "I. Fundamentos y Conceptos de Salud Pública", "t": "Determinantes sociales y del nivel de salud", "a": "Lorena", "st": "borrador"}, {"n": 5, "s": "I. Fundamentos y Conceptos de Salud Pública", "t": "Historia natural de la enfermedad", "a": "Catalina", "st": "borrador"}, {"n": 6, "s": "I. Fundamentos y Conceptos de Salud Pública", "t": "Niveles de prevención (primaria, secundaria, terciaria, cuaternaria)", "a": "Catalina", "st": "borrador"}, {"n": 7, "s": "I. Fundamentos y Conceptos de Salud Pública", "t": "Promoción de la salud y prevención de enfermedades", "a": "Yu", "st": "borrador"}, {"n": 8, "s": "I. Fundamentos y Conceptos de Salud Pública", "t": "Atención Primaria de Salud y modelo de salud familiar", "a": "Lorena", "st": "borrador"}, {"n": 9, "s": "I. Fundamentos y Conceptos de Salud Pública", "t": "Salud Global y Objetivos de Desarrollo Sostenible", "a": "Joaquín", "st": "borrador"}, {"n": 10, "s": "I. Fundamentos y Conceptos de Salud Pública", "t": "Ética y bioética en Salud Pública", "a": "Joaquín", "st": "borrador"}, {"n": 11, "s": "II. Demografía y Diagnóstico de Situación de Salud", "t": "Demografía y Salud Pública", "a": "Catalina", "st": "borrador"}, {"n": 12, "s": "II. Demografía y Diagnóstico de Situación de Salud", "t": "Transición demográfica y epidemiológica", "a": "Lorena", "st": "borrador"}, {"n": 13, "s": "II. Demografía y Diagnóstico de Situación de Salud", "t": "Diagnóstico de situación de salud: concepto y etapas", "a": "Yu", "st": "borrador"}, {"n": 14, "s": "II. Demografía y Diagnóstico de Situación de Salud", "t": "Fuentes de información para el diagnóstico", "a": "Joaquín", "st": "borrador"}, {"n": 15, "s": "II. Demografía y Diagnóstico de Situación de Salud", "t": "Indicadores de nivel de salud: cálculo e interpretación", "a": "Yu", "st": "borrador"}, {"n": 16, "s": "II. Demografía y Diagnóstico de Situación de Salud", "t": "Descripción sistemática de problemas de salud", "a": "Catalina", "st": "asignado"}, {"n": 17, "s": "II. Demografía y Diagnóstico de Situación de Salud", "t": "Criterios de priorización de problemas", "a": "Yu", "st": "borrador"}, {"n": 18, "s": "II. Demografía y Diagnóstico de Situación de Salud", "t": "Ejecución de un diagnóstico de situación", "a": "Lorena", "st": "borrador"}, {"n": 19, "s": "III. Epidemiología", "t": "Concepto y campo de la epidemiología", "a": "Catalina", "st": "asignado"}, {"n": 20, "s": "III. Epidemiología", "t": "Epidemiología descriptiva (persona, tiempo, lugar)", "a": "Lorena", "st": "borrador"}, {"n": 21, "s": "III. Epidemiología", "t": "Medidas de frecuencia (prevalencia, incidencia)", "a": "Joaquín", "st": "asignado"}, {"n": 22, "s": "III. Epidemiología", "t": "Epidemiología analítica", "a": "Yu", "st": "asignado"}, {"n": 23, "s": "III. Epidemiología", "t": "Medidas de asociación e impacto (RR, OR, RA, NNT)", "a": "", "st": "libre"}, {"n": 24, "s": "III. Epidemiología", "t": "Diseños de investigación epidemiológica", "a": "", "st": "libre"}, {"n": 25, "s": "III. Epidemiología", "t": "Estudios de prevalencia / transversales", "a": "", "st": "libre"}, {"n": 26, "s": "III. Epidemiología", "t": "Estudios de casos y controles", "a": "", "st": "libre"}, {"n": 27, "s": "III. Epidemiología", "t": "Estudios de cohortes", "a": "", "st": "libre"}, {"n": 28, "s": "III. Epidemiología", "t": "Estudios experimentales y cuasiexperimentales", "a": "", "st": "libre"}, {"n": 29, "s": "III. Epidemiología", "t": "Estudios ecológicos", "a": "", "st": "libre"}, {"n": 30, "s": "III. Epidemiología", "t": "Causalidad y criterios de causalidad", "a": "", "st": "libre"}, {"n": 31, "s": "III. Epidemiología", "t": "Sesgos y factores de confusión", "a": "", "st": "libre"}, {"n": 32, "s": "III. Epidemiología", "t": "Pruebas de tamizaje y diagnósticas (S, E, VPP, VPN)", "a": "", "st": "libre"}, {"n": 33, "s": "III. Epidemiología", "t": "Vigilancia epidemiológica y estudio de brotes", "a": "", "st": "libre"}, {"n": 34, "s": "III. Epidemiología", "t": "Usos de la epidemiología en control de enfermedades y diagnóstico de situación", "a": "", "st": "libre"}, {"n": 35, "s": "IV. Bioestadística y Medicina Basada en Evidencia", "t": "Introducción a la bioestadística", "a": "", "st": "libre"}, {"n": 36, "s": "IV. Bioestadística y Medicina Basada en Evidencia", "t": "Tipos de variables y estadística descriptiva", "a": "", "st": "libre"}, {"n": 37, "s": "IV. Bioestadística y Medicina Basada en Evidencia", "t": "Probabilidad y distribuciones", "a": "", "st": "libre"}, {"n": 38, "s": "IV. Bioestadística y Medicina Basada en Evidencia", "t": "Intervalos de confianza y pruebas de hipótesis (valor p)", "a": "", "st": "libre"}, {"n": 39, "s": "IV. Bioestadística y Medicina Basada en Evidencia", "t": "Correlación y regresión", "a": "", "st": "libre"}, {"n": 40, "s": "IV. Bioestadística y Medicina Basada en Evidencia", "t": "Tamaño muestral y poder estadístico", "a": "", "st": "libre"}, {"n": 41, "s": "IV. Bioestadística y Medicina Basada en Evidencia", "t": "Lectura crítica de la literatura", "a": "", "st": "libre"}, {"n": 42, "s": "IV. Bioestadística y Medicina Basada en Evidencia", "t": "Revisiones sistemáticas y metaanálisis", "a": "", "st": "libre"}, {"n": 43, "s": "IV. Bioestadística y Medicina Basada en Evidencia", "t": "Niveles de evidencia y grados de recomendación", "a": "", "st": "libre"}, {"n": 44, "s": "IV. Bioestadística y Medicina Basada en Evidencia", "t": "Ética en investigación", "a": "", "st": "libre"}, {"n": 45, "s": "V. Estrategias de Control y Programas de Salud", "t": "Estrategias de control de enfermedades infecciosas", "a": "", "st": "libre"}, {"n": 46, "s": "V. Estrategias de Control y Programas de Salud", "t": "Vacunas e inmunizaciones (PNI Chile)", "a": "", "st": "libre"}, {"n": 47, "s": "V. Estrategias de Control y Programas de Salud", "t": "Estrategias de control de enfermedades crónicas prioritarias (cáncer, cardiovasculares)", "a": "", "st": "libre"}, {"n": 48, "s": "V. Estrategias de Control y Programas de Salud", "t": "Formulación de programas de salud", "a": "", "st": "libre"}, {"n": 49, "s": "V. Estrategias de Control y Programas de Salud", "t": "Salud ambiental", "a": "", "st": "libre"}, {"n": 50, "s": "V. Estrategias de Control y Programas de Salud", "t": "Salud ocupacional", "a": "", "st": "libre"}, {"n": 51, "s": "V. Estrategias de Control y Programas de Salud", "t": "Salud mental comunitaria", "a": "", "st": "libre"}, {"n": 52, "s": "V. Estrategias de Control y Programas de Salud", "t": "Enfermedades de notificación obligatoria", "a": "", "st": "libre"}, {"n": 53, "s": "VI. Sistema de Salud y Seguridad Social", "t": "Bases conceptuales de la seguridad social", "a": "", "st": "libre"}, {"n": 54, "s": "VI. Sistema de Salud y Seguridad Social", "t": "Desarrollo histórico de la seguridad social y la atención de salud", "a": "", "st": "libre"}, {"n": 55, "s": "VI. Sistema de Salud y Seguridad Social", "t": "Funciones de los sistemas de atención de salud", "a": "", "st": "libre"}, {"n": 56, "s": "VI. Sistema de Salud y Seguridad Social", "t": "Organización del sistema de salud chileno (MINSAL, SEREMI, Servicios de Salud, FONASA, ISAPRE)", "a": "", "st": "libre"}, {"n": 57, "s": "VI. Sistema de Salud y Seguridad Social", "t": "Subsistemas público y privado: estructura y funciones", "a": "", "st": "libre"}, {"n": 58, "s": "VI. Sistema de Salud y Seguridad Social", "t": "Red asistencial chilena (niveles de atención, referencia y contrarreferencia)", "a": "", "st": "libre"}, {"n": 59, "s": "VI. Sistema de Salud y Seguridad Social", "t": "Política sanitaria y objetivos sanitarios en Chile (ENS)", "a": "", "st": "libre"}, {"n": 60, "s": "VI. Sistema de Salud y Seguridad Social", "t": "Beneficios de la seguridad social y rol del médico en el acceso (GES, Ley de Urgencia)", "a": "", "st": "libre"}, {"n": 61, "s": "VI. Sistema de Salud y Seguridad Social", "t": "Financiamiento del sector salud", "a": "", "st": "libre"}, {"n": 62, "s": "VI. Sistema de Salud y Seguridad Social", "t": "Sistemas de salud comparados (Salud Pública internacional)", "a": "", "st": "libre"}, {"n": 63, "s": "VII. Administración y Gestión en Salud", "t": "Conceptos de administración y gestión", "a": "", "st": "libre"}, {"n": 64, "s": "VII. Administración y Gestión en Salud", "t": "Planificación y programación en salud", "a": "", "st": "libre"}, {"n": 65, "s": "VII. Administración y Gestión en Salud", "t": "Organización: estructura y funciones de las organizaciones", "a": "", "st": "libre"}, {"n": 66, "s": "VII. Administración y Gestión en Salud", "t": "Dirección: liderazgo, comunicación y coordinación", "a": "", "st": "libre"}, {"n": 67, "s": "VII. Administración y Gestión en Salud", "t": "Gestión de recursos humanos en salud", "a": "", "st": "libre"}, {"n": 68, "s": "VII. Administración y Gestión en Salud", "t": "Evaluación y control: conceptos y tipos", "a": "", "st": "libre"}, {"n": 69, "s": "VII. Administración y Gestión en Salud", "t": "Auditoría y acreditación", "a": "", "st": "libre"}, {"n": 70, "s": "VII. Administración y Gestión en Salud", "t": "Calidad y seguridad del paciente / gestión de riesgos clínicos", "a": "", "st": "libre"}, {"n": 71, "s": "VII. Administración y Gestión en Salud", "t": "Administración de establecimientos de salud", "a": "", "st": "libre"}, {"n": 72, "s": "VII. Administración y Gestión en Salud", "t": "Gestión hospitalaria, de APS y de urgencias (incl. prehospitalaria y SAMU)", "a": "", "st": "libre"}, {"n": 73, "s": "VII. Administración y Gestión en Salud", "t": "Economía de la salud y evaluación económica (costo-efectividad, ICER)", "a": "", "st": "libre"}, {"n": 74, "s": "VII. Administración y Gestión en Salud", "t": "Transformación digital y salud digital", "a": "", "st": "libre"}, {"n": 75, "s": "VIII. Aspectos Éticos, Legales y Profesionales", "t": "Ejercicio profesional: marcos ético, legal y gremial", "a": "", "st": "libre"}, {"n": 76, "s": "VIII. Aspectos Éticos, Legales y Profesionales", "t": "Derechos y deberes del paciente", "a": "", "st": "libre"}, {"n": 77, "s": "VIII. Aspectos Éticos, Legales y Profesionales", "t": "Rol del médico en la generación y uso de la información en salud", "a": "", "st": "libre"}, {"n": 78, "s": "VIII. Aspectos Éticos, Legales y Profesionales", "t": "Documentos médico-legales (certificado de defunción, licencia médica, notificación)", "a": "", "st": "libre"}, {"n": 79, "s": "VIII. Aspectos Éticos, Legales y Profesionales", "t": "Otorgamiento, uso y sanciones por mal uso de licencias médicas", "a": "", "st": "libre"}, {"n": 80, "s": "VIII. Aspectos Éticos, Legales y Profesionales", "t": "Derecho GES a atención integral en agresión sexual aguda", "a": "", "st": "libre"}, {"n": 81, "s": "VIII. Aspectos Éticos, Legales y Profesionales", "t": "Confidencialidad, consentimiento informado y secreto profesional", "a": "", "st": "libre"}, {"n": 82, "s": "IX. Salud Pública Aplicada y Gestión de Desastres", "t": "Epidemiología de enfermedades transmisibles", "a": "", "st": "libre"}, {"n": 83, "s": "IX. Salud Pública Aplicada y Gestión de Desastres", "t": "Epidemiología de enfermedades crónicas", "a": "", "st": "libre"}, {"n": 84, "s": "IX. Salud Pública Aplicada y Gestión de Desastres", "t": "Emergencias de salud pública y pandemias", "a": "", "st": "libre"}, {"n": 85, "s": "IX. Salud Pública Aplicada y Gestión de Desastres", "t": "Gestión del riesgo de desastres", "a": "", "st": "libre"}, {"n": 86, "s": "IX. Salud Pública Aplicada y Gestión de Desastres", "t": "Sistema de Comando de Incidentes en salud", "a": "", "st": "libre"}, {"n": 87, "s": "IX. Salud Pública Aplicada y Gestión de Desastres", "t": "Hospitales seguros y resiliencia hospitalaria", "a": "", "st": "libre"}];
+
+const CHAPTERS = {
+1:{code:"7.01.3.001",author:"Joaquín Valdebenito",html:`
+<h2>Objetivos</h2><ul><li>Definir el concepto de salud.</li><li>Reconocer contextos particulares que modifican la percepción de salud.</li><li>Definir salud pública a partir de conceptos que han evolucionado en el tiempo.</li></ul>
+<h2>Definición de salud</h2>
+<p>La definición vigente es la de la OMS: la salud es un estado de completo bienestar físico, mental y social, y no solamente la ausencia de afecciones o enfermedades.</p>
+<h2>Contextos particulares en salud</h2>
+<p>Aunque la definición de la OMS es el marco más aceptado, la percepción de la salud y la enfermedad varía entre grupos religiosos, culturales y sociales. Estas diferencias influyen en cómo las personas interpretan la enfermedad, toman decisiones terapéuticas y se relacionan con el sistema de salud.</p>
+<p><b>Religión.</b> Los testigos de Jehová aceptan la mayoría de los tratamientos médicos, pero rechazan las transfusiones de sangre por razones espirituales. No considerar estas creencias puede dañar la relación terapéutica y la adherencia.</p>
+<p><b>Pueblos originarios.</b> En la cosmovisión mapuche, la enfermedad (<i>kutran</i>) surge cuando se rompe el equilibrio con la naturaleza, y la persona autorizada para restablecerlo es la machi.</p>
+<p><b>Migración.</b> Las poblaciones migrantes traen diversidad lingüística, cultural y religiosa. En parte de la población haitiana, por ejemplo, algunos síntomas psiquiátricos se atribuyen a espíritus o maldiciones, lo que cambia el enfoque de la sanación.</p>
+<h2>Definiciones de salud pública</h2>
+<p>El concepto ha evolucionado junto con el conocimiento sobre los determinantes de la salud y las herramientas de intervención.</p>
+<div class="tw"><table><thead><tr><th>Autor</th><th>Año</th><th>Aporte</th></tr></thead><tbody>
+<tr><td>Winslow</td><td class="num">1920</td><td>Primera definición moderna: ciencia y arte de prevenir la enfermedad, prolongar la vida y fomentar la salud mediante el esfuerzo organizado de la comunidad.</td></tr>
+<tr><td>Acheson</td><td class="num">1988</td><td>Sintetiza a Winslow: prevenir, prolongar la vida y fomentar la salud mediante el esfuerzo organizado de la sociedad.</td></tr>
+<tr><td>Terris (OPS)</td><td class="num">1992</td><td>Amplía a la salud mental, las enfermedades no infecciosas, las lesiones y la rehabilitación.</td></tr>
+<tr><td>OPS</td><td class="num">2002</td><td>Acciones colectivas e individuales, del Estado y de la sociedad civil, dirigidas a mejorar la salud de la población.</td></tr>
+</tbody></table></div>
+<p>Hoy la salud pública se entiende como un campo multidimensional que incorpora determinantes sociales, equidad, promoción, prevención, vigilancia, gestión de riesgos, respuesta a emergencias y fortalecimiento de los sistemas de salud, con acción intersectorial más allá de lo asistencial.</p>
+<div class="key"><b>Puntos clave</b><ul>
+<li>La salud trasciende la ausencia de enfermedad.</li>
+<li>La percepción de salud está influida por factores religiosos, culturales y sociales.</li>
+<li>La salud pública pasó de una visión centrada en el saneamiento a un enfoque poblacional integral.</li>
+<li>La salud pública moderna incorpora promoción, prevención, vigilancia, gestión y reducción de inequidades.</li></ul></div>`},
+6:{code:"7.01.3.004",author:"Catalina Loayza",html:`
+<h2>Objetivos</h2><ol><li>Definir los niveles de prevención y su relación con el proceso salud-enfermedad.</li><li>Diferenciar prevención primordial, primaria, secundaria, terciaria y cuaternaria según su objetivo y momento.</li><li>Aplicar los niveles a situaciones clínicas de la APS.</li></ol>
+<h2>Definición y conceptos clave</h2>
+<p>Los niveles de prevención ordenan las intervenciones según el momento del proceso salud-enfermedad y su objetivo: evitar la enfermedad, detectarla y tratarla precozmente, reducir complicaciones o prevenir el daño de una atención innecesaria.</p>
+<p>No deben confundirse con los <b>niveles de atención</b>: se clasifican por el propósito de la intervención, no por el lugar donde se realiza.</p>
+<h2>Contexto</h2>
+<p>Con la coexistencia de enfermedades transmisibles, crónicas y multimorbilidad, y con más exámenes disponibles, prevenir no significa hacer más exámenes. Toda intervención debe demostrar un balance favorable entre beneficios y daños.</p>
+<h2>Desarrollo</h2>
+<p>Una misma herramienta puede corresponder a distintos niveles según el objetivo con que se usa: un fármaco puede ser tratamiento precoz (secundaria) o prevención de complicaciones (terciaria).</p>
+<div class="tw"><table><thead><tr><th>Nivel</th><th>Momento</th><th>Objetivo</th><th>Ejemplos</th></tr></thead><tbody>
+<tr><td><b>Primordial</b></td><td>Antes de que aparezcan los factores de riesgo</td><td>Evitar condiciones que favorezcan factores de riesgo</td><td>Políticas públicas saludables, regulación del tabaco, espacios para actividad física</td></tr>
+<tr><td><b>Primaria</b></td><td>Antes de la enfermedad</td><td>Disminuir la incidencia</td><td>Vacunación, preservativo, alimentación saludable</td></tr>
+<tr><td><b>Secundaria</b></td><td>Fase subclínica o inicial</td><td>Detección precoz y tratamiento oportuno</td><td>Tamizaje de PA o glicemia, PAP o test de VPH, mamografía en población indicada</td></tr>
+<tr><td><b>Terciaria</b></td><td>Enfermedad establecida</td><td>Reducir complicaciones, recurrencias y discapacidad</td><td>Control de diabetes, rehabilitación post ACV</td></tr>
+<tr><td><b>Cuaternaria</b></td><td>En cualquier momento</td><td>Proteger cuando el daño probable supera al beneficio</td><td>No pedir imágenes ni antibióticos sin indicación</td></tr>
+</tbody></table></div>
+<h2>Aplicación en el sistema chileno</h2>
+<ul><li><b>Primaria:</b> Programa Nacional de Inmunizaciones, consejería y acciones comunitarias.</li>
+<li><b>Secundaria:</b> Examen de Medicina Preventiva (EMP/EMPA), pesquisa de HTA y DM2, tamizajes por edad o riesgo.</li>
+<li><b>Terciaria:</b> ECICEP para personas con condiciones crónicas y Plan Nacional de Rehabilitación.</li>
+<li><b>Cuaternaria:</b> orientaciones MINSAL para revisar indicaciones y la decisión informada de la persona.</li></ul>
+<p>El médico general participa en todos los niveles y debe revisar la utilidad de cada examen o tratamiento para evitar intervenciones innecesarias.</p>
+<div class="key"><b>Puntos clave</b><ul>
+<li>Los niveles se definen por el objetivo de la intervención.</li>
+<li>Primaria: actúa antes de la enfermedad para disminuir su incidencia.</li>
+<li>Secundaria: detecta y trata precozmente en fase asintomática o inicial.</li>
+<li>Terciaria: reduce complicaciones y discapacidad en enfermedad establecida.</li>
+<li>Cuaternaria: evita sobremedicalización, sobrediagnóstico y sobretratamiento.</li></ul></div>`},
+15:{code:"7.01.3.009",author:"Yu Zhou",html:`
+<h2>Objetivos</h2><ul><li>Definir los indicadores de nivel de salud y reconocer sus categorías.</li><li>Reconocer sus usos prácticos.</li><li>Comprender su aplicación en el marco normativo chileno.</li></ul>
+<h2>Definición y conceptos clave</h2>
+<p>Los indicadores de nivel de salud son medidas cuantificables que resumen las características de salud de una población. Permiten tomar decisiones para mejorar la salud y reducir brechas, y monitorear la situación en el tiempo. Varían en el tiempo y entre poblaciones.</p>
+<div class="tw"><table><thead><tr><th>Tipo</th><th>Indicadores</th></tr></thead><tbody>
+<tr><td><b>Mortalidad</b></td><td>Tasa de mortalidad general, por causa específica, materna e infantil; letalidad</td></tr>
+<tr><td><b>Morbilidad</b></td><td>Incidencia (casos nuevos) y prevalencia (proporción con la enfermedad). La prevalencia depende de la incidencia y de la duración.</td></tr>
+<tr><td><b>Compuestos</b></td><td>AVPP y AVISA</td></tr></tbody></table></div>
+<h2>Contexto</h2>
+<p>Chile envejece: según el Censo 2024, el 14% de la población tiene 65 años o más, frente a 6,6% en 1992. En 2023 las enfermedades del sistema circulatorio causaron el 22,7% de las defunciones. La ENS 2016–2017 estimó 74,2% de malnutrición por exceso y 27,6% de hipertensión.</p>
+<h2>Desarrollo</h2>
+<p>Los indicadores permiten el diagnóstico de situación de salud, identificar prioridades y grupos de riesgo, evaluar programas y proyectar escenarios. Las fuentes principales son el DEIS, el INE y la Encuesta Nacional de Salud.</p>
+<p>Un buen indicador es válido, confiable, sensible, específico, factible de calcular y relevante. <b>El denominador debe ser la población que realmente podía sufrir el evento</b> en el mismo período: población total para eventos generales, nacidos vivos para eventos infantiles y maternos, y un subgrupo específico cuando corresponda.</p>
+<h2>Aplicación en Chile</h2>
+<ul><li><b>Marco normativo:</b> el Código Sanitario y la Ley 19.937 dan al MINSAL la rectoría en estadísticas; el DEIS consolida y publica los indicadores oficiales.</li>
+<li><b>GES (Ley 19.966):</b> las patologías se priorizan según carga de enfermedad, mortalidad y prevalencia.</li>
+<li><b>Registro:</b> los REM alimentan las estadísticas; el médico notifica las enfermedades de declaración obligatoria (DS N° 7) y completa el certificado de defunción.</li></ul>
+<div class="key"><b>Puntos clave</b><ul>
+<li>Tres tipos: mortalidad, morbilidad e índices compuestos.</li>
+<li>Un buen indicador es válido, confiable, sensible, específico y factible.</li>
+<li>El denominador es la población en riesgo del evento.</li>
+<li>El DEIS lidera las estadísticas oficiales; el GES prioriza según carga de enfermedad.</li></ul></div>`}
+};
+
+const QS = [
+{t:1,type:"Concepto",lvl:"Recordar",dif:"Baja",
+ stem:"Respecto de la definición de salud de la Organización Mundial de la Salud (OMS), ¿cuál de las siguientes afirmaciones es correcta?",
+ opts:["La define como la ausencia de enfermedad o afección.","Considera el bienestar físico y mental, sin incluir la dimensión social.","La define como un estado de completo bienestar físico, mental y social, y no solamente la ausencia de enfermedad.","La hace depender principalmente de los determinantes biológicos.","La limita al funcionamiento normal de los órganos y sistemas."],ans:2,
+ fb:["Es el concepto biomédico tradicional que la definición de la OMS busca superar.","Omite la dimensión social, que es parte explícita de la definición.","Corresponde al texto de la Constitución de la OMS.","Los determinantes biológicos son solo uno de varios grupos de determinantes.","Es una visión funcional y biomédica, más restringida que la de la OMS."]},
+{t:1,type:"Concepto",lvl:"Recordar",dif:"Media",
+ stem:"¿Cuál de las siguientes definiciones de salud pública corresponde a la propuesta por Donald Acheson en 1988?",
+ opts:["Las acciones colectivas e individuales, del Estado y de la sociedad civil, dirigidas a mejorar la salud de la población.","La ciencia y el arte de prevenir las enfermedades, prolongar la vida y fomentar la salud mediante el esfuerzo organizado de la sociedad.","El conjunto de estrategias destinadas al control de las enfermedades transmisibles.","El conjunto de acciones de los hospitales destinadas a disminuir la mortalidad.","La organización de los servicios de diagnóstico y tratamiento de las enfermedades."],ans:1,
+ fb:["Es la definición de la OPS (2002).","Acheson sintetizó la definición de Winslow en una forma breve que se mantiene vigente.","Describe solo un ámbito de la salud pública, propio de su etapa sanitarista inicial.","Confunde salud pública con gestión hospitalaria.","La organización de servicios es un componente mencionado por Winslow y Terris, no la definición completa."]},
+{t:1,type:"Concepto",lvl:"Comprender",dif:"Media",
+ stem:"¿Cuál de las siguientes afirmaciones representa mejor el concepto contemporáneo de salud pública?",
+ opts:["Se centra en la atención hospitalaria de las enfermedades de mayor letalidad.","Tiene como objetivo principal el tratamiento de las enfermedades infecciosas.","Se limita a la vigilancia epidemiológica y al control de brotes.","Comprende acciones intersectoriales que incorporan promoción, prevención, vigilancia, equidad y determinantes sociales.","Tiene como función principal administrar los establecimientos asistenciales."],ans:3,
+ fb:["La salud pública trasciende la atención clínica individual.","Es una visión parcial, propia de la etapa sanitarista.","La vigilancia es una función, no el campo completo.","El enfoque actual es multidimensional e intersectorial.","La administración de establecimientos es una función de gestión, no la definición del campo."]},
+{t:1,type:"Caso clínico",lvl:"Aplicar",dif:"Media",
+ stem:"Una mujer mapuche de 52 años con diabetes mellitus tipo 2 recién diagnosticada consulta en su CESFAM. Antes de iniciar metformina desea consultar con una machi para recuperar el equilibrio perdido. El médico acuerda un plan que incluye el tratamiento farmacológico y respeta su decisión. ¿Qué principio fundamenta mejor la conducta del médico?",
+ opts:["La salud depende principalmente del acceso oportuno a prestaciones sanitarias.","La enfermedad debe abordarse desde un modelo biomédico para asegurar la adherencia.","La percepción de la salud y la enfermedad está influida por factores culturales que deben considerarse en la atención.","Las prácticas tradicionales deben reemplazar al tratamiento convencional cuando la paciente lo solicita.","La cosmovisión de los pueblos originarios es un determinante biológico de la salud."],ans:2,
+ fb:["El acceso es importante, pero no explica la decisión de integrar la creencia de la paciente.","Imponer un modelo exclusivamente biomédico tiende a empeorar la adherencia.","Integrar la cosmovisión de la paciente favorece la atención centrada en la persona y la relación terapéutica.","El médico no reemplazó el tratamiento: lo complementó.","La cosmovisión es un factor cultural y social, no biológico."]},
+{t:1,type:"Caso clínico",lvl:"Aplicar",dif:"Media",
+ stem:"Tras un aumento sostenido de consultas respiratorias en una ciudad del sur, la SEREMI implementa vigilancia epidemiológica, vacunación, educación sanitaria, monitoreo de la calidad del aire y coordinación con los municipios para reducir la contaminación por leña. ¿Qué afirmación describe mejor esta intervención?",
+ opts:["Es una estrategia de tratamiento de las enfermedades una vez que aparecen.","Es una función de administración de la red hospitalaria.","Es una acción intersectorial que aborda la prevención y los determinantes ambientales de la salud.","Es una acción de promoción que corresponde en forma exclusiva a la atención primaria.","Es una intervención de menor impacto que el tratamiento individual de los pacientes."],ans:2,
+ fb:["La mayoría de las medidas actúan antes de que aparezca la enfermedad.","Ninguna de las medidas descritas corresponde a gestión hospitalaria.","Combina vigilancia, prevención, promoción y trabajo con otros sectores sobre un determinante ambiental.","La promoción involucra a varios niveles y sectores, no solo a la APS.","Las intervenciones poblacionales suelen tener mayor impacto que el tratamiento individual."]},
+{t:6,type:"Caso clínico",lvl:"Aplicar",dif:"Baja",
+ stem:"Una TENS de 28 años que trabaja en el servicio de urgencia recibe la vacuna contra influenza en la campaña anual dirigida al personal de salud. ¿A qué nivel de prevención corresponde esta intervención?",
+ opts:["Prevención primordial","Prevención primaria","Prevención secundaria","Prevención terciaria","Prevención cuaternaria"],ans:1,
+ fb:["La primordial actúa sobre las condiciones poblacionales antes de que aparezcan factores de riesgo, por ejemplo con políticas públicas.","La vacunación es protección específica antes de la enfermedad: prevención primaria.","La secundaria detecta enfermedad en fase asintomática; aquí no hay enfermedad que detectar.","La terciaria actúa sobre enfermedad ya establecida.","La cuaternaria evita intervenciones cuyo daño supera al beneficio; esta vacuna tiene indicación clara."]},
+{t:6,type:"Caso clínico",lvl:"Aplicar",dif:"Media",
+ stem:"Un hombre de 45 años, asintomático y sin factores de riesgo, solicita una tomografía computada de cuerpo completo para descartar cualquier cáncer. ¿Cuál es la conducta más adecuada desde la perspectiva de la prevención cuaternaria?",
+ opts:["Solicitar la tomografía para reducir la ansiedad del paciente","Reemplazar la tomografía por un panel de marcadores tumorales","Explicar la falta de beneficio y los posibles daños del examen, y no indicarlo","Indicar controles imagenológicos anuales","Derivar a oncología para una evaluación preventiva"],ans:2,
+ fb:["Expone al paciente a radiación y hallazgos incidentales sin beneficio demostrado.","Los marcadores tumorales no están indicados como tamizaje en población general.","Informar y no indicar una prueba sin beneficio es la esencia de la prevención cuaternaria.","Multiplica la exposición y el riesgo de sobrediagnóstico.","Deriva sin indicación y aumenta la medicalización."]},
+{t:6,type:"Caso clínico",lvl:"Aplicar",dif:"Baja",
+ stem:"Un hombre de 67 años con hemiparesia derecha secundaria a un accidente cerebrovascular isquémico hace tres meses inicia kinesioterapia y terapia ocupacional en el CESFAM. ¿A qué nivel de prevención corresponde esta intervención?",
+ opts:["Prevención primordial","Prevención primaria","Prevención secundaria","Prevención terciaria","Prevención cuaternaria"],ans:3,
+ fb:["No actúa sobre condiciones poblacionales previas a los factores de riesgo.","La enfermedad ya ocurrió.","No se trata de detección precoz: el ACV ya produjo secuelas.","La rehabilitación reduce la discapacidad en una enfermedad establecida.","No se trata de evitar una intervención innecesaria."]},
+{t:6,type:"Caso clínico",lvl:"Analizar",dif:"Media",
+ stem:"Una mujer de 50 años, asintomática y sin antecedentes familiares de cáncer, se realiza una mamografía de tamizaje en su CESFAM. El informe describe una lesión BI-RADS 4. ¿A qué nivel de prevención corresponde la mamografía realizada?",
+ opts:["Prevención primordial","Prevención primaria","Prevención secundaria","Prevención terciaria","Prevención cuaternaria"],ans:2,
+ fb:["No es una intervención poblacional sobre condiciones de riesgo.","No busca evitar la aparición de la enfermedad.","El tamizaje en una persona asintomática busca detectar enfermedad en fase precoz.","El hallazgo no transforma retroactivamente el examen en terciaria: aún no hay enfermedad confirmada.","La mamografía en este grupo de edad tiene indicación con beneficio demostrado."]},
+{t:15,type:"Cálculo",lvl:"Aplicar",dif:"Baja",
+ stem:"En una comuna se registraron 5.000 nacidos vivos durante 2025 y 45 defunciones de menores de 1 año en el mismo período. ¿Cuál es la tasa de mortalidad infantil de la comuna?",
+ opts:["0,9 por 1.000 nacidos vivos","9 por 1.000 nacidos vivos","45 por 1.000 nacidos vivos","90 por 1.000 nacidos vivos","900 por 1.000 nacidos vivos"],ans:1,
+ fb:["Resulta de multiplicar por 100 en vez de 1.000.","(45 / 5.000) × 1.000 = 9 por 1.000 nacidos vivos.","Confunde el número de defunciones con la tasa.","Resulta de multiplicar por 10.000.","Resulta de multiplicar por 100.000."]},
+{t:15,type:"Concepto",lvl:"Comprender",dif:"Media",
+ stem:"En una enfermedad crónica de curso prolongado, la prevalencia es muy superior a la incidencia anual, aunque el número de casos nuevos por año se mantiene estable. ¿Cuál es la explicación más adecuada?",
+ opts:["La prevalencia depende de la incidencia y de la duración de la enfermedad.","Existe un error de medición, porque la incidencia debe ser mayor que la prevalencia.","La prevalencia considera solo a los pacientes hospitalizados.","La enfermedad es de notificación obligatoria.","La enfermedad tiene alta letalidad."],ans:0,
+ fb:["Prevalencia ≈ incidencia × duración: las enfermedades largas acumulan casos.","No existe tal regla; en enfermedades crónicas lo esperable es lo contrario.","La prevalencia se mide en la población, no solo en hospitalizados.","La notificación no modifica la relación entre ambas medidas.","Una alta letalidad acorta la duración y reduce la prevalencia."]},
+{t:15,type:"Normativa",lvl:"Recordar",dif:"Media",
+ stem:"El Ministerio de Salud evalúa incorporar una nueva patología a las Garantías Explícitas en Salud (Ley 19.966). ¿En qué indicadores se basa principalmente la priorización?",
+ opts:["En la disponibilidad de camas de la red pública","En la carga de enfermedad (AVISA), la mortalidad y la prevalencia","Exclusivamente en el costo de los medicamentos","En la antigüedad de la enfermedad en la CIE","En la demanda espontánea de consultas en APS"],ans:1,
+ fb:["La capacidad de oferta se evalúa, pero no es el criterio principal.","Son los indicadores de magnitud del problema que usa la priorización GES.","Se considera la costo-efectividad de las intervenciones, no solo el costo de los fármacos.","No es un criterio de priorización.","La demanda de consultas no mide la carga de enfermedad."]},
+{t:15,type:"Concepto",lvl:"Recordar",dif:"Baja",
+ stem:"¿Cuál de las siguientes características debe cumplir un buen indicador de salud?",
+ opts:["Ser válido, confiable, sensible, específico y factible de calcular","Mantenerse idéntico en el tiempo y entre poblaciones","Ser sensible, aunque no sea específico","Basarse solo en datos hospitalarios","Usar siempre la población total como denominador"],ans:0,
+ fb:["Son los atributos de calidad de un indicador según la OPS.","Los indicadores varían en el tiempo y entre poblaciones; por eso sirven para comparar.","Un indicador poco específico capta cambios que no corresponden al fenómeno.","Las fuentes poblacionales como el INE y la ENS son esenciales.","El denominador es la población en riesgo, por ejemplo los nacidos vivos en la mortalidad infantil."]}
+];
+
+const $ = s => document.querySelector(s);
+const esc = s => String(s).replace(/[&<>"]/g, c => ({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;"}[c]));
+const topicName = n => (TOPICS.find(t => t.n === n) || {}).t || "";
+const fmt = (x, d=1) => isFinite(x) ? x.toLocaleString("es-CL",{minimumFractionDigits:d,maximumFractionDigits:d}) : "—";
+
+/* ---------- vistas ---------- */
+const VIEWS = ["avance","manual","preguntas","formato","herramientas","ruta"];
+function show(v){
+  if(!VIEWS.includes(v)) v = "avance";
+  VIEWS.forEach(x => { $("#v-"+x).hidden = x !== v; $("#tab-"+x).setAttribute("aria-selected", x === v); });
+  try{ localStorage.setItem("eunacom-view", v); }catch(e){}
+  window.scrollTo(0,0);
+}
+document.querySelectorAll("nav button").forEach(b => b.addEventListener("click", () => show(b.dataset.v)));
+
+/* ---------- avance ---------- */
+(function(){
+  const c = {borrador:0,asignado:0,libre:0};
+  TOPICS.forEach(t => c[t.st]++);
+  const total = TOPICS.length;
+  $("#sp-stats").innerHTML = `
+    <div class="stat"><b class="num">${c.borrador}<small style="font-size:16px"> / ${total}</small></b><small>borradores entregados</small></div>
+    <div class="stat"><b class="num">0</b><small>en revisión o versión final</small></div>
+    <div class="stat"><b class="num">${c.asignado}</b><small>asignados sin borrador</small></div>
+    <div class="stat"><b class="num">${c.libre}</b><small>sin asignar</small></div>`;
+  $("#sp-meter").innerHTML = `<i class="st-borrador" style="width:${c.borrador/total*100}%"></i><i class="st-asignado" style="width:${c.asignado/total*100}%"></i>`;
+  const secs = [...new Set(TOPICS.map(t => t.s))];
+  $("#sp-mosaic").innerHTML = secs.map(s => {
+    const ts = TOPICS.filter(t => t.s === s);
+    return `<div class="mrow"><div class="lab" title="${esc(s)}">${esc(s)}</div><div class="cells">${
+      ts.map(t => `<span class="cell st-${t.st}" title="${t.n}. ${esc(t.t)}${t.a ? " · " + esc(t.a) : ""}">${t.n}</span>`).join("")}</div></div>`;
+  }).join("");
+  $("#ed-cells").innerHTML = Array.from({length:79}, (_, i) =>
+    `<span class="cell ${i < 2 ? "st-asignado" : "st-libre"}" style="width:14px;height:14px" title="Tema ${i+1}"></span>`).join("");
+  const by = {};
+  TOPICS.forEach(t => { if(!t.a) return; by[t.a] = by[t.a] || {d:0,p:[]}; t.st === "borrador" ? by[t.a].d++ : by[t.a].p.push(t.n); });
+  $("#by-author").innerHTML = `<thead><tr><th>Ayudante</th><th>Borradores</th><th>Pendientes</th></tr></thead><tbody>${
+    Object.entries(by).sort((a,b) => b[1].d - a[1].d).map(([a,v]) =>
+      `<tr><td>${esc(a)}</td><td>${v.d}</td><td>${v.p.length ? "Tema " + v.p.join(", ") : "—"}</td></tr>`).join("")}</tbody>`;
+})();
+
+/* ---------- manual ---------- */
+let current = 6;
+function renderToc(){
+  const secs = [...new Set(TOPICS.map(t => t.s))];
+  $("#toc").innerHTML = secs.map(s => `<h4>${esc(s)}</h4>` + TOPICS.filter(t => t.s === s).map(t =>
+    `<button data-n="${t.n}" class="${CHAPTERS[t.n] ? "has" : ""}" ${t.n === current ? 'aria-current="true"' : ""}><em>${t.n}</em><span>${esc(t.t)}</span></button>`).join("")).join("");
+  $("#toc").querySelectorAll("button").forEach(b => b.addEventListener("click", () => { current = +b.dataset.n; renderToc(); renderChapter(); }));
+}
+function renderChapter(){
+  const t = TOPICS.find(x => x.n === current), ch = CHAPTERS[current];
+  const status = {borrador:"Borrador en Drive", asignado:"Asignado", libre:"Sin asignar"}[t.st];
+  if(!ch){
+    $("#chapter").innerHTML = `<div class="meta"><span class="pill">Tema ${t.n}</span><span class="pill">${status}</span>${t.a ? `<span class="pill">${esc(t.a)}</span>` : ""}</div>
+      <h1>${esc(t.t)}</h1><div class="empty">${t.st === "borrador" ? "El borrador existe en Drive y aparecerá aquí cuando pase a versión 1." : "Este tema aún no tiene texto."}<br><br>
+      <button class="btn ghost" onclick="current=6;renderToc();renderChapter()">Ver un capítulo de ejemplo</button></div>`;
+    return;
+  }
+  const nq = QS.filter(q => q.t === current).length;
+  $("#chapter").innerHTML = `<div class="meta"><span class="pill">Tema ${t.n}</span><span class="pill code">EUNACOM ${ch.code}</span><span class="pill b">Borrador · en revisión</span></div>
+    <h1>${esc(t.t)}</h1><p class="note" style="margin-top:6px">${esc(ch.author)} · ${esc(t.s)}</p>
+    <div class="prose">${ch.html}</div>
+    <div style="margin-top:24px;display:flex;flex-wrap:wrap;gap:10px;align-items:center">
+      <button class="btn" id="practice">Practicar este tema · ${nq} preguntas</button>
+    </div>`;
+  $("#practice").addEventListener("click", () => { $("#q-filter").value = String(current); setMode("prac"); show("preguntas"); startQuiz(); });
+}
+renderToc(); renderChapter();
+
+/* ---------- preguntas ---------- */
+let mode = "prac", deck = [], idx = 0, answers = [], timerId = null, t0 = 0;
+$("#q-filter").innerHTML = `<option value="all">Todos los temas (${QS.length})</option>` +
+  [...new Set(QS.map(q => q.t))].map(n => `<option value="${n}">Tema ${n} · ${esc(topicName(n))}</option>`).join("");
+function setMode(m){ mode = m; $("#m-prac").setAttribute("aria-pressed", m === "prac"); $("#m-sim").setAttribute("aria-pressed", m === "sim"); }
+$("#m-prac").addEventListener("click", () => { setMode("prac"); startQuiz(); });
+$("#m-sim").addEventListener("click", () => { setMode("sim"); startQuiz(); });
+$("#q-filter").addEventListener("change", startQuiz);
+$("#q-start").addEventListener("click", startQuiz);
+const L = "ABCDE";
+function shuffle(a){ a = a.slice(); for(let i = a.length - 1; i > 0; i--){ const j = Math.floor(Math.random() * (i + 1)); [a[i], a[j]] = [a[j], a[i]]; } return a; }
+function startQuiz(){
+  const f = $("#q-filter").value;
+  deck = QS.filter(q => f === "all" || q.t === +f);
+  if(mode === "sim") deck = shuffle(deck);
+  idx = 0; answers = deck.map(() => null);
+  clearInterval(timerId); t0 = Date.now();
+  if(mode === "sim") timerId = setInterval(tick, 1000);
+  renderQ();
+}
+function tick(){ const el = $("#timer"); if(!el) return; const s = Math.floor((Date.now() - t0) / 1000); el.textContent = `${String(Math.floor(s/60)).padStart(2,"0")}:${String(s%60).padStart(2,"0")}`; }
+function fbList(q, a){
+  return `<ul class="fbl">${q.fb.map((f, i) => `<li class="${i === q.ans ? "c" : (i === a ? "" : "x")}"><b>${L[i]}</b><span>${esc(f)}</span></li>`).join("")}</ul>`;
+}
+function renderQ(){
+  const q = deck[idx], a = answers[idx], revealed = mode === "prac" && a !== null;
+  const dots = mode === "sim" ? `<div class="dots" aria-hidden="true">${deck.map((_, i) => `<span class="dot ${answers[i] !== null ? "ans" : ""} ${i === idx ? "cur" : ""}"></span>`).join("")}</div>` : "";
+  $("#q-area").innerHTML = `<div class="qcard">
+    <div class="qhead"><div style="display:flex;flex-wrap:wrap;gap:6px"><span class="pill">Pregunta ${idx+1} de ${deck.length}</span><span class="pill">Tema ${q.t}</span><span class="pill code">${CHAPTERS[q.t].code}</span><span class="pill b">${q.type}</span><span class="pill">${q.lvl}</span><span class="pill">Dificultad ${q.dif.toLowerCase()}</span></div>
+    ${mode === "sim" ? `<span class="timer" id="timer">00:00</span>` : ""}</div>
+    ${dots}
+    <p class="stem" style="margin-top:${mode === "sim" ? "14px" : "0"}">${esc(q.stem)}</p>
+    <div class="opts" role="radiogroup">${q.opts.map((o, i) => {
+      let cls = "";
+      if(revealed){ if(i === q.ans) cls = "right"; else if(i === a) cls = "wrong"; }
+      else if(a === i) cls = "sel";
+      return `<button class="opt ${cls}" role="radio" aria-checked="${a === i}" data-i="${i}" ${revealed ? 'aria-disabled="true"' : ""}><b>${L[i]}</b><span>${esc(o)}</span></button>`;
+    }).join("")}</div>
+    ${revealed ? `<div class="expl"><strong class="${a === q.ans ? "res-ok" : "res-bad"}">${a === q.ans ? "Correcta." : "Incorrecta. La respuesta es " + L[q.ans] + "."}</strong>${fbList(q, a)}</div>` : ""}
+    <div class="qnav">
+      <button class="btn ghost" id="prev" ${idx === 0 ? "disabled" : ""}>Anterior</button>
+      ${idx < deck.length - 1 ? `<button class="btn" id="next">Siguiente</button>` :
+        (mode === "sim" ? `<button class="btn" id="finish">Terminar simulacro</button>` : `<button class="btn" id="again">Reiniciar</button>`)}
+    </div></div>`;
+  tick();
+  $("#q-area").querySelectorAll(".opt").forEach(b => b.addEventListener("click", () => {
+    if(revealed) return; answers[idx] = +b.dataset.i; renderQ();
+  }));
+  const on = (id, fn) => { const el = $(id); if(el) el.addEventListener("click", fn); };
+  on("#prev", () => { if(idx > 0){ idx--; renderQ(); } });
+  on("#next", () => { idx++; renderQ(); });
+  on("#again", startQuiz);
+  on("#finish", results);
+}
+function results(){
+  clearInterval(timerId);
+  const s = Math.floor((Date.now() - t0) / 1000);
+  const ok = deck.filter((q, i) => answers[i] === q.ans).length;
+  const byT = {};
+  deck.forEach((q, i) => { byT[q.t] = byT[q.t] || {n:0, ok:0}; byT[q.t].n++; if(answers[i] === q.ans) byT[q.t].ok++; });
+  $("#q-area").innerHTML = `<div class="qcard">
+    <div class="eyebrow">Resultado del simulacro</div>
+    <div class="stats"><div class="stat"><b class="num">${ok} / ${deck.length}</b><small>correctas (${Math.round(ok/deck.length*100)}%)</small></div>
+    <div class="stat"><b class="num">${Math.floor(s/60)}:${String(s%60).padStart(2,"0")}</b><small>minutos</small></div></div>
+    <div class="tw" style="margin-top:18px"><table class="num"><thead><tr><th>Tema</th><th>Correctas</th></tr></thead><tbody>${
+      Object.entries(byT).map(([t, v]) => `<tr><td>${t}. ${esc(topicName(+t))}</td><td class="${v.ok === v.n ? "res-ok" : v.ok/v.n < .6 ? "res-bad" : ""}">${v.ok} / ${v.n}</td></tr>`).join("")}</tbody></table></div>
+    <h3 style="margin-top:24px">Revisión</h3>
+    <ol style="padding-left:1.2em;max-width:74ch">${deck.map((q, i) => `<li style="margin-bottom:16px"><span style="font-family:var(--f-serif)">${esc(q.stem)}</span><br><span class="${answers[i] === q.ans ? "res-ok" : "res-bad"}">${answers[i] === q.ans ? "Correcta" : answers[i] === null ? "Sin responder" : "Incorrecta (" + L[answers[i]] + ")"}</span> · respuesta ${L[q.ans]}. <span style="color:var(--muted)">${esc(q.fb[q.ans])}</span>${answers[i] !== null && answers[i] !== q.ans ? `<br><span style="color:var(--muted)">Tu respuesta ${L[answers[i]]}: ${esc(q.fb[answers[i]])}</span>` : ""}</li>`).join("")}</ol>
+    <div class="qnav"><button class="btn" id="again2">Nuevo simulacro</button></div></div>`;
+  $("#again2").addEventListener("click", startQuiz);
+}
+startQuiz();
+
+/* ---------- formato ---------- */
+$("#copy-tpl").addEventListener("click", () => {
+  const txt = $("#tpl").textContent, msg = $("#copy-msg");
+  const fallback = () => { const r = document.createRange(); r.selectNodeContents($("#tpl")); const sel = getSelection(); sel.removeAllRanges(); sel.addRange(r); msg.textContent = "Texto seleccionado. Cópialo con Ctrl+C o Cmd+C."; };
+  try { navigator.clipboard.writeText(txt).then(() => { msg.textContent = "Plantilla copiada."; }, fallback); } catch(e){ fallback(); }
+});
+
+/* ---------- herramientas ---------- */
+function calc22(){
+  const v = id => Math.max(0, +$(id).value || 0);
+  const a = v("#a"), b = v("#b"), c = v("#c"), d = v("#d"), n = a+b+c+d;
+  const items = [
+    ["Sensibilidad", a/(a+c)*100, "a / (a + c)", "%"],
+    ["Especificidad", d/(b+d)*100, "d / (b + d)", "%"],
+    ["VPP", a/(a+b)*100, "a / (a + b)", "%"],
+    ["VPN", d/(c+d)*100, "d / (c + d)", "%"],
+    ["Prevalencia", (a+c)/n*100, "(a + c) / N", "%"],
+    ["LR+", (a/(a+c))/(1-d/(b+d)), "S / (1 − E)", ""]
+  ];
+  $("#t22-out").innerHTML = items.map(([k, x, f, u]) => `<div class="out"><small>${k}</small><b>${fmt(x)}${u}</b><div class="formula">${f}</div></div>`).join("");
+}
+["#a","#b","#c","#d"].forEach(id => $(id).addEventListener("input", calc22)); calc22();
+function calcMI(){ const d = +$("#mi-d").value || 0, n = +$("#mi-n").value || 0; $("#mi-out").textContent = n > 0 ? fmt(d/n*1000) : "—"; }
+["#mi-d","#mi-n"].forEach(id => $(id).addEventListener("input", calcMI)); calcMI();
+
+/* ---------- inicio ---------- */
+let start = location.hash.slice(1);
+if(!VIEWS.includes(start)){ try{ start = localStorage.getItem("eunacom-view") || "avance"; }catch(e){ start = "avance"; } }
+show(start);
+</script>
+
+</body>
+</html>
