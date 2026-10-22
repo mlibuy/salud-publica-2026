@@ -165,6 +165,8 @@ select{font:inherit;padding:8px 10px;border-radius:8px;border:1px solid var(--li
 .ab{padding-bottom:14px;border-bottom:1px solid var(--line)}
 .ah{font-size:13px;color:var(--muted)}
 @media (max-width:760px){.anat{grid-template-columns:1fr;gap:6px}.ah{margin-bottom:14px}.ab{border-bottom:0;padding-bottom:0}}
+.ficha{font:12.5px/1.6 var(--f-mono);color:var(--muted);padding:10px 12px;border:1px solid var(--line);border-radius:8px;background:var(--bg)}
+.ficha b{color:var(--ink);font-weight:500}
 .stemx{font-family:var(--f-serif);font-size:16px;line-height:1.6}
 .alts{margin:0;padding-left:1.6em;list-style:upper-alpha;font-size:14.5px}
 .alts li{padding:2px 0}
@@ -305,7 +307,7 @@ select{font:inherit;padding:8px 10px;border-radius:8px;border:1px solid var(--li
   <div>
     <div class="eyebrow">Preguntas escritas por los ayudantes</div>
     <h1>Banco de preguntas</h1>
-    <p class="lede">Las 13 preguntas de autoevaluación de los temas 1, 6 y 15, reescritas con el formato del banco: viñeta, 4 alternativas y una explicación que nombra el criterio y descarta los distractores. En modo práctica la ves al responder; en simulacro, al final.</p>
+    <p class="lede">Las 13 preguntas de autoevaluación de los temas 1, 6 y 15, reescritas con el formato del banco: formato tabla, 4 alternativas que se pueden responder sin mirarlas y una explicación que descarta los distractores. En modo práctica la ves al responder; en simulacro, al final.</p>
   </div>
   <div class="qtools">
     <div class="seg" role="group" aria-label="Modo">
@@ -322,84 +324,86 @@ select{font:inherit;padding:8px 10px;border-radius:8px;border:1px solid var(--li
 <!-- FORMATO -->
 <section id="v-formato" class="stack" hidden>
   <div>
-    <div class="eyebrow">Estándar para todo el banco</div>
+    <div class="eyebrow">Estándar del banco</div>
     <h1>Formato de pregunta</h1>
-    <p class="lede">Cada tema aporta 5 preguntas con esta estructura: una sola mejor respuesta, cuatro alternativas y una explicación que enseña por qué los distractores tientan y por qué no son la respuesta.</p>
+    <p class="lede">Seguimos el <i>Manual breve para diseñar preguntas de selección múltiple</i> de la Unidad de Evaluación de la Escuela de Medicina, basado en Case y Swanson (NBME). Cada tema aporta 5 preguntas en formato tabla. Al banco le agregamos una explicación por pregunta.</p>
   </div>
 
   <div class="panel">
     <h2>Anatomía de una pregunta</h2>
     <div class="anat">
-      <div class="al"><span class="tag">1</span>Viñeta</div>
-      <div class="ab stemx">Una mujer de 50 años, asintomática y sin antecedentes familiares de cáncer, se realiza una mamografía de tamizaje en su CESFAM. El informe describe una lesión BI-RADS 4.</div>
-      <div class="ah">Paciente, edad, contexto y lugar de atención. Solo datos que se usan para responder.</div>
+      <div class="al"><span class="tag">1</span>Formato tabla</div>
+      <div class="ab"><div class="ficha"><div><b>UNIDAD:</b> I. Fundamentos y Conceptos de Salud Pública</div><div><b>TEMA:</b> 6. Niveles de prevención</div><div><b>ESPECÍFICO:</b> Prevención secundaria: tamizaje</div></div></div>
+      <div class="ah">Unidad, tema y subtema específico. Sumamos el código EUNACOM para armar simulacros por sección.</div>
 
-      <div class="al"><span class="tag">2</span>Pregunta</div>
+      <div class="al"><span class="tag">2</span>Enunciado</div>
+      <div class="ab stemx">Una mujer de 50 años, asintomática y sin antecedentes familiares de cáncer, se realiza una mamografía de tamizaje en su centro de salud familiar. El informe describe una lesión categoría BI-RADS 4.</div>
+      <div class="ah">Solo la información necesaria para responder, sin abreviaturas, en tono neutro. Máximo 130 palabras.</div>
+
+      <div class="al"><span class="tag">3</span>Pregunta</div>
       <div class="ab stemx"><b>¿A qué nivel de prevención corresponde la mamografía realizada?</b></div>
-      <div class="ah">Cerrada y en positivo. Debe poder responderse tapando las alternativas.</div>
+      <div class="ah">Se responde sin mirar las alternativas, como si fuera de desarrollo. Nunca en falso o negativo.</div>
 
-      <div class="al"><span class="tag">3</span>Alternativas</div>
-      <div class="ab"><ol class="alts"><li>Prevención primaria</li><li class="ok">Prevención secundaria</li><li>Prevención terciaria</li><li>Prevención cuaternaria</li></ol></div>
-      <div class="ah">Cuatro, de a) a d), del mismo largo y tipo, en orden lógico. Los distractores salen de errores frecuentes.</div>
+      <div class="al"><span class="tag">4</span>Alternativas</div>
+      <div class="ab"><ol class="alts"><li>Primaria.</li><li class="ok">Secundaria.</li><li>Terciaria.</li><li>Cuaternaria.</li></ol></div>
+      <div class="ah">Cuatro, de A) a D), con la correcta en negrita. Concordantes en extensión, contenido y gramática.</div>
 
-      <div class="al"><span class="tag">4</span>Explicación</div>
-      <div class="ab"><p style="margin:0">Se pregunta por la mamografía, no por lo que viene después. Se realizó en una mujer asintomática para detectar un cáncer antes de que dé síntomas: prevención secundaria. El hallazgo BI-RADS 4 no la vuelve terciaria, porque aún no hay enfermedad confirmada. Tampoco es cuaternaria: en este grupo de edad el tamizaje tiene beneficio demostrado.</p></div>
-      <div class="ah">Un párrafo: abre con el criterio que decide la pregunta, justifica la correcta y descarta los distractores más tentadores.</div>
-
-      <div class="al"><span class="tag">5</span>Ficha</div>
-      <div class="ab"><div style="display:flex;flex-wrap:wrap;gap:6px"><span class="pill">Tema 6</span><span class="pill code">7.01.3.004</span><span class="pill b">Caso clínico</span><span class="pill">Analizar</span><span class="pill">Dificultad media</span><span class="pill">Autora: C. Loayza</span><span class="pill">Revisión: pendiente</span></div></div>
-      <div class="ah">Permite armar simulacros por código EUNACOM y medir qué se falla.</div>
+      <div class="al"><span class="tag">5</span>Explicación</div>
+      <div class="ab"><p style="margin:0">Se pregunta por la mamografía, no por lo que viene después. Se realizó en una mujer asintomática para detectar un cáncer antes de que dé síntomas: prevención secundaria. El hallazgo no la vuelve terciaria, porque aún no hay enfermedad confirmada. Tampoco es cuaternaria: en este grupo de edad el tamizaje tiene beneficio demostrado.</p></div>
+      <div class="ah">Agregado del banco. Abre con el criterio que decide la pregunta y descarta los distractores más tentadores.</div>
     </div>
   </div>
 
   <div class="grid3">
     <div class="panel">
-      <h3>Enunciado</h3>
+      <h3>Enunciado y pregunta</h3>
       <ul class="rules">
-        <li>Mide un objetivo del Perfil EUNACOM del tema.</li>
-        <li>Prefiere casos que piden aplicar o decidir; las de memoria pura, como máximo 1 de 5.</li>
-        <li>Al menos 2 casos clínicos por tema, y 1 de cálculo cuando el tema lo permita.</li>
-        <li>Situado en Chile: CESFAM, SAPU, SEREMI, GES.</li>
-        <li>Sin negaciones del tipo «excepto» o «no es».</li>
+        <li>Se responde sin mirar las alternativas. Sin formato K («solo I», «I y III») ni K camuflado.</li>
+        <li>Un subtema por pregunta. Si se pregunta por estudio o tratamiento, se entrega el diagnóstico.</li>
+        <li>Si no se pregunta el diagnóstico, el caso es escueto. Máximo 130 palabras.</li>
+        <li>En las comparaciones queda claro qué se pregunta y contra qué se compara.</li>
+        <li>Los exámenes de laboratorio llevan rango de referencia y unidades.</li>
+        <li>Nunca en falso o negativo: «¿cuál descarta…?» en vez de «¿cuál no es…?».</li>
+        <li>En neutro: «se debe pensar», no «usted piensa».</li>
+        <li>Datos que permitan deducir: «pulso de 130 por minuto», no «taquicárdico».</li>
       </ul>
     </div>
     <div class="panel">
       <h3>Alternativas</h3>
       <ul class="rules">
-        <li>Exactamente 4, de a) a d), con una sola mejor respuesta.</li>
-        <li>Homogéneas en largo, estructura y categoría.</li>
-        <li>Ordenadas: números de menor a mayor, niveles en su secuencia.</li>
-        <li>Sin «todas las anteriores» ni «ninguna de las anteriores».</li>
-        <li>Sin absolutos como «siempre» o «nunca», que delatan al distractor.</li>
+        <li>Cuatro alternativas, en formato tabla y con la correcta en negrita.</li>
+        <li>Sin abreviaturas, ni en el enunciado ni en las alternativas.</li>
+        <li>Sin «todas las anteriores», «ninguna de las anteriores», «siempre» ni «nunca».</li>
+        <li>Las palabras que se repiten en las alternativas pasan al enunciado.</li>
+        <li>Concordantes en extensión, contenido y gramática: la correcta no puede ser la más larga ni la única con otra estructura.</li>
       </ul>
     </div>
     <div class="panel">
-      <h3>Explicación</h3>
+      <h3>Explicación y revisión</h3>
       <ul class="rules">
-        <li>Abre con el criterio que decide la pregunta: el dato del enunciado que hay que mirar.</li>
-        <li>Descarta por nombre los distractores tentadores.</li>
-        <li>En cálculos, mostrar la operación y el error que produce cada distractor.</li>
-        <li>Al menos una referencia del capítulo.</li>
-        <li>Revisada por un segundo ayudante antes de entrar al banco.</li>
+        <li>Abre con el dato del enunciado que decide la respuesta.</li>
+        <li>Descarta por nombre los distractores que más tientan.</li>
+        <li>Cita el número de la referencia del capítulo.</li>
+        <li>Un segundo ayudante la revisa con esta lista antes de que entre al banco.</li>
       </ul>
     </div>
   </div>
 
   <div class="panel">
     <h2>Antes y después</h2>
-    <p class="note">Tema 6, pregunta 4. El contenido y las alternativas son los mismos; cambian la viñeta, la pregunta y la explicación.</p>
+    <p class="note">Tema 6, pregunta 4. El contenido es el mismo; cambian el enunciado, las alternativas y la explicación.</p>
     <div class="ba">
       <div>
         <div class="eyebrow" style="margin-bottom:8px">Borrador</div>
         <p class="stemx" style="margin:0 0 10px">Una mujer de 50 años asintomática se realiza una mamografía de tamizaje, que informa una lesión BI-RADS 4. ¿A qué nivel de prevención corresponde?</p>
         <ol class="alts"><li>Prevención primaria</li><li class="ok">Prevención secundaria</li><li>Prevención terciaria</li><li>Prevención cuaternaria</li></ol>
-        <ul class="rules issues"><li>No aclara si se clasifica la mamografía o lo que viene después del hallazgo.</li><li>Faltan datos que descarten alto riesgo.</li><li>La explicación solo justifica la correcta.</li></ul>
+        <ul class="rules issues"><li>No precisa qué se clasifica: la mamografía o lo que viene después del hallazgo.</li><li>«Prevención» se repite en las cuatro alternativas.</li><li>Falta el formato tabla y la explicación solo justifica la correcta.</li></ul>
       </div>
       <div>
         <div class="eyebrow" style="margin-bottom:8px">Con el formato</div>
-        <p class="stemx" style="margin:0 0 10px">Una mujer de 50 años, asintomática y sin antecedentes familiares de cáncer, se realiza una mamografía de tamizaje en su CESFAM. El informe describe una lesión BI-RADS 4. ¿A qué nivel de prevención corresponde <b>la mamografía realizada</b>?</p>
-        <ol class="alts"><li>Prevención primaria</li><li class="ok">Prevención secundaria</li><li>Prevención terciaria</li><li>Prevención cuaternaria</li></ol>
-        <ul class="rules fixes"><li>Precisa qué se clasifica: la mamografía realizada.</li><li>Contexto chileno y datos que descartan alto riesgo.</li><li>La explicación descarta la terciaria, el distractor que más tienta.</li></ul>
+        <p class="stemx" style="margin:0 0 10px">Una mujer de 50 años, asintomática y sin antecedentes familiares de cáncer, se realiza una mamografía de tamizaje en su centro de salud familiar. El informe describe una lesión categoría BI-RADS 4. ¿A qué nivel de prevención corresponde <b>la mamografía realizada</b>?</p>
+        <ol class="alts"><li>Primaria.</li><li class="ok">Secundaria.</li><li>Terciaria.</li><li>Cuaternaria.</li></ol>
+        <ul class="rules fixes"><li>La pregunta dice qué se clasifica.</li><li>«Prevención» pasó al enunciado.</li><li>Formato tabla y explicación que descarta la terciaria, el distractor que más tienta.</li></ul>
       </div>
     </div>
   </div>
@@ -409,21 +413,20 @@ select{font:inherit;padding:8px 10px;border-radius:8px;border:1px solid var(--li
       <h2>Plantilla para el Google Doc</h2>
       <button class="btn ghost" id="copy-tpl">Copiar plantilla</button>
     </div>
-    <pre class="tpl" id="tpl">PREGUNTA [N] · Tema [número] · Código EUNACOM [7.01.x.xxx]
-Tipo: [Caso clínico / Cálculo / Concepto / Normativa]
-Nivel: [Recordar / Comprender / Aplicar / Analizar] · Dificultad: [Baja / Media / Alta]
+    <pre class="tpl" id="tpl">UNIDAD: [sección del manual]
+TEMA: [número y título del tema]
+ESPECÍFICO: [subtema que mide la pregunta]
+Código EUNACOM: [7.01.x.xxx] · Tipo: [Caso clínico / Cálculo / Concepto / Normativa] · Dificultad: [Baja / Media / Alta]
 
-Viñeta: [paciente, edad, contexto, lugar de atención, datos necesarios]
-Pregunta: [¿Cuál es...? en positivo, responde tapando las alternativas]
+[N]. [Enunciado: solo la información necesaria, sin abreviaturas, máximo 130 palabras. Pregunta en positivo, que se responda sin mirar las alternativas.]
+A) [alternativa]
+B) [alternativa]
+C) [alternativa]
+D) [alternativa]
+(marcar en negrita la alternativa correcta)
 
-a) [alternativa]
-b) [alternativa]
-c) [alternativa]
-d) [alternativa]
-
-Respuesta correcta: [letra]
-Explicación: [criterio que decide la pregunta. Por qué la correcta lo es. Por qué los distractores tentadores no lo son.]
-Referencia: [número de la bibliografía del capítulo]
+Explicación: [dato que decide la respuesta. Por qué la correcta lo es. Por qué los distractores tentadores no lo son.]
+Referencia: [número en la bibliografía del capítulo]
 Autor/a: [nombre] · Revisor/a: [nombre]</pre>
     <p class="note" id="copy-msg" aria-live="polite"></p>
   </div>
@@ -485,7 +488,7 @@ Autor/a: [nombre] · Revisor/a: [nombre]</pre>
   <div class="panel">
     <div class="phase"><div><div class="eyebrow">Ahora</div><h3>Noviembre</h3></div><ul>
       <li><b>Abrir la revisión</b> de los 18 borradores con pares cruzados y la rúbrica de 100 puntos.</li>
-      <li><b>Estandarizar preguntas</b> con el formato de la pestaña «Formato de pregunta»: 5 por tema, 4 alternativas, una explicación que descarta los distractores y revisión de un segundo ayudante.</li>
+      <li><b>Estandarizar preguntas</b> con el formato de la pestaña «Formato de pregunta»: 5 por tema en formato tabla, siguiendo el manual de la Unidad de Evaluación, con explicación y revisión de un segundo ayudante.</li>
       <li><b>Repositorio y sitio</b> con los temas en versión 1; dominio del tipo usuario.github.io/manual-eunacom.</li>
     </ul></div>
     <div class="phase"><div><div class="eyebrow">Próximo</div><h3>Verano</h3></div><ul>
@@ -594,58 +597,58 @@ const CHAPTERS = {
 };
 
 const QS = [
-{t:1,type:"Concepto",lvl:"Recordar",dif:"Baja",
- stem:"Respecto de la definición de salud de la Organización Mundial de la Salud (OMS), ¿cuál de las siguientes afirmaciones es correcta?",
- opts:["La define como la ausencia de enfermedad o afección.","Considera el bienestar físico y mental, sin incluir la dimensión social.","La define como un estado de completo bienestar físico, mental y social, y no solamente la ausencia de enfermedad.","La limita al funcionamiento normal de los órganos y sistemas."],ans:2,
- e:"La definición de la Constitución de la OMS tiene dos partes y ambas se preguntan: las tres dimensiones del bienestar y la frase «no solamente la ausencia de enfermedad». La alternativa a es justamente el concepto biomédico que la OMS supera, la b omite la dimensión social y la d es una versión funcional del mismo modelo biomédico."},
-{t:1,type:"Concepto",lvl:"Recordar",dif:"Media",
- stem:"¿Cuál de las siguientes definiciones de salud pública corresponde a la propuesta por Donald Acheson en 1988?",
- opts:["Las acciones colectivas e individuales, del Estado y de la sociedad civil, dirigidas a mejorar la salud de la población.","La ciencia y el arte de prevenir las enfermedades, prolongar la vida y fomentar la salud mediante el esfuerzo organizado de la sociedad.","El conjunto de estrategias destinadas al control de las enfermedades transmisibles.","La organización de los servicios de diagnóstico y tratamiento de las enfermedades."],ans:1,
- e:"Acheson sintetiza a Winslow: conserva «ciencia y arte», los tres verbos (prevenir, prolongar, fomentar) y el esfuerzo organizado, ahora de la sociedad. La alternativa a es la definición de la OPS (2002), que habla de acciones del Estado y de la sociedad civil. La c describe solo la etapa sanitarista, y la d toma un componente de Winslow y Terris como si fuera la definición completa."},
-{t:1,type:"Concepto",lvl:"Comprender",dif:"Media",
- stem:"¿Cuál de las siguientes afirmaciones representa mejor el concepto contemporáneo de salud pública?",
- opts:["Se centra en la atención hospitalaria de las enfermedades de mayor letalidad.","Tiene como objetivo principal el tratamiento de las enfermedades infecciosas.","Se limita a la vigilancia epidemiológica y al control de brotes.","Comprende acciones intersectoriales que incorporan promoción, prevención, vigilancia, equidad y determinantes sociales."],ans:3,
- e:"El concepto actual se reconoce por dos rasgos: es poblacional y es intersectorial. Las alternativas a y b lo reducen a la atención clínica de enfermedades, y la c confunde una de sus funciones esenciales, la vigilancia, con el campo completo."},
-{t:1,type:"Caso clínico",lvl:"Aplicar",dif:"Media",
- stem:"Una mujer mapuche de 52 años con diabetes mellitus tipo 2 recién diagnosticada consulta en su CESFAM. Antes de iniciar metformina desea consultar con una machi para recuperar el equilibrio perdido. El médico acuerda un plan que incluye el tratamiento farmacológico y respeta su decisión. ¿Qué principio fundamenta mejor la conducta del médico?",
- opts:["La enfermedad debe abordarse desde un modelo biomédico para asegurar la adherencia.","La percepción de la salud y la enfermedad está influida por factores culturales que deben considerarse en la atención.","Las prácticas tradicionales deben reemplazar al tratamiento convencional cuando la paciente lo solicita.","La cosmovisión de los pueblos originarios es un determinante biológico de la salud."],ans:1,
- e:"El médico integra la creencia de la paciente sin abandonar el tratamiento, y eso solo se explica si se reconoce que la cultura moldea cómo se entiende la enfermedad. La a describe lo contrario de lo que hizo el médico, y suele empeorar la adherencia. La c no ocurrió, porque la metformina se mantuvo. La d clasifica mal la cosmovisión, que es un determinante cultural y social, no biológico."},
-{t:1,type:"Caso clínico",lvl:"Aplicar",dif:"Media",
- stem:"Tras un aumento sostenido de consultas respiratorias en una ciudad del sur, la SEREMI implementa vigilancia epidemiológica, vacunación, educación sanitaria, monitoreo de la calidad del aire y coordinación con los municipios para reducir la contaminación por leña. ¿Qué afirmación describe mejor esta intervención?",
- opts:["Es una estrategia de tratamiento de las enfermedades una vez que aparecen.","Es una función de administración de la red hospitalaria.","Es una acción intersectorial que aborda la prevención y los determinantes ambientales de la salud.","Es una acción de promoción que corresponde en forma exclusiva a la atención primaria."],ans:2,
- e:"La clave está en quiénes actúan y sobre qué: la SEREMI coordina con los municipios, y la medida central actúa sobre la calidad del aire, un determinante ambiental. Eso es acción intersectorial y preventiva. La a no calza porque casi todas las medidas actúan antes de la enfermedad, la b no aparece en el caso, y la d es falsa porque la promoción involucra a varios sectores y niveles."},
-{t:6,type:"Caso clínico",lvl:"Aplicar",dif:"Baja",
- stem:"Una TENS de 28 años que trabaja en el servicio de urgencia recibe la vacuna contra influenza en la campaña anual dirigida al personal de salud. ¿A qué nivel de prevención corresponde esta intervención?",
- opts:["Prevención primaria","Prevención secundaria","Prevención terciaria","Prevención cuaternaria"],ans:0,
- e:"La TENS no tiene la enfermedad, y la vacuna interpone una barrera específica contra un agente definido: prevención primaria, en su modalidad de protección específica. No es secundaria porque no hay enfermedad que detectar, ni terciaria porque no hay daño que limitar. Tampoco es cuaternaria: la vacuna tiene indicación y beneficio demostrado en el personal de salud."},
-{t:6,type:"Caso clínico",lvl:"Aplicar",dif:"Media",
- stem:"Un hombre de 45 años, asintomático y sin factores de riesgo, solicita una tomografía computada de cuerpo completo para descartar cualquier cáncer. ¿Cuál es la conducta más adecuada desde la perspectiva de la prevención cuaternaria?",
- opts:["Solicitar la tomografía para reducir la ansiedad del paciente","Reemplazar la tomografía por un panel de marcadores tumorales","Explicar la falta de beneficio y los posibles daños del examen, y no indicarlo","Indicar controles imagenológicos anuales"],ans:2,
- e:"La prevención cuaternaria protege al paciente del daño que puede causar la propia medicina. Una tomografía de cuerpo completo sin indicación expone a radiación y a hallazgos incidentales que llevan a más estudios, sin beneficio demostrado. Las alternativas a, b y d hacen lo mismo con otro nombre: indican una prueba sin beneficio, una o varias veces."},
-{t:6,type:"Caso clínico",lvl:"Aplicar",dif:"Baja",
- stem:"Un hombre de 67 años con hemiparesia derecha secundaria a un accidente cerebrovascular isquémico hace tres meses inicia kinesioterapia y terapia ocupacional en el CESFAM. ¿A qué nivel de prevención corresponde esta intervención?",
- opts:["Prevención primaria","Prevención secundaria","Prevención terciaria","Prevención cuaternaria"],ans:2,
- e:"El ACV ya ocurrió y dejó secuelas, y el objetivo declarado es recuperar funcionalidad: rehabilitación, que corresponde a prevención terciaria. No es secundaria, porque no se trata de detectar precozmente la enfermedad, ni cuaternaria, porque la kinesioterapia tiene indicación clara."},
-{t:6,type:"Caso clínico",lvl:"Analizar",dif:"Media",
- stem:"Una mujer de 50 años, asintomática y sin antecedentes familiares de cáncer, se realiza una mamografía de tamizaje en su CESFAM. El informe describe una lesión BI-RADS 4. ¿A qué nivel de prevención corresponde la mamografía realizada?",
- opts:["Prevención primaria","Prevención secundaria","Prevención terciaria","Prevención cuaternaria"],ans:1,
- e:"Se pregunta por la mamografía, no por lo que viene después. Se realizó en una mujer asintomática para detectar un cáncer antes de que dé síntomas: tamizaje, es decir, prevención secundaria. El hallazgo BI-RADS 4 no vuelve terciaria a la mamografía, porque aún no hay enfermedad confirmada ni daño que limitar. Tampoco es cuaternaria: en este grupo de edad el tamizaje mamográfico tiene beneficio demostrado."},
-{t:15,type:"Cálculo",lvl:"Aplicar",dif:"Baja",
- stem:"En una comuna se registraron 5.000 nacidos vivos durante 2025 y 45 defunciones de menores de 1 año en el mismo período. ¿Cuál es la tasa de mortalidad infantil de la comuna?",
- opts:["0,9 por 1.000 nacidos vivos","9 por 1.000 nacidos vivos","45 por 1.000 nacidos vivos","90 por 1.000 nacidos vivos"],ans:1,
- e:"La tasa de mortalidad infantil usa como denominador a los nacidos vivos del mismo período y se expresa por 1.000: (45 / 5.000) × 1.000 = 9. La alternativa a resulta de multiplicar por 100, la c confunde el número de defunciones con la tasa y la d resulta de multiplicar por 10.000."},
-{t:15,type:"Concepto",lvl:"Comprender",dif:"Media",
- stem:"En una enfermedad crónica de curso prolongado, la prevalencia es muy superior a la incidencia anual, aunque el número de casos nuevos por año se mantiene estable. ¿Cuál es la explicación más adecuada?",
- opts:["La prevalencia depende de la incidencia y de la duración de la enfermedad.","Existe un error de medición, porque la incidencia debe ser mayor que la prevalencia.","La prevalencia considera solo a los pacientes hospitalizados.","La enfermedad tiene alta letalidad."],ans:0,
- e:"En condiciones estables, la prevalencia es aproximadamente la incidencia multiplicada por la duración. Una enfermedad crónica dura años, así que los casos se acumulan aunque cada año aparezca el mismo número de casos nuevos. La d es la trampa: una alta letalidad acorta la duración y haría bajar la prevalencia, no subir. La b invierte la relación y la c confunde la población de referencia."},
-{t:15,type:"Normativa",lvl:"Recordar",dif:"Media",
- stem:"El Ministerio de Salud evalúa incorporar una nueva patología a las Garantías Explícitas en Salud (Ley 19.966). ¿En qué indicadores se basa principalmente la priorización?",
- opts:["En la disponibilidad de camas de la red pública","En la carga de enfermedad (AVISA), la mortalidad y la prevalencia","En el costo de los medicamentos asociados","En la demanda espontánea de consultas en APS"],ans:1,
- e:"La priorización GES parte por la magnitud del problema: carga de enfermedad medida en AVISA, mortalidad y prevalencia. También se considera la costo-efectividad de las intervenciones y la capacidad de oferta, pero ninguno de esos criterios por sí solo define la selección; por eso a y c no son la mejor respuesta. La demanda de consultas no mide la carga de enfermedad."},
-{t:15,type:"Concepto",lvl:"Recordar",dif:"Baja",
- stem:"¿Cuál de las siguientes características debe cumplir un buen indicador de salud?",
- opts:["Ser válido, confiable, sensible, específico y factible de calcular","Mantenerse idéntico en el tiempo y entre poblaciones","Ser sensible, aunque no sea específico","Usar siempre la población total como denominador"],ans:0,
- e:"Los atributos de un buen indicador según la OPS son validez, confiabilidad, sensibilidad, especificidad, factibilidad y relevancia. La b contradice su propósito, que es mostrar cambios en el tiempo y diferencias entre poblaciones. La c sacrifica la especificidad, y la d olvida que el denominador es la población en riesgo, por ejemplo los nacidos vivos en la mortalidad infantil."}
+{t:1,esp:"Definición de salud de la Organización Mundial de la Salud",type:"Concepto",lvl:"Recordar",dif:"Baja",
+ stem:"Según la definición de la Organización Mundial de la Salud, ¿qué condición define la salud?",
+ opts:["La ausencia de enfermedad o afección.","El funcionamiento normal de órganos y sistemas.","Un estado de completo bienestar físico, mental y social.","La capacidad de adaptarse a los cambios del entorno."],ans:2,
+ e:"La definición de la Constitución de la Organización Mundial de la Salud describe la salud como un estado de bienestar en tres dimensiones, y agrega que no es solamente la ausencia de enfermedad. La alternativa A es justamente el concepto biomédico que esa definición supera, y la B es una versión funcional del mismo modelo. La D corresponde a propuestas posteriores de «salud positiva», no a la definición de la Organización Mundial de la Salud."},
+{t:1,esp:"Definiciones históricas de salud pública",type:"Concepto",lvl:"Recordar",dif:"Media",
+ stem:"¿Cómo definió Donald Acheson la salud pública en 1988?",
+ opts:["Las acciones colectivas e individuales, del Estado y de la sociedad civil, para mejorar la salud de la población.","La ciencia y el arte de prevenir las enfermedades, prolongar la vida y fomentar la salud mediante el esfuerzo organizado de la sociedad.","El conjunto de estrategias organizadas por el Estado para controlar las enfermedades transmisibles en la población.","La organización de los servicios médicos para el diagnóstico temprano y el tratamiento oportuno de las enfermedades."],ans:1,
+ e:"Acheson sintetiza a Winslow: conserva «ciencia y arte», los tres verbos (prevenir, prolongar, fomentar) y el esfuerzo organizado, ahora de la sociedad. La alternativa A es la definición de la Organización Panamericana de la Salud de 2002. La C describe solo la etapa sanitarista, y la D toma un componente de Winslow y Terris como si fuera la definición completa."},
+{t:1,esp:"Concepto contemporáneo de salud pública",type:"Concepto",lvl:"Comprender",dif:"Media",
+ stem:"¿Qué ámbito de acción caracteriza al concepto contemporáneo de salud pública?",
+ opts:["La atención hospitalaria de las enfermedades de mayor letalidad.","El tratamiento de las enfermedades infecciosas de la comunidad.","La vigilancia epidemiológica y el control de los brotes.","La acción intersectorial sobre la promoción, la prevención y los determinantes sociales."],ans:3,
+ e:"El concepto actual se reconoce por dos rasgos: es poblacional y es intersectorial. Las alternativas A y B lo reducen a la atención clínica de enfermedades, y la C confunde una de sus funciones esenciales, la vigilancia, con el campo completo."},
+{t:1,esp:"Factores culturales en la percepción de salud",type:"Caso clínico",lvl:"Aplicar",dif:"Media",
+ stem:"Una mujer mapuche de 52 años con diagnóstico reciente de diabetes mellitus tipo 2 consulta en su centro de salud familiar. Antes de iniciar metformina desea consultar con una machi para recuperar el equilibrio perdido. El médico acuerda un plan que incluye el tratamiento farmacológico y respeta su decisión. ¿Qué principio fundamenta la conducta del médico?",
+ opts:["El modelo biomédico asegura una mejor adherencia al tratamiento.","La cultura influye en cómo cada persona entiende su enfermedad.","Las prácticas tradicionales reemplazan al tratamiento si la paciente lo pide.","La cosmovisión de la paciente es un determinante biológico de su salud."],ans:1,
+ e:"El médico integra la creencia de la paciente sin abandonar el tratamiento, y eso solo se explica si se reconoce que la cultura moldea cómo se entiende la enfermedad. La A describe lo contrario de lo que hizo el médico, y un enfoque exclusivamente biomédico suele empeorar la adherencia. La C no ocurrió, porque la metformina se mantuvo. La D clasifica mal la cosmovisión, que es un determinante cultural y social, no biológico."},
+{t:1,esp:"Acción intersectorial en salud pública",type:"Caso clínico",lvl:"Aplicar",dif:"Media",
+ stem:"Tras un aumento sostenido de consultas respiratorias en una ciudad del sur, la Secretaría Regional Ministerial de Salud implementa vigilancia epidemiológica, vacunación, educación sanitaria, monitoreo de la calidad del aire y coordinación con los municipios para reducir la contaminación por leña. ¿Qué tipo de intervención de salud pública describe este caso?",
+ opts:["Tratamiento de los casos una vez que aparecen.","Gestión de la red de atención hospitalaria.","Acción intersectorial sobre un determinante ambiental.","Promoción de la salud desde la atención primaria."],ans:2,
+ e:"La clave está en quiénes actúan y sobre qué: la Secretaría Regional coordina con los municipios, y la medida central actúa sobre la calidad del aire, un determinante ambiental. La A no calza porque casi todas las medidas actúan antes de la enfermedad, y la B no aparece en el caso. La D es la más tentadora porque hay educación sanitaria, pero la intervención no se limita a la atención primaria ni a la promoción."},
+{t:6,esp:"Prevención primaria: protección específica",type:"Caso clínico",lvl:"Aplicar",dif:"Baja",
+ stem:"Una técnica en enfermería de 28 años que trabaja en el servicio de urgencia recibe la vacuna contra influenza en la campaña anual dirigida al personal de salud. ¿A qué nivel de prevención corresponde esta intervención?",
+ opts:["Primaria.","Secundaria.","Terciaria.","Cuaternaria."],ans:0,
+ e:"La trabajadora no tiene la enfermedad, y la vacuna interpone una barrera específica contra un agente definido: prevención primaria, en su modalidad de protección específica. No es secundaria porque no hay enfermedad que detectar, ni terciaria porque no hay daño que limitar. Tampoco es cuaternaria: la vacuna tiene indicación y beneficio demostrado en el personal de salud."},
+{t:6,esp:"Prevención cuaternaria",type:"Caso clínico",lvl:"Aplicar",dif:"Media",
+ stem:"Un hombre de 45 años, asintomático y sin factores de riesgo, solicita una tomografía computada de cuerpo completo para descartar cualquier cáncer. Desde la perspectiva de la prevención cuaternaria, ¿cuál es la conducta indicada?",
+ opts:["Solicitar la tomografía para reducir la ansiedad del paciente.","Reemplazar la tomografía por un panel de marcadores tumorales.","Explicar los riesgos del examen y no solicitarlo.","Programar controles imagenológicos cada año."],ans:2,
+ e:"La prevención cuaternaria protege al paciente del daño que puede causar la propia medicina. Una tomografía de cuerpo completo sin indicación expone a radiación y a hallazgos incidentales que llevan a más estudios, sin beneficio demostrado. Las alternativas A, B y D hacen lo mismo con otro nombre: indican una prueba sin beneficio, una o varias veces."},
+{t:6,esp:"Prevención terciaria: rehabilitación",type:"Caso clínico",lvl:"Aplicar",dif:"Baja",
+ stem:"Un hombre de 67 años con hemiparesia derecha secundaria a un accidente cerebrovascular isquémico hace tres meses inicia kinesioterapia y terapia ocupacional en su centro de salud familiar. ¿A qué nivel de prevención corresponde esta intervención?",
+ opts:["Primaria.","Secundaria.","Terciaria.","Cuaternaria."],ans:2,
+ e:"El accidente cerebrovascular ya ocurrió y dejó secuelas, y el objetivo es recuperar funcionalidad: rehabilitación, que corresponde a prevención terciaria. No es secundaria, porque no se trata de detectar precozmente la enfermedad, ni cuaternaria, porque la kinesioterapia tiene indicación clara."},
+{t:6,esp:"Prevención secundaria: tamizaje",type:"Caso clínico",lvl:"Analizar",dif:"Media",
+ stem:"Una mujer de 50 años, asintomática y sin antecedentes familiares de cáncer, se realiza una mamografía de tamizaje en su centro de salud familiar. El informe describe una lesión categoría BI-RADS 4. ¿A qué nivel de prevención corresponde la mamografía realizada?",
+ opts:["Primaria.","Secundaria.","Terciaria.","Cuaternaria."],ans:1,
+ e:"Se pregunta por la mamografía, no por lo que viene después. Se realizó en una mujer asintomática para detectar un cáncer antes de que dé síntomas: tamizaje, es decir, prevención secundaria. El hallazgo no vuelve terciaria a la mamografía, porque aún no hay enfermedad confirmada ni daño que limitar. Tampoco es cuaternaria: en este grupo de edad el tamizaje mamográfico tiene beneficio demostrado."},
+{t:15,esp:"Tasa de mortalidad infantil",type:"Cálculo",lvl:"Aplicar",dif:"Baja",
+ stem:"En una comuna se registraron 5.000 nacidos vivos durante 2025 y 45 defunciones de menores de 1 año en el mismo período. ¿Cuál es la tasa de mortalidad infantil de la comuna, por 1.000 nacidos vivos?",
+ opts:["0,9","9","45","90"],ans:1,
+ e:"La tasa de mortalidad infantil usa como denominador a los nacidos vivos del mismo período y se expresa por 1.000: (45 / 5.000) × 1.000 = 9. La alternativa A resulta de multiplicar por 100, la C confunde el número de defunciones con la tasa y la D resulta de multiplicar por 10.000."},
+{t:15,esp:"Relación entre prevalencia e incidencia",type:"Concepto",lvl:"Comprender",dif:"Media",
+ stem:"En una enfermedad crónica, la prevalencia es muy superior a la incidencia anual, aunque el número de casos nuevos por año se mantiene estable. ¿Qué explica este hallazgo?",
+ opts:["La larga duración de la enfermedad.","Un error en la medición de la incidencia.","La medición de la prevalencia solo en hospitalizados.","La alta letalidad de la enfermedad."],ans:0,
+ e:"En condiciones estables, la prevalencia es aproximadamente la incidencia multiplicada por la duración. Una enfermedad crónica dura años, así que los casos se acumulan aunque cada año aparezca el mismo número de casos nuevos. La D es la trampa: una alta letalidad acorta la duración y haría bajar la prevalencia, no subir. La B supone un error que el enunciado no sugiere, y la C confunde la población de referencia."},
+{t:15,esp:"Uso de indicadores en la priorización de garantías explícitas",type:"Normativa",lvl:"Recordar",dif:"Media",
+ stem:"El Ministerio de Salud evalúa incorporar una nueva patología a las Garantías Explícitas en Salud (Ley 19.966). ¿En qué criterios se basa principalmente la priorización?",
+ opts:["La disponibilidad de camas de la red pública.","La carga de enfermedad, la mortalidad y la prevalencia.","El costo de los medicamentos asociados.","La demanda espontánea de consultas en atención primaria."],ans:1,
+ e:"La priorización parte por la magnitud del problema: carga de enfermedad medida en años de vida ajustados por discapacidad, mortalidad y prevalencia. También se considera la costo-efectividad de las intervenciones y la capacidad de oferta, pero ninguno de esos criterios por sí solo define la selección; por eso A y C no son la mejor respuesta. La demanda de consultas no mide la carga de enfermedad."},
+{t:15,esp:"Atributos de un buen indicador",type:"Concepto",lvl:"Recordar",dif:"Baja",
+ stem:"¿Qué atributos debe cumplir un buen indicador de salud?",
+ opts:["Validez, confiabilidad, sensibilidad, especificidad y factibilidad.","Estabilidad en el tiempo e igualdad entre poblaciones.","Disponibilidad exclusiva en registros hospitalarios.","Uso de la población total como denominador."],ans:0,
+ e:"Los atributos de un buen indicador según la Organización Panamericana de la Salud son validez, confiabilidad, sensibilidad, especificidad, factibilidad y relevancia. La B contradice su propósito, que es mostrar cambios en el tiempo y diferencias entre poblaciones. La C excluye fuentes esenciales como el Instituto Nacional de Estadísticas o la Encuesta Nacional de Salud, y la D olvida que el denominador es la población en riesgo."}
 ];
 
 const $ = s => document.querySelector(s);
@@ -725,7 +728,7 @@ $("#m-prac").addEventListener("click", () => { setMode("prac"); startQuiz(); });
 $("#m-sim").addEventListener("click", () => { setMode("sim"); startQuiz(); });
 $("#q-filter").addEventListener("change", startQuiz);
 $("#q-start").addEventListener("click", startQuiz);
-const L = ["a)","b)","c)","d)","e)"];
+const L = ["A)","B)","C)","D)"];
 function shuffle(a){ a = a.slice(); for(let i = a.length - 1; i > 0; i--){ const j = Math.floor(Math.random() * (i + 1)); [a[i], a[j]] = [a[j], a[i]]; } return a; }
 function startQuiz(){
   const f = $("#q-filter").value;
@@ -741,10 +744,11 @@ function renderQ(){
   const q = deck[idx], a = answers[idx], revealed = mode === "prac" && a !== null;
   const dots = mode === "sim" ? `<div class="dots" aria-hidden="true">${deck.map((_, i) => `<span class="dot ${answers[i] !== null ? "ans" : ""} ${i === idx ? "cur" : ""}"></span>`).join("")}</div>` : "";
   $("#q-area").innerHTML = `<div class="qcard">
-    <div class="qhead"><div style="display:flex;flex-wrap:wrap;gap:6px"><span class="pill">Pregunta ${idx+1} de ${deck.length}</span><span class="pill">Tema ${q.t}</span><span class="pill code">${CHAPTERS[q.t].code}</span><span class="pill b">${q.type}</span><span class="pill">${q.lvl}</span><span class="pill">Dificultad ${q.dif.toLowerCase()}</span></div>
+    <div class="qhead"><div style="display:flex;flex-wrap:wrap;gap:6px"><span class="pill">Pregunta ${idx+1} de ${deck.length}</span><span class="pill code">EUNACOM ${CHAPTERS[q.t].code}</span><span class="pill b">${q.type}</span><span class="pill">Dificultad ${q.dif.toLowerCase()}</span></div>
     ${mode === "sim" ? `<span class="timer" id="timer">00:00</span>` : ""}</div>
     ${dots}
-    <p class="stem" style="margin-top:${mode === "sim" ? "14px" : "0"}">${esc(q.stem)}</p>
+    <div class="ficha" style="margin-top:${mode === "sim" ? "14px" : "0"}"><div><b>UNIDAD:</b> ${esc(TOPICS.find(x => x.n === q.t).s)}</div><div><b>TEMA:</b> ${q.t}. ${esc(topicName(q.t))}</div><div><b>ESPECÍFICO:</b> ${esc(q.esp)}</div></div>
+    <p class="stem" style="margin-top:14px">${esc(q.stem)}</p>
     <div class="opts" role="radiogroup">${q.opts.map((o, i) => {
       let cls = "";
       if(revealed){ if(i === q.ans) cls = "right"; else if(i === a) cls = "wrong"; }
